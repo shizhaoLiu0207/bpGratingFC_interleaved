@@ -1,0 +1,7 @@
+Keep all trials
+Remove neurons with coef covariation larger than 1. 
+Remove neurons with hVis signed smaller than 0.2, which means 
+in any condition, smaller than 20
+Remove neurons with FR during task smaller than 1 spk/sec
+
+Subsample with size control: use the minimum or the second minimum neuron number for each animal
