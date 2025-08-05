@@ -43,7 +43,7 @@ results_fisher_beforelearning = util_it.run_organize_cross_fisherinfo_sizeContro
 
 results_fisher_afterlearning = get_sample_CI_cross(results_fisher_afterlearning);
 results_fisher_beforelearning = get_sample_CI_cross(results_fisher_beforelearning);
-%% psychometric curve
+%% 1. psychometric curve
 figure
 set(gcf,'Units','inches','Position',[0,0,6,4])
 plotOptions.style_cardinal = '-';
@@ -61,39 +61,8 @@ text(5, 0.85,'After learning','fontsize',14);
 save_folder = '../../figures/figures_final/model_behav';
 save_name = fullfile(save_folder,'model_psycurves_interleaved.svg');
 print(save_name,'-dsvg','-vector')
-% %% I_redundancy
-% figure; 
-% set(gcf,'Units','inches','Position',[0,0,12,4])
-% 
-% ax_1 = subplot(1,3,1); hold on
-% set(ax_1,'position',get(ax_1,'position')+[-0.06 0.03 0.01 -0.03]);
-% deltaI_cardinal  = results_fisher_beforelearning.delta_cardinal_cardinal_median;
-% deltaI_oblique   = results_fisher_beforelearning.delta_oblique_oblique_median;
-% deltaI_cardinal_CI  = results_fisher_beforelearning.delta_cardinal_cardinal_CI;
-% deltaI_oblique_CI   = results_fisher_beforelearning.delta_oblique_oblique_CI;
-% 
-% 
-% fig_it.plot_bar_errorbar(1, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
-% fig_it.plot_bar_errorbar(2, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
-% 
-% deltaI_cardinal  = results_fisher_afterlearning.delta_cardinal_cardinal_median;
-% deltaI_cardinal_CI  = results_fisher_afterlearning.delta_cardinal_cardinal_CI;
-% deltaI_oblique   = results_fisher_afterlearning.delta_oblique_oblique_median;
-% deltaI_oblique_CI   = results_fisher_afterlearning.delta_oblique_oblique_CI;
-% 
-% fig_it.plot_bar_errorbar(4.5, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
-% fig_it.plot_bar_errorbar(5.5, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
-% 
-% text(0, 0.4,'Before learning','fontsize',14)
-% text(3.5, 0.4,'After learning','fontsize',14)
-% set(gca,'xtick',[]); set(gca,'fontsize',14)
-% set(gca,'ylim',[0,0.45])
-% set(gca,'xtick',[1,2,4,5],'xticklabels',{'\color{red}{Cardinal}','\color{blue}{Oblique}','\color{red}{Cardinal}','\color{blue}{Oblique}'})
-% set(gca, 'TickLabelInterpreter','tex')
-% 
-% ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
 
-%% compare I_real and I_cross
+%% 2. compare I_real and I_cross
 figure
 set(gcf,'unit','inches','position',[0,0,6,3])
 ax_1 = subplot(1,2,1); hold on
@@ -158,8 +127,7 @@ set(gca, 'TickLabelInterpreter','latex')
 save_folder = '../../figures/figures_final/model_fisher';
 save_name = fullfile(save_folder,'model_fisher_real_cross.svg');
 print(save_name,'-dsvg','-vector')
-%%
-%%% compare I_redundancy and I_redundancy_cross
+%% 3. compare I_redundancy and I_redundancy_cross
 figure
 set(gcf,'unit','inches','position',[0,0,6,3])
 ax_1 = subplot(1,2,1); hold on
@@ -182,9 +150,9 @@ fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, col
 fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
 fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
 
-ylim([0, 0.4])
-text(0.5,0.38,'Cardinal','color','red','FontSize',14)
-text(5.5,0.38,'Oblique','color','blue','FontSize',14)
+ylim([0, 0.42])
+text(0.5,0.38,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
+text(5.5,0.38,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
 set(gca,'xtick',[]); set(gca,'fontsize',14)
 set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
 ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
@@ -211,9 +179,9 @@ fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, col
 fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
 fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
 
-ylim([0, 0.4])
-text(0.5,0.38,'Cardinal','color','red','FontSize',14)
-text(5.5,0.38,'Oblique','color','blue','FontSize',14)
+ylim([0, 0.42])
+text(0.5,0.38,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
+text(5.5,0.38,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
 set(gca,'xtick',[]); set(gca,'fontsize',14)
 set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
 %ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
@@ -222,6 +190,70 @@ title('After learning')
 
 save_folder = '../../figures/figures_final/model_fisher';
 save_name = fullfile(save_folder,'model_redundancy_real_cross.svg');
+print(save_name,'-dsvg','-vector')
+%% 4. compare I_redundancy_pct and I_redundancy_cross_pct
+figure
+set(gcf,'unit','inches','position',[0,0,6,3])
+ax_1 = subplot(1,2,1); hold on
+set(ax_1,'position',get(ax_1,'position')+[-0.01 0.03 0.04 -0.03]);
+
+deltaI_cardinal             = results_fisher_beforelearning.delta_percent_cardinal_cardinal_median;
+deltaI_cardinal_CI          = results_fisher_beforelearning.delta_percent_cardinal_cardinal_CI;
+
+deltaI_cardinal_cross       = results_fisher_beforelearning.delta_percent_cardinal_oblique_median;
+deltaI_cardinal_cross_CI    = results_fisher_beforelearning.delta_percent_cardinal_oblique_CI;
+
+deltaI_oblique              = results_fisher_beforelearning.delta_percent_oblique_oblique_median;
+deltaI_oblique_CI           = results_fisher_beforelearning.delta_percent_oblique_oblique_CI;
+
+deltaI_oblique_cross        = results_fisher_beforelearning.delta_percent_oblique_cardinal_median;
+deltaI_oblique_cross_CI     = results_fisher_beforelearning.delta_percent_oblique_cardinal_CI;
+
+fig_it.plot_bar_errorbar(1, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
+fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, color_C, color_O)
+fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
+fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
+
+ylim([0, 100])
+text(0.5,90,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
+text(5.5,90,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
+set(gca,'xtick',[]); set(gca,'fontsize',14)
+set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
+ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
+set(gca, 'TickLabelInterpreter','latex')
+title('Before learning')
+
+ax_2 = subplot(1,2,2); hold on
+set(ax_2,'position',get(ax_2,'position')+[0.01 0.03 0.04 -0.03]);
+
+deltaI_cardinal             = results_fisher_afterlearning.delta_percent_cardinal_cardinal_median;
+deltaI_cardinal_CI          = results_fisher_afterlearning.delta_percent_cardinal_cardinal_CI;
+
+deltaI_cardinal_cross       = results_fisher_afterlearning.delta_percent_cardinal_oblique_median;
+deltaI_cardinal_cross_CI    = results_fisher_afterlearning.delta_percent_cardinal_oblique_CI;
+
+deltaI_oblique              = results_fisher_afterlearning.delta_percent_oblique_oblique_median;
+deltaI_oblique_CI           = results_fisher_afterlearning.delta_percent_oblique_oblique_CI;
+
+deltaI_oblique_cross        = results_fisher_afterlearning.delta_percent_oblique_cardinal_median;
+deltaI_oblique_cross_CI     = results_fisher_afterlearning.delta_percent_oblique_cardinal_CI;
+
+fig_it.plot_bar_errorbar(1, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
+fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, color_C, color_O)
+fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
+fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
+
+ylim([0, 100])
+text(0.5,90,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
+text(5.5,90,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
+set(gca,'xtick',[]); set(gca,'fontsize',14)
+set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
+%ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
+set(gca, 'TickLabelInterpreter','latex')
+title('After learning')
+
+save_folder = '../../figures/figures_final/model_fisher';
+save_name = fullfile(save_folder,'model_redundancy_percent_real_cross.svg');
 print(save_name,'-dsvg','-vector')
 %% helper function
 
