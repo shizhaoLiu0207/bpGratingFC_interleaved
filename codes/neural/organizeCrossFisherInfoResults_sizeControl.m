@@ -3,17 +3,22 @@ clc
 close all
 
 %%
-versionName = 'all_trials_coef1_hVis2_FR1_interleaved_sizeControl';
-saveFolder = sprintf('../../results/neural/fisherInfo_direct/fisherInfo_direct_%s', versionName);
+versionName_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl';...
+    'all_trials_coef1_hVis2_FR1_hVisOri2_FROri2_interleaved_sizeControl'};
+for n = 1:numel(versionName_list)
+    versionName = versionName_list{n};
+    saveFolder = sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_%s', versionName);
+    
+    % dataName = fullfile(saveFolder,  sprintf('fisherInfo_cross_direct_all_sessions_%s',versionName));
+    % load(dataName);
 
-dataName = fullfile(saveFolder,  sprintf('fisherInfo_cross_direct_all_sessions_%s',versionName));
-load(dataName);
-saveName = fullfile(saveFolder,'results_SubsampleCombined_combinedCohr_fisherInfo_all_sessions');
-
-results_cross_sizeControl = util_it.run_organize_cross_fisherinfo_sizeControl(dat_fisher_cross);
-
-save(saveName,'results_cross_sizeControl');
-
+    data_list = dir(fullfile(saveFolder,'individual_sessions_cross','*.mat'));
+    saveName = fullfile(saveFolder,'results_SubsampleCombined_combinedCohr_fisherInfo_all_sessions');
+    
+    results_cross_sizeControl = util_it.run_organize_cross_fisherinfo_sizeControl(data_list);
+    
+    save(saveName,'results_cross_sizeControl');
+end
 % session_list = unique({dat_fisher_cross(:).sessionStr});
 % nSession = numel(session_list);
 % t = 1;

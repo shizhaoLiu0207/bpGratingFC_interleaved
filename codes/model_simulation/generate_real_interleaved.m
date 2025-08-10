@@ -24,9 +24,9 @@ for n = 1:nFile
     extracted_params        = tokens{1}; % Extract matched tokens
     imagetask_str           = extracted_params{1};
     bPF_str                 = strrep(extracted_params{2}, '_', '.'); % Replace _ with .
-    taskprior_str           = strrep(extracted_params{3}, '_', '.');
-    delta_str               = strrep(extracted_params{4}, '_', '.');
-
+    delta_str               = strrep(extracted_params{3}, '_', '.');
+    taskprior_str           = strrep(extracted_params{4}, '_', '.');
+    
     
     imagetask{n}               = imagetask_str;
     bPF(n)        = str2double(bPF_str);

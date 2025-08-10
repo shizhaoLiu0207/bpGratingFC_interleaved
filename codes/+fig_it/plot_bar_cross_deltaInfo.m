@@ -7,14 +7,29 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
   
     if plotOptions.plotPercent
         deltaI_cardinal =  cell2mat({results_all(idx).delta_percent_cardinal_cardinal_median});
-        deltaI_cardinal_cross =  cell2mat({results_all(idx).delta_percent_oblique_cardinal_median});
+        deltaI_cardinal_cross =  cell2mat({results_all(idx).delta_percent_cardinal_oblique_median});
         deltaI_oblique = cell2mat({results_all(idx).delta_percent_oblique_oblique_median});
-        deltaI_oblique_cross = cell2mat({results_all(idx).delta_percent_cardinal_oblique_median});
+        deltaI_oblique_cross = cell2mat({results_all(idx).delta_percent_oblique_cardinal_median});
+
+        if strcmp(plotOptions.errorbar,'CI_sample')
+            deltaI_cardinal_CI          = results_all(idx).delta_percent_cardinal_cardinal_CI;
+            deltaI_cardinal_cross_CI    = results_all(idx).delta_percent_cardinal_oblique_CI;
+            deltaI_oblique_CI           = results_all(idx).delta_percent_oblique_oblique_CI;
+            deltaI_oblique_cross_CI     = results_all(idx).delta_percent_oblique_cardinal_CI;
+        end
+
     else
         deltaI_cardinal =  cell2mat({results_all(idx).delta_cardinal_cardinal_median});
-        deltaI_cardinal_cross =  cell2mat({results_all(idx).delta_oblique_cardinal_median});
+        deltaI_cardinal_cross =  cell2mat({results_all(idx).delta_cardinal_oblique_median});
         deltaI_oblique = cell2mat({results_all(idx).delta_oblique_oblique_median});
-        deltaI_oblique_cross = cell2mat({results_all(idx).delta_cardinal_oblique_median});
+        deltaI_oblique_cross = cell2mat({results_all(idx).delta_oblique_cardinal_median});
+        
+        if strcmp(plotOptions.errorbar,'CI_sample')
+            deltaI_cardinal_CI          = results_all(idx).delta_cardinal_cardinal_CI;
+            deltaI_cardinal_cross_CI    = results_all(idx).delta_cardinal_oblique_CI;
+            deltaI_oblique_CI           = results_all(idx).delta_oblique_oblique_CI;
+            deltaI_oblique_cross_CI     = results_all(idx).delta_oblique_cardinal_CI;
+        end
     end
 
     idx_nan_cardinal = isnan(deltaI_cardinal) | isnan(deltaI_cardinal_cross);
@@ -36,10 +51,7 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
   
     switch plotOptions.errorbar
         case 'CI_sample'
-            deltaI_cardinal_CI          = results_all(idx).delta_cardinal_cardinal_CI;
-            deltaI_cardinal_cross_CI    = results_all(idx).delta_oblique_cardinal_CI;
-            deltaI_oblique_CI           = results_all(idx).delta_oblique_oblique_CI;
-            deltaI_oblique_cross_CI     = results_all(idx).delta_cardinal_oblique_CI;
+            
 
             ymean           = [mean(deltaI_cardinal), mean(deltaI_cardinal_cross), mean(deltaI_oblique), mean(deltaI_oblique_cross)];
             y_errorbar_low  =  ymean - [deltaI_cardinal_CI(1), deltaI_cardinal_cross_CI(1), deltaI_oblique_CI(1), deltaI_oblique_cross_CI(1)];
@@ -58,8 +70,15 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
         stats_info_cardinal = fig.show_ttest(deltaI_cardinal, deltaI_cardinal_cross, [0.5,2.5]);
         stats_info_oblique = fig.show_ttest(deltaI_oblique, deltaI_oblique_cross, [5.5,7.5]);
      end
-    set(gca, 'fontsize', ftsize)
+    set(gca, 'fontsize', plotOptions.ftsize)
     set(gca, 'xtick', [0.5,2.5, 5.5,7.5], 'xticklabels', {'Within';'Cross'; 'Within';'Cross'})
-    ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
+    set(gca, 'TickLabelInterpreter','latex')
+      if plotOptions.plotPercent
+          ylabel('$I_\textrm{redundancy}$ (Percent)','Interpreter','latex');
+      else
+            ylabel('$I_\textrm{redundancy}$','Interpreter','latex');
+      end
+
+      
 
 end

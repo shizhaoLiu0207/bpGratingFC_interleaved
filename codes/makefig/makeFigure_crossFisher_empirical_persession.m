@@ -75,15 +75,8 @@ if doThis
     save_name = fullfile(save_folder, sprintf('scatter_session_%s.svg',plotOptions.plotfield));
     print(save_name,'-dsvg','-vector');
 end
-%% 2. correlation between neural and behavior
 
-%%% corr(I_redudancy(within), learning index (within))
 
-%%% corr(I_cross - I_real, learning index (within))
-%%% corr(I_redundacy(within) - I_redundacy(cross), learning index (within))
-
-%%% corr(I_cross - I_real, learning index (within - cross))
-%%% corr(I_redundacy(within) - I_redundacy(cross), learning index (within - cross)
 %%
 % %plotOptions.plotfield = 'fisher';  % 1. I_real v.s. I_cross per session - scatter
 % % plotOptions.plotfield = 'deltafisher';  % 2. I redundacy within v.s cross per session - scatter

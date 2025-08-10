@@ -50,12 +50,12 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_Info(results
     switch plotOptions.errorbar
         case 'CI_sample'
             cardinal_real_CI            = results_all(idx).fisher_cardinal_cardinal_CI;
-            cardinal_cross_CI           = results_all(idx).fisher_oblique_cardinal_CI;
+            cardinal_cross_CI           = results_all(idx).fisher_cardinal_oblique_CI;
             cardinal_shuffle_CI         = results_all(idx).fisher_cardinal_cardinal_shuffle_CI;
             cardinal_cross_shuffle_CI   = results_all(idx).fisher_oblique_cardinal_shuffle_CI;
 
             oblique_real_CI            = results_all(idx).fisher_oblique_oblique_CI;
-            oblique_cross_CI           = results_all(idx).fisher_cardinal_oblique_CI;
+            oblique_cross_CI           = results_all(idx).fisher_oblique_cardinal_CI;
             oblique_shuffle_CI         = results_all(idx).fisher_oblique_oblique_shuffle_CI;
             oblique_cross_shuffle_CI   = results_all(idx).fisher_cardinal_oblique_shuffle_CI;
             if plotOptions.plotShuffle
@@ -99,7 +99,7 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_Info(results
     
     
 
-    set(gca, 'fontsize', ftsize)
+    set(gca, 'fontsize', plotOptions.ftsize)
     set(gca, 'TickLabelInterpreter', 'latex')
     % set(gca, 'xtick', [1:5, 7:11], 'xticklabels', {'Real';'Cross-cov';'Cross-corr';'Shuffle';'Cross shuffle'; ...
     %                                              'Real';'Cross-cov';'Cross-corr';'Shuffle';'Cross shuffle';})
@@ -111,5 +111,5 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_Info(results
                                                      '$I_\textrm{real}$';'$I_\textrm{cross}$'})
     end
    
-    ylabel('Linear Fisher information','FontSize',14)
+    ylabel('Linear Fisher information','Interpreter','latex')
 end

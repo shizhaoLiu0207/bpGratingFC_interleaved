@@ -1,18 +1,45 @@
-function results_cross_sizeControl = run_organize_cross_fisherinfo_sizeControl(dat_fisher_cross)
-session_list = unique({dat_fisher_cross(:).sessionStr});
-nSession = numel(session_list);
+function results_cross_sizeControl = run_organize_cross_fisherinfo_sizeControl(dat_input)
+
+if isfield(dat_input, 'sessionStr')
+   dat_fisher_cross = dat_input;
+   session_list = unique({dat_fisher_cross(:).sessionStr});
+   nSession = numel(session_list);
+   load_flag = false;
+elseif isfield(dat_input, 'folder')
+    nSession = numel(file_name_list);
+    load_flag = true;
+end
 t = 1;
 for n = 1:nSession
     fprintf('Organizing session %d/%d\n',n,nSession)
-    idx_base = strcmp({dat_fisher_cross(:).sessionStr}, session_list{n});
-    nSample = max(cell2mat({dat_fisher_cross(idx_base).i_subSample}));
-    timebin_list = unique(cell2mat({dat_fisher_cross(idx_base).timeWinIndex}));
-
+    if load_flag
+        load(fullfile(file_name_list(n).folder, file_name_list(n).name));
+    
+        if isempty(dat_fisher_cross)
+            continue
+        end
+         nSample = max(cell2mat({dat_fisher_cross(:).i_subSample}));
+         sessionType_list = unique({dat_fisher_cross(:).sessionType});
+         timebin_list = unique(cell2mat({dat_fisher_cross(:).timeWinIndex}));
+    else
+        idx_base = strcmp({dat_fisher_cross(:).sessionStr}, session_list{n});
+        nSample = max(cell2mat({dat_fisher_cross(idx_base).i_subSample}));
+        sessionType_list = unique({dat_fisher_cross(idx_base).sessionType});
+        timebin_list = unique(cell2mat({dat_fisher_cross(idx_base).timeWinIndex}));
+    end
+   
+    
+    for m = 1:numel(sessionType_list)
    
         for k = 1:numel(timebin_list)
-            
-            idx_base = strcmp({dat_fisher_cross(:).sessionStr}, session_list{n})  & cell2mat({dat_fisher_cross(:).timeWinIndex}) == k-1;
-            
+            if load_flag
+                idx_base = cell2mat({dat_fisher_cross(:).timeWinIndex}) == k-1 & ...
+                    strcmp({dat_fisher_cross(:).sessionType}, sessionType_list{m});
+            else
+                idx_base = strcmp({dat_fisher_cross(:).sessionStr}, session_list{n}) & ...
+                        cell2mat({dat_fisher_cross(:).timeWinIndex}) == k-1 & ...
+                        strcmp({dat_fisher_cross(:).sessionType}, sessionType_list{m});
+            end
 
              for i = 1:nSample
                     idx = idx_base & cell2mat({dat_fisher_cross(:).i_subSample}) == i;
@@ -63,7 +90,7 @@ for n = 1:nSession
                 t = t+1;
 
         end
-  
+    end
    
 end
 

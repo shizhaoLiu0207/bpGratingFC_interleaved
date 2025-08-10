@@ -6,7 +6,7 @@ global   bpGlobal ftsize
 ftsize = 14;
 bpGratingFCGlobal();
 
-load('../../results/neural/stimulus_dprime_twoanimals_interleaved.mat');
+load('../../results/neural/stimulus_dprime_twoanimals_interleaved_all_trials_coef1_hVis2_FR1.mat');
 %load('../../results/neural/stimulus_dprime_twoanimals_learning_passive.mat');
 %% histogram plot with the maximum coherence level
 %%%% monkey R, cardinal: 1.5%, 2.5%, 4.0%, 10.0%
@@ -49,7 +49,7 @@ if doThis
     %                        [-0.01 0.03 0.01 -0.04];
     %                        [0.03 0.03 0.01 -0.04];
     %                        [0.05 0.03 0.01 -0.04]};
-    [stats_string_ttest, stats_string_ranksum, median_mean_string, stats_string_sparisity] = deal(cell(4,1));
+    [stats_string_ttest, stats_string_ranksum, median_mean_string, stats_string_onesample] = deal(cell(2,1));
     
     color_C = bpGlobal.color_list.color_cardinal;
     color_O = bpGlobal.color_list.color_oblique;
@@ -61,44 +61,12 @@ if doThis
         switch epoch_name
             case 'monkeyR'
                 session_list         = bpGlobal.rolo.session_list.switching;
-                % session_list_early  = bpGlobal.rolo.session_list.cardinal_early;
-                % session_list_late   = bpGlobal.rolo.session_list.cardinal_late;
-                 cohr_list           =   [0,3,5,10];
-                % %cohr_list_passive   = [15]; 
-                % color_plot          = bpGlobal.color_list.color_cardinal;
-                % color_plot_light    = bpGlobal.color_list.color_cardinal_light;
-                 epoch_string        = 'Monkey R';
-                % plotTask            = 'cardinal';
-            % case 'monkeyR_oblique'
-            %     session_list         = bpGlobal.rolo.session_list.swicthing;
-            %     % session_list_early  = bpGlobal.rolo.session_list.oblique_early;
-            %     % session_list_late   = bpGlobal.rolo.session_list.oblique_late;
-            %     cohr_list           =  [0,3,5,10];
-            %     %cohr_list_passive   = [7.5, 15]; 
-            %     color_plot          = bpGlobal.color_list.color_oblique;
-            %     color_plot_light    = bpGlobal.color_list.color_oblique_light;
-            %     epoch_string        = 'Monkey R, oblique';
-            %     plotTask            = 'oblique';
+                cohr_list           =   [0,3,5,10];
+                epoch_string        = 'Monkey R';
             case 'monkeyG'
                 session_list        = bpGlobal.gremlin.session_list.interleaved_real;
-                % session_list_early  = bpGlobal.gremlin.session_list.cardinal_early;
-                % session_list_late   = bpGlobal.gremlin.session_list.cardinal_late;
                 cohr_list           = [0, 3.5,7.5,15];
-                %cohr_list_passive   = [7.5, 15]; 
-                % color_plot          = bpGlobal.color_list.color_cardinal;
-                % color_plot_light    = bpGlobal.color_list.color_cardinal_light;
                 epoch_string        = 'Monkey G';
-               % plotTask            = 'cardinal';
-            % case 'monkeyG_oblique'
-            %     session_list        = bpGlobal.gremlin.session_list.interleaved_real;
-            %     % session_list_early  = bpGlobal.gremlin.session_list.oblique_early;
-            %     % session_list_late   = bpGlobal.gremlin.session_list.oblique_late;
-            %     cohr_list           = [0,7.5,15];
-            %     %cohr_list_passive   = [7.5, 15]; 
-            %     color_plot          = bpGlobal.color_list.color_oblique;
-            %     color_plot_light    = bpGlobal.color_list.color_oblique_light;
-            %     epoch_string        = 'Monkey G, oblique';
-            %     plotTask            = 'oblique';
         end
        
     
@@ -135,7 +103,7 @@ if doThis
        % end
 
         xlabel(xlabelStr,'interpreter','latex')
-        if ismember(plot_field,{'dprime_stimulus';'dprime_choice';'tuningIndex';'dprime_stimulus_sign'})
+        if ismember(plot_field,{'dprime_stimulus';'dprime_choice';'tuningIndex'})
             cardinal_stats_string = {sprintf('$Median = %.2f$',median(Y_cardinal,'omitnan'));...
                 sprintf('$Fraction = %d\\%%$',round(100 * sum(ttest_cardinal) / numel(ttest_cardinal)))};
         else
@@ -173,7 +141,7 @@ if doThis
         xlabel(xlabelStr,'interpreter','latex')
     
          %xlabel(xlabelStr)
-        if ismember(plot_field,{'dprime_stimulus';'dprime_choice';'tuningIndex';'dprime_stimulus_sign'})
+        if ismember(plot_field,{'dprime_stimulus';'dprime_choice';'tuningIndex'})
             oblique_stats_string = {sprintf('$Median = %.2f$',median(Y_oblique,'omitnan'));...
                 sprintf('$Fraction = %d\\%%$',round(100 * sum(ttest_oblique) / numel(ttest_oblique)))};
         else
@@ -196,6 +164,10 @@ if doThis
         if ~isempty(Y_cardinal) & ~isempty(Y_oblique)
             [~,p_t, ~,stats_t] = ttest2(Y_cardinal, Y_oblique);
             [p_rank,~,stats_rank]  = ranksum(Y_cardinal, Y_oblique);
+            if strcmp(plot_field, 'dprime_stimulus_sign')
+                [~, p_cardinal, ~, stats_cardinal] = ttest(Y_cardinal);
+                [~, p_oblique, ~, stats_oblique]   = ttest(Y_oblique);
+            end
         else
             p_t = nan;
             p_rank = nan;
@@ -206,10 +178,17 @@ if doThis
 
         end
         stats_string_ttest{k}      = sprintf('%s: $\\t(%d) = %.2f$, $p = \\num{%.2e}$; \n',...
-                                            epoch_string, stats_t.df, stats_t.tstat,p_t);
+                                            epoch_string, stats_t.df, stats_t.tstat, p_t);
         stats_string_ranksum{k}    = sprintf('%s: $W = %.2f$, $z = %.2f$, $p = \\num{%.2e}$; \n',...
                                             epoch_string, stats_rank.ranksum, stats_rank.zval, p_rank);
-      
+        if strcmp(plot_field, 'dprime_stimulus_sign')
+            stats_string_onesample{k} = sprintf(['%s, cardinal one-sample t-test: $\\t(%d) = %.2f$, $p = \\num{%.2e}$; \n' ...
+                                                    '%s, oblique one-sample t-test: $\\t(%d) = %.2f$, $p = \\num{%.2e}$'],...
+                                                    epoch_string, stats_cardinal.df, stats_cardinal.tstat, p_cardinal,...
+                                                    epoch_string, stats_oblique.df, stats_oblique.tstat, p_oblique);
+        else
+            stats_string_onesample{k} = '';
+        end
         % median_mean_string{k} = sprintf(['%s, late: $Fraction = %.2f$, $Median = %.2f$, $Mean = %.2f$; ', ...
         %             '%s, early: $Fraction = %.2f$, $Median = %.2f$, $Mean = %.2f$; \n'],...
         %             epoch_string,  sum(ttest_late) / numel(ttest_late), median(Y_late,'omitnan'), mean(Y_late,'omitnan'),...
@@ -227,13 +206,12 @@ if doThis
     fid = fopen(tex_name,'wt');
     
     fwrite(fid, [median_mean_string{1}, median_mean_string{2}, ...
-        median_mean_string{3}, median_mean_string{4},...
         'Independent samples t-test:',...
-        stats_string_ttest{1}, stats_string_ttest{2}, stats_string_ttest{3}, stats_string_ttest{4},...
+        stats_string_ttest{1}, stats_string_ttest{2},...
         'Wilcoxon rank sum test:',...
-        stats_string_ranksum{1}, stats_string_ranksum{2}, stats_string_ranksum{3}, stats_string_ranksum{4},...
-        'Sparsity test (gini index):',...
-        stats_string_sparisity{1}, stats_string_sparisity{2}, stats_string_sparisity{3}, stats_string_sparisity{4}]);
+        stats_string_ranksum{1}, stats_string_ranksum{2}, ...
+        'Onesample t-test:',...
+        stats_string_onesample{1}, stats_string_onesample{2}]);
     
     fclose(fid);
 end

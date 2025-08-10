@@ -25,8 +25,8 @@ session_name_afterlearning = ['Model_',session_name_str_afterlearning];
 data_name_beforelearning =['synthData_use_interleaved_',session_name_str_beforelearning];
 session_name_beforelearning = ['Model_',session_name_str_beforelearning];
 
-data_folder = '/Users/liushizhao/projectData_local/probinf_data/syntheticData_interleaved/synthData_use_interleaved/real_interleaved';
-fisher_folder = '../../results/neural/fisherInfo_direct/fisherInfo_direct_modelInterleaved_versionControl/subset_32_256_random_1000/individual_sessions_cross';
+data_folder = '/Users/liushizhao/projectData_local/probinf_data/syntheticData_interleaved/synthData_use_interleaved/real_interleaved/batch_1';
+fisher_folder = '../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_modelInterleaved_versionControl/subset_32_256_random_1000/individual_sessions_cross';
 
 data_afterlearning = load(fullfile(data_folder, data_name_afterlearning));
 data_beforelearning = load(fullfile(data_folder, data_name_beforelearning));
@@ -64,197 +64,205 @@ print(save_name,'-dsvg','-vector')
 
 %% 2. compare I_real and I_cross
 figure
-set(gcf,'unit','inches','position',[0,0,6,3])
-ax_1 = subplot(1,2,1); hold on
-set(ax_1,'position',get(ax_1,'position')+[-0.01 0.03 0.04 -0.03]);
-
-I_real_cardinal = results_fisher_beforelearning.fisher_cardinal_cardinal_median;
-I_real_cardinal_CI = results_fisher_beforelearning.fisher_cardinal_cardinal_CI;
-
-I_cross_cardinal = results_fisher_beforelearning.fisher_cardinal_oblique_median;
-I_cross_cardinal_CI = results_fisher_beforelearning.fisher_cardinal_oblique_CI;
-
-I_real_oblique = results_fisher_beforelearning.fisher_oblique_oblique_median;
-I_real_oblique_CI = results_fisher_beforelearning.fisher_oblique_oblique_CI;
-
-I_cross_oblique = results_fisher_beforelearning.fisher_oblique_cardinal_median;
-I_cross_oblique_CI = results_fisher_beforelearning.fisher_oblique_cardinal_CI;
-
-fig_it.plot_bar_errorbar(1, I_real_cardinal, I_real_cardinal_CI, color_C, color_C)
-fig_it.plot_bar_errorbar(3, I_cross_cardinal, I_cross_cardinal_CI, color_C, color_O)
-fig_it.plot_bar_errorbar(6, I_real_oblique, I_real_oblique_CI, color_O, color_O)
-fig_it.plot_bar_errorbar(8, I_cross_oblique, I_cross_oblique_CI, color_O, color_C)
-
+set(gcf,'unit','inches','position',[0,0,6,4])
+ax_1 = subplot(3,2,[1,3]); hold on
+set(ax_1,'position',get(ax_1,'position')+[-0.02 0.04 0.03 -0.03]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.dottest = false;
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 14;
+fig_it.plot_bar_cross_Info(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions); 
 ylim([0, 0.2])
 text(0.5,0.18,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
 text(5.5,0.18,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
-set(gca,'xtick',[]); set(gca,'fontsize',14)
-set(gca,'xtick',[1,3,6,8],'xticklabels',{'$I_\textrm{real}$';'$I_\textrm{cross}$';'$I_\textrm{real}$';'$I_\textrm{cross}$'})
-ylabel('Linear Fisher information','Interpreter','latex')
-set(gca, 'TickLabelInterpreter','latex')
 title('Before learning')
 
-ax_2 = subplot(1,2,2); hold on
-set(ax_2,'position',get(ax_2,'position')+[0.01 0.03 0.04 -0.03]);
-I_real_cardinal = results_fisher_afterlearning.fisher_cardinal_cardinal_median;
-I_real_cardinal_CI = results_fisher_afterlearning.fisher_cardinal_cardinal_CI;
-
-I_cross_cardinal = results_fisher_afterlearning.fisher_cardinal_oblique_median;
-I_cross_cardinal_CI = results_fisher_afterlearning.fisher_cardinal_oblique_CI;
-
-I_real_oblique = results_fisher_afterlearning.fisher_oblique_oblique_median;
-I_real_oblique_CI = results_fisher_afterlearning.fisher_oblique_oblique_CI;
-
-I_cross_oblique = results_fisher_afterlearning.fisher_oblique_cardinal_median;
-I_cross_oblique_CI = results_fisher_afterlearning.fisher_oblique_cardinal_CI;
+ax_2 = subplot(3,2,5 ); hold on
+set(ax_2,'position',get(ax_2,'position')+[-0.02 0 0.03 -0.02]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.ftsize = 14;
+plotOptions.plotdata = 'info';
+plotOptions.markersize = 6;
+fig_it.plot_diff_errorbar(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions)
+ylabel('Diff.(\%)','Interpreter','latex')
+%title('Before learning')
+ylim([-10,55])
 
 
-fig_it.plot_bar_errorbar(1, I_real_cardinal, I_real_cardinal_CI, color_C, color_C)
-fig_it.plot_bar_errorbar(3, I_cross_cardinal, I_cross_cardinal_CI, color_C, color_O)
-fig_it.plot_bar_errorbar(6, I_real_oblique, I_real_oblique_CI, color_O, color_O)
-fig_it.plot_bar_errorbar(8, I_cross_oblique, I_cross_oblique_CI, color_O, color_C)
-
+ax_3 = subplot(3,2,[2,4]); hold on
+set(ax_3,'position',get(ax_3,'position')+[0 0.04 0.02 -0.03]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.dottest = false;
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 14;
+fig_it.plot_bar_cross_Info(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions); 
+ylabel('')
 title('After learning')
-
 ylim([0, 0.2])
 text(0.5,0.18,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
 text(5.5,0.18,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
-set(gca,'xtick',[]); set(gca,'fontsize',14)
-set(gca,'xtick',[1,3,6,8],'xticklabels',{'$I_\textrm{real}$';'$I_\textrm{cross}$';'$I_\textrm{real}$';'$I_\textrm{cross}$'})
-%ylabel('Linear Fisher information','Interpreter','latex')
-set(gca, 'TickLabelInterpreter','latex')
 
-save_folder = '../../figures/figures_final/model_fisher';
+ax_4 = subplot(3,2,6); hold on
+set(ax_4,'position',get(ax_4,'position')+[0 0 0.02 -0.02]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.ftsize = 14;
+plotOptions.plotdata = 'info';
+plotOptions.markersize = 6;
+fig_it.plot_diff_errorbar(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions)
+ylabel('')
+%title('Before learning')
+ylim([-10,55])
+
+
+save_folder = '../../figures/figures_final/model_fisher_ideal';
 save_name = fullfile(save_folder,'model_fisher_real_cross.svg');
 print(save_name,'-dsvg','-vector')
-%% 3. compare I_redundancy and I_redundancy_cross
+%% 3. compare I_redundancy_percent and I_redundancy_cross_percent
 figure
-set(gcf,'unit','inches','position',[0,0,6,3])
-ax_1 = subplot(1,2,1); hold on
-set(ax_1,'position',get(ax_1,'position')+[-0.01 0.03 0.04 -0.03]);
-
-deltaI_cardinal             = results_fisher_beforelearning.delta_cardinal_cardinal_median;
-deltaI_cardinal_CI          = results_fisher_beforelearning.delta_cardinal_cardinal_CI;
-
-deltaI_cardinal_cross       = results_fisher_beforelearning.delta_cardinal_oblique_median;
-deltaI_cardinal_cross_CI    = results_fisher_beforelearning.delta_cardinal_oblique_CI;
-
-deltaI_oblique              = results_fisher_beforelearning.delta_oblique_oblique_median;
-deltaI_oblique_CI           = results_fisher_beforelearning.delta_oblique_oblique_CI;
-
-deltaI_oblique_cross        = results_fisher_beforelearning.delta_oblique_cardinal_median;
-deltaI_oblique_cross_CI     = results_fisher_beforelearning.delta_oblique_cardinal_CI;
-
-fig_it.plot_bar_errorbar(1, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
-fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, color_C, color_O)
-fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
-fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
-
-ylim([0, 0.42])
-text(0.5,0.38,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
-text(5.5,0.38,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
-set(gca,'xtick',[]); set(gca,'fontsize',14)
-set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
-ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
-set(gca, 'TickLabelInterpreter','latex')
-title('Before learning')
-
-ax_2 = subplot(1,2,2); hold on
-set(ax_2,'position',get(ax_2,'position')+[0.01 0.03 0.04 -0.03]);
-
-deltaI_cardinal             = results_fisher_afterlearning.delta_cardinal_cardinal_median;
-deltaI_cardinal_CI          = results_fisher_afterlearning.delta_cardinal_cardinal_CI;
-
-deltaI_cardinal_cross       = results_fisher_afterlearning.delta_cardinal_oblique_median;
-deltaI_cardinal_cross_CI    = results_fisher_afterlearning.delta_cardinal_oblique_CI;
-
-deltaI_oblique              = results_fisher_afterlearning.delta_oblique_oblique_median;
-deltaI_oblique_CI           = results_fisher_afterlearning.delta_oblique_oblique_CI;
-
-deltaI_oblique_cross        = results_fisher_afterlearning.delta_oblique_cardinal_median;
-deltaI_oblique_cross_CI     = results_fisher_afterlearning.delta_oblique_cardinal_CI;
-
-fig_it.plot_bar_errorbar(1, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
-fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, color_C, color_O)
-fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
-fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
-
-ylim([0, 0.42])
-text(0.5,0.38,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
-text(5.5,0.38,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
-set(gca,'xtick',[]); set(gca,'fontsize',14)
-set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
-%ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
-set(gca, 'TickLabelInterpreter','latex')
-title('After learning')
-
-save_folder = '../../figures/figures_final/model_fisher';
-save_name = fullfile(save_folder,'model_redundancy_real_cross.svg');
-print(save_name,'-dsvg','-vector')
-%% 4. compare I_redundancy_pct and I_redundancy_cross_pct
-figure
-set(gcf,'unit','inches','position',[0,0,6,3])
-ax_1 = subplot(1,2,1); hold on
-set(ax_1,'position',get(ax_1,'position')+[-0.01 0.03 0.04 -0.03]);
-
-deltaI_cardinal             = results_fisher_beforelearning.delta_percent_cardinal_cardinal_median;
-deltaI_cardinal_CI          = results_fisher_beforelearning.delta_percent_cardinal_cardinal_CI;
-
-deltaI_cardinal_cross       = results_fisher_beforelearning.delta_percent_cardinal_oblique_median;
-deltaI_cardinal_cross_CI    = results_fisher_beforelearning.delta_percent_cardinal_oblique_CI;
-
-deltaI_oblique              = results_fisher_beforelearning.delta_percent_oblique_oblique_median;
-deltaI_oblique_CI           = results_fisher_beforelearning.delta_percent_oblique_oblique_CI;
-
-deltaI_oblique_cross        = results_fisher_beforelearning.delta_percent_oblique_cardinal_median;
-deltaI_oblique_cross_CI     = results_fisher_beforelearning.delta_percent_oblique_cardinal_CI;
-
-fig_it.plot_bar_errorbar(1, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
-fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, color_C, color_O)
-fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
-fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
-
-ylim([0, 100])
+set(gcf,'unit','inches','position',[0,0,6,4])
+ax_1 = subplot(3,2,[1,3]); hold on
+set(ax_1,'position',get(ax_1,'position')+[-0.02 0.04 0.03 -0.03]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.dottest = false;
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 14;
+plotOptions.plotPercent = true;
+fig_it.plot_bar_cross_deltaInfo(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions); 
+ylim([40, 100])
 text(0.5,90,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
 text(5.5,90,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
-set(gca,'xtick',[]); set(gca,'fontsize',14)
-set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
-ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
-set(gca, 'TickLabelInterpreter','latex')
 title('Before learning')
 
-ax_2 = subplot(1,2,2); hold on
-set(ax_2,'position',get(ax_2,'position')+[0.01 0.03 0.04 -0.03]);
 
-deltaI_cardinal             = results_fisher_afterlearning.delta_percent_cardinal_cardinal_median;
-deltaI_cardinal_CI          = results_fisher_afterlearning.delta_percent_cardinal_cardinal_CI;
 
-deltaI_cardinal_cross       = results_fisher_afterlearning.delta_percent_cardinal_oblique_median;
-deltaI_cardinal_cross_CI    = results_fisher_afterlearning.delta_percent_cardinal_oblique_CI;
+ax_2 = subplot(3,2,5 ); hold on
+set(ax_2,'position',get(ax_2,'position')+[-0.02 0 0.03 -0.02]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.ftsize = 14;
+plotOptions.plotdata = 'delta';
+plotOptions.markersize = 6;
+fig_it.plot_diff_errorbar(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions)
+ylabel('Diff.(\%)','Interpreter','latex')
+%title('Before learning')
+ylim([-5,20])
 
-deltaI_oblique              = results_fisher_afterlearning.delta_percent_oblique_oblique_median;
-deltaI_oblique_CI           = results_fisher_afterlearning.delta_percent_oblique_oblique_CI;
 
-deltaI_oblique_cross        = results_fisher_afterlearning.delta_percent_oblique_cardinal_median;
-deltaI_oblique_cross_CI     = results_fisher_afterlearning.delta_percent_oblique_cardinal_CI;
-
-fig_it.plot_bar_errorbar(1, deltaI_cardinal, deltaI_cardinal_CI, color_C, color_C)
-fig_it.plot_bar_errorbar(3, deltaI_cardinal_cross, deltaI_cardinal_cross_CI, color_C, color_O)
-fig_it.plot_bar_errorbar(6, deltaI_oblique, deltaI_oblique_CI, color_O, color_O)
-fig_it.plot_bar_errorbar(8, deltaI_oblique_cross, deltaI_oblique_cross_CI, color_O, color_C)
-
-ylim([0, 100])
+ax_3 = subplot(3,2,[2,4]); hold on
+set(ax_3,'position',get(ax_3,'position')+[0 0.04 0.02 -0.03]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.dottest = false;
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 14;
+plotOptions.plotPercent = true;
+fig_it.plot_bar_cross_deltaInfo(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions); 
+ylabel('')
+ylim([40, 100])
 text(0.5,90,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
 text(5.5,90,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
-set(gca,'xtick',[]); set(gca,'fontsize',14)
-set(gca,'xtick',[1,3,6,8],'xticklabels',{'Within';'Cross';'Within';'Cross'})
-%ylabel('$I_\textrm{redundancy}$','Interpreter','latex')
-set(gca, 'TickLabelInterpreter','latex')
-title('After learning')
+title('Before learning')
 
-save_folder = '../../figures/figures_final/model_fisher';
+ax_4 = subplot(3,2,6); hold on
+set(ax_4,'position',get(ax_4,'position')+[0 0 0.02 -0.02]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.ftsize = 14;
+plotOptions.plotdata = 'delta';
+plotOptions.markersize = 6;
+fig_it.plot_diff_errorbar(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions)
+ylabel('')
+%title('Before learning')
+ylim([-5,20])
+
+save_folder = '../../figures/figures_final/model_fisher_ideal';
 save_name = fullfile(save_folder,'model_redundancy_percent_real_cross.svg');
 print(save_name,'-dsvg','-vector')
+%% 4. compare I_redundancy and I_redundancy_cross
+figure
+set(gcf,'unit','inches','position',[0,0,10,4])
+ax_1 = subplot(1,2,1); hold on
+set(ax_1,'position',get(ax_1,'position')+[-0.01 0.03 0.04 -0.03]);
+
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.dottest = false;
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 14;
+plotOptions.plotPercent = false;
+fig_it.plot_bar_cross_deltaInfo(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions); 
+
+ylim([0, 0.42])
+text(0.5,0.38,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
+text(5.5,0.38,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
+title('Before learning')
+
+ax_2 = subplot(1,2,2); hold on
+set(ax_2,'position',get(ax_2,'position')+[0.01 0.03 0.04 -0.03]);
+fig_it.plot_bar_cross_deltaInfo(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions); 
+ylabel('')
+ylim([0, 0.42])
+text(0.5,0.38,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
+text(5.5,0.38,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
+title('After learning')
+
+
+save_folder = '../../figures/figures_final/model_fisher_ideal';
+save_name = fullfile(save_folder,'model_redundancy_real_cross.svg');
+print(save_name,'-dsvg','-vector')
+% %% 5. (I_cross - I_real / I_cross)
+% figure
+% set(gcf,'unit','inches','position',[0,0,4,3])
+% ax_1 = subplot(1,2,1); hold on
+% set(ax_1,'position',get(ax_1,'position')+[0.01 0.03 0.04 -0.03]);
+% plotOptions = struct();
+% plotOptions.errorbar = 'CI_sample';
+% plotOptions.ftsize = 14;
+% plotOptions.plotdata = 'info';
+% fig_it.plot_diff_errorbar(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions)
+% title('Before learning')
+% ylim([-10,55])
+% 
+% ax_2 = subplot(1,2,2); hold on
+% set(ax_2,'position',get(ax_2,'position')+[-0.01 0.03 0.04 -0.03]);
+% fig_it.plot_diff_errorbar(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions)
+% ylabel('')
+% set(gca,'YColor', 'none')
+% title('After learning')
+% ylim([-10,55])
+% 
+% save_folder = '../../figures/figures_final/model_fisher_ideal';
+% save_name = fullfile(save_folder,'model_cross_minus_real_percent.svg');
+% print(save_name,'-dsvg','-vector')
+% %% 6. I_redundancy_within - I_redundancy_cross
+% figure
+% set(gcf,'unit','inches','position',[0,0,4,3])
+% ax_1 = subplot(1,2,1); hold on
+% set(ax_1,'position',get(ax_1,'position')+[0.01 0.03 0.04 -0.03]);
+% plotOptions = struct();
+% plotOptions.errorbar = 'CI_sample';
+% plotOptions.ftsize = 14;
+% plotOptions.plotdata = 'delta';
+% fig_it.plot_diff_errorbar(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions)
+% title('Before learning')
+% ylim([-5,20])
+% 
+% ax_2 = subplot(1,2,2); hold on
+% set(ax_2,'position',get(ax_2,'position')+[-0.01 0.03 0.04 -0.03]);
+% fig_it.plot_diff_errorbar(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions)
+% ylabel('')
+% set(gca,'YColor', 'none')
+% ylim([-5,20])
+% title('After learning')
+% 
+% save_folder = '../../figures/figures_final/model_fisher_ideal';
+% save_name = fullfile(save_folder,'diff_redundancy_percent.svg');
+% print(save_name,'-dsvg','-vector')
 %% helper function
 
 function results_cross_sizeControl_perCohr = organize_sample_fisher(dat_fisher_cross)
