@@ -111,10 +111,24 @@ filter_folder   = '../../results/filtered_neuron_synthetic';
                     data_run = data_out; % first replicate everything in data_out to data run
                     for i_sample = 1:nSample
                         % subsample neurons
-                        data_run.spikeCount = data_out.spikeCount(:, neuronIdx_kept(i_sample,:));
+                        if doMultipleTimebin
+                            data_run.spikeCount_bin = data_out.spikeCount(:, neuronIdx_kept(i_sample,:));
+                            data_out_whole = get_synthetic_data_realInterleaved(synthData_interleaved, 0);
+                            data_run.spikeCount_whole = data_out_whole.spikeCount(:, neuronIdx_kept(i_sample,:));
 
+                            if t > 0
+                                data_run.spikeCount_bin = data_run.spikeCount_bin * (nTimeBin - 1);
+                            end
+                           
+                        else
+                            data_run.spikeCount = data_out.spikeCount(:, neuronIdx_kept(i_sample,:));
+                        end
                         nBefore = numel(dat_fisher_cross);
-                        dat_fisher_cross     = run_fisher_cross_estimate_one_session(dat_fisher_cross,data_run,info_run);
+                        if doMultipleTimebin
+                            dat_fisher_cross     = run_fisher_cross_estimate_one_session_timebin(dat_fisher_cross,data_run,info_run);
+                        else
+                            dat_fisher_cross     = run_fisher_cross_estimate_one_session(dat_fisher_cross,data_run,info_run);
+                        end
                         nCurrent = numel(dat_fisher_cross);
                         idx_add = [nBefore + 1 :nCurrent];
 
