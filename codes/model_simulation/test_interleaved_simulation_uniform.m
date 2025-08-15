@@ -11,7 +11,7 @@ doThis = 1;
 if doThis
     nTrial = 1000;
     nBootstrap = 1000;
-    nNeuron = 64;
+    nNeuron = 128;
     stim_signal = 12;
     
     P = S_Exp_Para('test-interleaved','G.fct','nxN','G.dimension_X',nNeuron);

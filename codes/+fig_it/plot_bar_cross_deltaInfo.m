@@ -68,7 +68,19 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
 
      if plotOptions.dottest
         stats_info_cardinal = fig.show_ttest(deltaI_cardinal, deltaI_cardinal_cross, [0.5,2.5]);
+        stats_info_cardinal.mu_within   = stats_info_cardinal.mu_1;
+        stats_info_cardinal.mu_cross    = stats_info_cardinal.mu_2;
+        stats_info_cardinal.std_within  = stats_info_cardinal.std_1;
+        stats_info_cardinal.std_cross   = stats_info_cardinal.std_2;
+
         stats_info_oblique = fig.show_ttest(deltaI_oblique, deltaI_oblique_cross, [5.5,7.5]);
+
+        stats_info_oblique.mu_within   = stats_info_oblique.mu_1;
+        stats_info_oblique.mu_cross    = stats_info_oblique.mu_2;
+        stats_info_oblique.std_within  = stats_info_oblique.std_1;
+        stats_info_oblique.std_cross   = stats_info_oblique.std_2;
+
+
      end
     set(gca, 'fontsize', plotOptions.ftsize)
     set(gca, 'xtick', [0.5,2.5, 5.5,7.5], 'xticklabels', {'Within';'Cross'; 'Within';'Cross'})

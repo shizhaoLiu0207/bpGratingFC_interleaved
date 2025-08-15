@@ -84,7 +84,8 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_Info(results
             
 
     end
-    
+
+   
 
     if plotOptions.dottest
         stats_info_cardinal = fig.show_ttest(I_cardinal_real, I_cardinal_cross, [0.5,2.5]);

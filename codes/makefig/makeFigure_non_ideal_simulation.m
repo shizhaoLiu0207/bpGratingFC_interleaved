@@ -65,37 +65,41 @@ session_name = ['Model_',session_name_str];
 
 filter_name_list{1} = 'subset_32_256_random_1000';
 filter_name_list{2} = 'nNeuron_256_bPF_original_0_bPF_sample_2_tao_cardinal_0_tao_oblique_0_nSample_128_random_1000.mat';
-filter_name_list{3} = 'nNeuron_256_bPF_original_0_bPF_sample_-2_tao_cardinal_0_tao_oblique_0_nSample_128_random_1000.mat';
-filter_name_list{4} = 'nNeuron_256_bPF_original_0_bPF_sample_0_tao_cardinal_2_tao_oblique_0_nSample_128_random_1000.mat';
+%filter_name_list{3} = 'nNeuron_256_bPF_original_0_bPF_sample_-2_tao_cardinal_0_tao_oblique_0_nSample_128_random_1000.mat';
+filter_name_list{3} = 'nNeuron_256_bPF_original_0_bPF_sample_0_tao_cardinal_2_tao_oblique_0_nSample_128_random_1000.mat';
 %filter_name_list{5} = 'nNeuron_256_bPF_original_0_bPF_sample_0_tao_cardinal_-2_tao_oblique_0_nSample_128_random_1000.mat';
 % filter_name_list{5} = 'nNeuron_256_bPF_original_0_bPF_sample_0_tao_cardinal_2_tao_oblique_2_nSample_128_random_1000.mat';
 % filter_name_list{6} = 'nNeuron_256_bPF_original_0_bPF_sample_0_tao_cardinal_2_tao_oblique_-2_nSample_128_random_1000.mat';
 
 titleStr_list{1} = 'Original';
-name_str_list{1} = 'original';
-for n = 2:4
+titleStr_list{2} = 'b_{sample} = 2';
+%titleStr_list{3} = 'b_{sample} = -2';
+titleStr_list{3} = '\tau_{cardinal} = 2';
+% for n = 2:4
+% 
+%     tokens = regexp(filter_name_list{n}, 'nNeuron_256_bPF_original_0_bPF_sample_([-]?[\d_]+)_tao_cardinal_([-]?[\d_]+)_tao_oblique_([-]?[\d_]+)_nSample_128_random_1000.mat', 'tokens');
+%     % Convert extracted strings back to numbers
+%     extracted_params        = tokens{1}; % Extract matched tokens
+% 
+%     bPF_sample_str          = extracted_params{1}; 
+%     tao_cardinal_str        = extracted_params{2}; 
+%     tao_oblique_str         = extracted_params{3}; 
+% 
+%     titleStr_list{n} = sprintf('b_{sample} = %s  \\tau_{cardinal} = %s  \\tau_{oblique} = %s',...
+%                         bPF_sample_str, tao_cardinal_str, tao_oblique_str);
+%     name_str_list{n} = sprintf('b_%s_tao_c_%s_tao_o_%s',bPF_sample_str, tao_cardinal_str, tao_oblique_str);
+% end
 
-    tokens = regexp(filter_name_list{n}, 'nNeuron_256_bPF_original_0_bPF_sample_([-]?[\d_]+)_tao_cardinal_([-]?[\d_]+)_tao_oblique_([-]?[\d_]+)_nSample_128_random_1000.mat', 'tokens');
-    % Convert extracted strings back to numbers
-    extracted_params        = tokens{1}; % Extract matched tokens
-   
-    bPF_sample_str          = extracted_params{1}; 
-    tao_cardinal_str        = extracted_params{2}; 
-    tao_oblique_str         = extracted_params{3}; 
 
-    titleStr_list{n} = sprintf('b_{sample} = %s  \\tau_{cardinal} = %s  \\tau_{oblique} = %s',...
-                        bPF_sample_str, tao_cardinal_str, tao_oblique_str);
-    name_str_list{n} = sprintf('b_%s_tao_c_%s_tao_o_%s',bPF_sample_str, tao_cardinal_str, tao_oblique_str);
-end
+figure
+set(gcf,'Units','inches','Position',[0,0,12,8])
+position_shift_list = {[-0.03 0.03 0.01 -0.04];
+                           [0 0.03 0.01 -0.04];
+                           [0.03 0.03 0.01 -0.04];
+                           [0.05 0.03 0.01 -0.04]};
+for n = 1:3
 
-
-
-
-for n = 1:4
-
-    figure
-
-    set(gcf,'Units','inches','Position',[0,0,12,3])
+    
     fisher_struct = load(sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_modelInterleaved_versionControl/%s/individual_sessions_cross/%s',...
             filter_name_list{n},session_name ));
     
@@ -103,17 +107,58 @@ for n = 1:4
     results_fisher = get_sample_CI_cross(results_fisher);
     
     
-   
-    makefig_session_simulation([], results_fisher);
+    ax_1 = subplot(2,3,n);
+    set(ax_1,'position',get(ax_1,'position')+position_shift_list{n});
+    plotOptions = struct();
+    plotOptions.errorbar = 'CI_sample';
+    plotOptions.ftsize = 14;
+    plotOptions.plotdata = 'info';
+    plotOptions.markersize = 6;
+    fig_it.plot_diff_errorbar(results_fisher, results_fisher(1).sessionStr, plotOptions);
+    ylim([-5,60])
+    title(titleStr_list{n},'FontSize',20)
 
-    sgtitle(titleStr_list{n},'fontweight','bold')
-
-    save_name = fullfile(save_folder,sprintf('effect_sample_simple_%s.svg',name_str_list{n}));
-    print(save_name,'-dsvg','-vector')
+    ax_2 = subplot(2,3,n +3);
+    set(ax_2,'position',get(ax_2,'position')+position_shift_list{n})
+    plotOptions = struct();
+    plotOptions.errorbar = 'CI_sample';
+    plotOptions.ftsize = 14;
+    plotOptions.plotdata = 'delta';
+    plotOptions.markersize = 6;
+    fig_it.plot_diff_errorbar(results_fisher, results_fisher(1).sessionStr, plotOptions);
+    ylim([-5,25])
+    %makefig_session_simulation([], results_fisher);
+    % makefig_session_simulation_diffonly(results_fisher)
+    
+    % 
+  
 end
 
-
+save_name = fullfile(save_folder,'effect_sample_simple.svg');
+print(save_name,'-dsvg','-vector')
 %% helper function
+function makefig_session_simulation_diffonly( results_fisher)
+ax_1 = subplot(2,1,1);
+
+set(ax_1,'position',get(ax_1,'position')+[-0.02 0 0.02 -0.04]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.ftsize = 14;
+plotOptions.plotdata = 'info';
+plotOptions.markersize = 6;
+fig_it.plot_diff_errorbar(results_fisher, results_fisher(1).sessionStr, plotOptions)
+ylim([-5,60])
+ax_2 = subplot(2,1,2);
+ set(ax_2,'position',get(ax_2,'position')+[0 0 0.02 -0.04])
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.ftsize = 14;
+plotOptions.plotdata = 'delta';
+plotOptions.markersize = 6;
+fig_it.plot_diff_errorbar(results_fisher, results_fisher(1).sessionStr, plotOptions)
+ylim([-5,25])
+
+end
 function makefig_session_simulation(data_struct, results_fisher)
  
     if ~isempty(data_struct)

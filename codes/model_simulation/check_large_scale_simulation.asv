@@ -1,0 +1,220 @@
+clear all
+clc
+close all
+
+global   bpGlobal  
+bpGratingFCGlobal();
+%% 1. load simulation results
+filter_folder   = '../../results/filtered_neuron_synthetic';
+
+%%%%% check simulation features using a uniform distribution
+versionName = 'sampled_subset_uniform_nTotal_128_nSample_64_b_PF_0_00_random_250';
+
+save_folder = sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_modelInterleaved_versionControl/%s',versionName);
+
+load(fullfile(save_folder,'results_SubsampleCombined_combinedCohr_fisherInfo_all_sessions_syntheticData'));
+
+results_all_simulation = get_sample_CI_cross(results_cross_sizeControl);
+
+nSession = numel(results_all_simulation);
+[cardinal_delta, cardinal_prior, oblique_delta, oblique_prior] = deal(zeros(nSession,1));
+%%%% key measure
+%%% (I_cross - I_real) / I_cross; cardinal and oblique
+%%%% I_{redundancy, within, pct} - I_{redundancy, cross, pct}; cardinal and
+%%%% oblique
+[diff_fisher_cardinal, diff_fisher_oblique, diff_redundancy_cardinal, diff_redundancy_oblique] = deal(zeros(nSession,1));
+[redundancy_cardinal_within, redundancy_cardinal_cross, redundancy_oblique_within, redundancy_oblique_cross] =  deal(zeros(nSession,1));
+for n = 1:nSession
+    sessionStr = results_all_simulation(n).sessionStr;
+    tokens = regexp(sessionStr, 'Model_bPF_([\d_]+)_cardinal_delta_([\d_]+)_prior_([\d_]+)_oblique_delta_([\d_]+)_prior_([\d_]+)','tokens');
+    
+    extracted_params        = tokens{1}; % Extract matched tokens
+    cardinal_delta_str      = strrep(extracted_params{2}, '_', '.'); 
+    cardinal_prior_str      = strrep(extracted_params{3}, '_', '.'); 
+    oblique_delta_str       = strrep(extracted_params{4}, '_', '.'); 
+    oblique_prior_str       = strrep(extracted_params{5}, '_', '.'); 
+
+    cardinal_delta(n)       = str2double(cardinal_delta_str);
+    cardinal_prior(n)       = str2double(cardinal_prior_str);
+    oblique_delta(n)        = str2double(oblique_delta_str);
+    oblique_prior(n)        = str2double(oblique_prior_str);
+    
+
+    
+
+    redundancy_cardinal_within(n)   = results_all_simulation(n).delta_percent_cardinal_cardinal_median;
+    redundancy_cardinal_cross(n)    = results_all_simulation(n).delta_percent_cardinal_oblique_median;
+    redundancy_oblique_within(n)    = results_all_simulation(n).delta_percent_oblique_oblique_median;
+    redundancy_oblique_cross(n)     = results_all_simulation(n).delta_percent_oblique_cardinal_median;
+
+    diff_fisher_cardinal(n) = results_all_simulation(n).diff_info_percent_cardinal_median;
+    diff_fisher_oblique(n)  = results_all_simulation(n).diff_info_percent_oblique_median;
+
+    diff_redundancy_cardinal(n)     = results_all_simulation(n).diff_delta_percent_cardinal_median;
+    diff_redundancy_oblique(n)      = results_all_simulation(n).diff_delta_percent_oblique_median;
+end
+
+diff_cardinal_oblique_fisher = diff_fisher_cardinal - diff_fisher_oblique;
+diff_cardinal_oblique_redundancy = diff_redundancy_cardinal - diff_redundancy_oblique;
+
+diff_cardinal_oblique_delta = cardinal_delta - oblique_delta;
+diff_cardinal_oblique_prior = cardinal_prior - oblique_prior;
+
+
+%% correlation between parameters and results as a sanity check
+
+param_name_list  = {'cardinal_delta';'cardinal_prior';'oblique_delta';'oblique_prior'};
+data_name_list = {'diff_fisher_cardinal';'diff_fisher_oblique';'diff_redundancy_cardinal';'diff_redundancy_oblique'};
+params_str = {'$\delta_\textrm{cardinal}$';'prior_{cardinal}';''}
+for i = 1:numel(param_name_list)
+    for j = 1:numel(data_name_list)
+        idx_control = setdiff([1:numel(param_name_list)],i);
+        eval(sprintf('z = [%s,%s,%s];', ...
+            param_name_list{idx_control(1)}, param_name_list{idx_control(2)}, param_name_list{idx_control(3)}));
+        eval(sprintf('[r(i,j),p(i,j)] = partialcorr(%s,%s, z);',param_name_list{i}, data_name_list{j}))
+    end
+end
+
+%%
+
+param_diff_name_list    = {'diff_cardinal_oblique_delta';'diff_cardinal_oblique_prior'};
+data_diff_name_list     = {'diff_cardinal_oblique_fisher';'diff_cardinal_oblique_redundancy'};
+
+for i = 1:numel(param_diff_name_list)
+    for j = 1:numel(data_diff_name_list)
+        eval(sprintf('[r_diff(i,j),p_diff(i,j)] = partialcorr(%s,%s,%s);',...
+            param_diff_name_list{i}, data_diff_name_list{j}, param_diff_name_list{setdiff([1,2],i)}));
+    end
+end
+%% anova
+
+
+%% visualize the heat map
+feature_target_str_list = {'diff_fisher_cardinal';'diff_redundancy_cardinal';...
+                            'diff_fisher_oblique';'diff_redundancy_oblique'};
+feature_title_list = { '\color{red}Diff. Information_{cardinal}';'\color{red}Diff. Redundancy_{cardinal}';...
+                        '\color{blue}Diff. Information_{oblique}';'\color{blue}Diff. Redundancy_{oblique}'};
+for k = 1:4
+    plotOptions.ftsize = 14;
+    plotOptions.feature_title = feature_title_list{k};
+    eval(sprintf('feature_target = %s;',feature_target_str_list{k}));
+    figure
+    set(gcf,'Units','inches','position',[0,0,12,5])
+    make_heatmap_4D(feature_target, cardinal_delta,cardinal_prior, oblique_delta,oblique_prior, plotOptions)
+    save_folder = '../../figures/figures_final/model_fisher_largescale';
+    save_name = fullfile(save_folder,sprintf('heatmap_4D_%s.svg',feature_target_str_list{k}));
+    print(save_name,'-dsvg')
+end
+%% visualize the heat map between difference in variables
+f = diff_cardinal_oblique_redundancy;
+p1 = diff_cardinal_oblique_delta;
+p2 = diff_cardinal_oblique_prior;
+
+p1_name = '\color{red}\delta_{cardinal} \color{black}- \color{blue}\delta_{oblique}';
+p2_name =  '\color{red}prior_{cardinal} \color{black}- \color{blue}prior_{oblique}';
+figure
+set(gcf,'Units','inches','position',[0,0,5,4])
+make_heatmap(p1,p2,f,p1_name,p2_name);
+set(gca,'fontsize',14)
+title('\color{red}Diff. Redundancy_{cardinal} - \color{blue}Diff. Redundancy_{oblique}','Interpreter','tex',...
+    'FontWeight','bold')
+
+save_name = fullfile(save_folder,'heatmap_diff_diff_redundancy.svg');
+print(save_name,'-dsvg','-vector')
+
+
+
+f = diff_cardinal_oblique_fisher;
+p1 = diff_cardinal_oblique_delta;
+p2 = diff_cardinal_oblique_prior;
+
+p1_name = '\color{red}\delta_{cardinal} \color{black}- \color{blue}\delta_{oblique}';
+p2_name =  '\color{red}prior_{cardinal} \color{black}- \color{blue}prior_{oblique}';
+figure
+set(gcf,'Units','inches','position',[0,0,5,4])
+make_heatmap(p1,p2,f,p1_name,p2_name);
+set(gca,'fontsize',14)
+title('\color{red}Diff. Information_{cardinal} - \color{blue}Diff. Information_{oblique}','Interpreter','tex',...
+    'FontWeight','bold')
+
+save_name = fullfile(save_folder,'heatmap_diff_diff_information.svg');
+print(save_name,'-dsvg')
+
+
+%%
+function make_heatmap_4D(feature_target, cardinal_delta,cardinal_prior, oblique_delta,oblique_prior, plotOptions)
+    
+    
+    subplot(2,3,1)
+    p1 = cardinal_delta;
+    p2 = cardinal_prior;
+    p1_name = '\color{red}\delta_{cardinal}';
+    p2_name = '\color{red}prior_{cardinal}';
+    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
+    set(gca,'fontsize',plotOptions.ftsize)
+    
+
+    subplot(2,3,2)
+    p1 = cardinal_delta;
+    p2 = oblique_delta;
+    p1_name = '\color{red}\delta_{cardinal}';
+    p2_name = '\color{blue}\delta_{oblique}';
+    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
+    set(gca,'fontsize',plotOptions.ftsize)
+    
+    subplot(2,3,3)
+    p1 = cardinal_delta;
+    p2 = oblique_prior;
+    p1_name = '\color{red}\delta_{cardinal}';
+    p2_name = '\color{blue}prior_{oblique}';
+    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
+    set(gca,'fontsize',plotOptions.ftsize)
+
+    subplot(2,3,4)
+    p1 = cardinal_prior;
+    p2 = oblique_delta;
+    p1_name = '\color{red}prior_{cardinal}';
+    p2_name = '\color{blue}\delta_{oblique}';
+    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
+    set(gca,'fontsize',plotOptions.ftsize)
+
+    subplot(2,3,5)
+    p1 = cardinal_prior;
+    p2 = oblique_prior;
+    p1_name = '\color{red}prior_{cardinal}';
+    p2_name = '\color{blue}prior_{oblique}';
+    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
+    set(gca,'fontsize',plotOptions.ftsize)
+    
+    subplot(2,3,6)
+    p1 = oblique_delta;
+    p2 = oblique_prior;
+    p1_name = '\color{blue}\delta_{oblique}';
+    p2_name = '\color{blue}prior_{oblique}';
+    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
+    set(gca,'fontsize',plotOptions.ftsize)
+    sgtitle(plotOptions.feature_title, 'fontweight','bold','fontsize',plotOptions.ftsize + 2,'interpreter','tex')
+end
+function make_heatmap(p1,p2,f,p1_name,p2_name)
+
+    valid = isfinite(p1) & isfinite(p2) & isfinite(f);
+    p1 = p1(valid); p2 = p2(valid); f = f(valid);
+    
+    
+    ng = 20; 
+    xg = linspace(min(p1),max(p1),ng);
+    yg = linspace(min(p2),max(p2),ng);
+    [Xg,Yg] = meshgrid(xg,yg);
+    
+    Fint = scatteredInterpolant(p1,p2,f,'linear','none'); % 'natural' is smooth
+    Z = Fint(Xg,Yg);
+    
+    %nexttile; hold on
+    
+    contourf(Xg,Yg,Z,15,'LineStyle','none'); colorbar
+    xlabel(p1_name); ylabel(p2_name); 
+    set(gca, 'xtick',unique(p1));
+    set(gca, 'ytick',unique(p2));
+    set(gca,'fontsize',14)
+
+end

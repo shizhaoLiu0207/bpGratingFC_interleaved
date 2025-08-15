@@ -10,17 +10,23 @@ filename_list{2} = 'sampled_subset_empirical_gremlin_nTotal_128_nSample_64_b_PF_
 filename_list{3} = 'sampled_subset_empirical_rolo_nTotal_128_nSample_64_b_PF_0_00';
 filename_list{4} = 'sampled_subset_empirical_rolo_nTotal_128_nSample_64_b_PF_0_80';
 
+%%%% add a unsampled condition
+filename_list{5} = 'sampled_subset_uniform_nTotal_128_nSample_64_b_PF_0_80';
 for n = 1:numel(filename_list)
-    load(fullfile(save_folder, filename_list{n}));
-
-    tokens = regexp(filename_list{n}, 'sampled_subset_empirical_([a-zA-Z0-9]+)_nTotal_([\d_]+)_nSample_([\d_]+)_b_PF_([\d_]+)', 'tokens');
-    subject_code             = tokens{1}{1};
-
-    switch subject_code
-        case 'rolo'
-            idx_sample = idx_sample_rolo;
-        case 'gremlin'
-            idx_sample = idx_sample_gremlin;
+    if n < 5
+        load(fullfile(save_folder, filename_list{n}));
+    
+        tokens = regexp(filename_list{n}, 'sampled_subset_empirical_([a-zA-Z0-9]+)_nTotal_([\d_]+)_nSample_([\d_]+)_b_PF_([\d_]+)', 'tokens');
+        subject_code             = tokens{1}{1};
+    
+        switch subject_code
+            case 'rolo'
+                idx_sample = results_rolo.idx_sample;
+            case 'gremlin'
+                idx_sample = results_gremlin.idx_sample;
+        end
+    else
+        idx_sample = [1:2:128]; % uniformly sample 64 from 128
     end
     nNeuron_total           = numel(idx_sample);
     %nNeuron_sub_list       = [1,8,32];

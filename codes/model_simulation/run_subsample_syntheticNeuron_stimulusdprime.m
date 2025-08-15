@@ -165,7 +165,7 @@ idx_signbias_oblique_gremlin  =  median(dprime_stimulus_sign_oblique_gremlin,'om
 
 %% method 4: sample synthetic neuron with vonmises distribution until the global statistic is matched. no need to match shape of disribution
 
-to_sample_bPF   = 0.8;
+to_sample_bPF   = 0;
 idx             = cell2mat({results_dprime(:).b_PF}) == to_sample_bPF; 
 
 theta           = results_dprime(idx).projective_fields.phi_x;
@@ -219,7 +219,7 @@ end
 %%% find the combination of sampling parameter that makes the global statistic closet to empirical data
 params_all          = [b_sample_all(:), tao_cardinal_all(:), tao_oblique_all(:)];
 dat_model_all       = [idx_stimulus_bias(:), idx_signbias_cardinal(:), idx_signbias_oblique(:)];
-dat_rolo_all        = [idx_stimulus_bias_rolo, idx_stimulus_bias_rolo, idx_signbias_oblique_rolo];
+dat_rolo_all        = [idx_stimulus_bias_rolo, idx_signbias_cardinal_rolo, idx_signbias_oblique_rolo];
 dat_gremlin_all     = [idx_stimulus_bias_gremlin, idx_signbias_cardinal_gremlin, idx_signbias_oblique_gremlin];
 
 idx_rolo            = knnsearch(dat_model_all, dat_rolo_all, 'K', 1);
@@ -238,47 +238,41 @@ params_gremlin  = params_all(idx_gremlin,:);
 
 b_sample_gremlin    = params_gremlin(1); tao_cardinal_gremlin = params_gremlin(2); tao_oblique_gremlin = params_gremlin(3);
 idx_sample_gremlin  = util_it.sampling_vonMises(theta, b_sample_gremlin, tao_cardinal_gremlin, tao_oblique_gremlin, nSample);
-% %% make example plots of this method
-% 
-% b_sample    = params_rolo(1);
-% tao_cardinal = params_rolo(2);
-% tao_oblique  = params_rolo(3);
-% 
-% 
-% nSample = 64;
-% [idx_sample, y, y_c, y_o, y_all] = util_it.sampling_vonMises(theta, b_sample, tao_cardinal, tao_oblique, nSample);
-% x = theta / pi * 180;
-% 
-% figure;
-% subplot(2,1,1); hold on 
-% plot(x, y); plot(x, y_c); plot(x, y_o); plot(x, y_all);
-% legend('y','y_c','y_o','y_{all}')
-% xlabel('Orientation (degree)'); ylabel('Probability')
-% set(gca,'fontsize',18);
-% 
-% 
-% subplot(2,1,2); hold on
-% histogram(x,[0:10:180]);
-% histogram(x(idx_sample) , [0:10:180]);
-% legend('Original','Sampled')
-% xlabel('Orientation (degree)');  ylabel('Number of neurons')
-% set(gca,'fontsize',18);
-% 
-% sgtitle(sprintf('Original b_{PF} = %.1f, b_{PF} = %.1f, \\tau_{cardinal} = %.1f, \\tau_{oblique} = %.1f',...
-%         b_PF_original, b_sample, tao_cardinal, tao_oblique),'fontsize',20);
 
 
+
+results_rolo.idx_stimulus_bias              = idx_stimulus_bias_rolo;
+results_rolo.idx_signbias_cardinal          = idx_signbias_cardinal_rolo;
+results_rolo.idx_signbias_oblique           = idx_signbias_oblique_rolo;
+results_rolo.idx_stimulus_bias_matched      = matched_dat_rolo(1);
+results_rolo.idx_signbias_cardinal_matched  = matched_dat_rolo(2);
+results_rolo.idx_signbias_oblique_matched   = matched_dat_rolo(3);
+results_rolo.idx_sample                     = idx_sample_rolo;
+results_rolo.b_sample                       = b_sample_rolo;
+results_rolo.tao_cardinal                   = tao_cardinal_rolo;
+results_rolo.tao_oblique                    = tao_oblique_rolo;
 
 %%% save idx of sampled synthetic neuron for future use
 save_folder = '../../results/filtered_neuron_synthetic';
 save_name = fullfile(save_folder,sprintf('sampled_subset_empirical_rolo_nTotal_%d_nSample_%d_b_PF_%s',...
                     nNeuron, nSample, strrep(sprintf('%.2f', to_sample_bPF), '.', '_')));
-save(save_name,'idx_sample_rolo','b_sample_rolo','tao_cardinal_rolo','tao_oblique_rolo')
+save(save_name,'results_rolo')
 
 
+
+results_gremlin.idx_stimulus_bias              = idx_stimulus_bias_gremlin;
+results_gremlin.idx_signbias_cardinal          = idx_signbias_cardinal_gremlin;
+results_gremlin.idx_signbias_oblique           = idx_signbias_oblique_gremlin;
+results_gremlin.idx_stimulus_bias_matched      = matched_dat_gremlin(1);
+results_gremlin.idx_signbias_cardinal_matched  = matched_dat_gremlin(2);
+results_gremlin.idx_signbias_oblique_matched   = matched_dat_gremlin(3);
+results_gremlin.idx_sample                     = idx_sample_gremlin;
+results_gremlin.b_sample                       = b_sample_gremlin;
+results_gremlin.tao_cardinal                   = tao_cardinal_gremlin;
+results_gremlin.tao_oblique                    = tao_oblique_gremlin;
 save_name = fullfile(save_folder,sprintf('sampled_subset_empirical_gremlin_nTotal_%d_nSample_%d_b_PF_%s',...
                     nNeuron, nSample, strrep(sprintf('%.2f', to_sample_bPF), '.', '_')));
-save(save_name,'idx_sample_gremlin','b_sample_gremlin','tao_cardinal_gremlin','tao_oblique_gremlin')
+save(save_name,'results_gremlin')
 
 %% Unsucessful methods
 %%% Method 1: sample based on dprime_cardinal and dprime_oblique separately 

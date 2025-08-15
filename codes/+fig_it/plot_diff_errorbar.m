@@ -1,4 +1,4 @@
-function plot_diff_errorbar(results_all, session_list_plot, plotOptions)
+function stats_info = plot_diff_errorbar(results_all, session_list_plot, plotOptions)
 
 global bpGlobal
 idx = strcmp({results_all(:).sessionType}, 'mainTask') & cell2mat({results_all(:).timeWinIndex}) == 0 &...
@@ -65,6 +65,15 @@ set(gca, 'fontsize', plotOptions.ftsize)
 set(gca, 'xtick', [1,3], 'xticklabels', {'\color{red}Cardinal';'\color{blue}Oblique'})
 set(gca, 'TickLabelInterpreter','tex')
 ylabel('Diff.(\%)','Interpreter','latex')
+
+if strcmp(plotOptions.errorbar, 'SEM_session')
+    stats_info.mean_cardinal    = mean(data_plot_cardinal,'omitnan');
+    stats_info.mean_oblique     = mean(data_plot_oblique,'omitnan');
+    stats_info.std_cardinal     = std(data_plot_cardinal,'omitnan');
+    stats_info.std_oblique      = std(data_plot_oblique,'omitnan');
+else
+    stats_info = [];
+end
 % switch plotOptions.plotdata
 %     case 'info'
 %         ylabel('Cross - Real (Cross\%)','Interpreter','latex');

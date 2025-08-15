@@ -2,9 +2,9 @@ clear all
 clc
 close all
 %%
-doRun_cross = 0;
+doRun_cross = 1;
 %doOrganize_cross = 0; % simply put everything into a big struct
-
+doReplace = 1;
 doMultipleTimebin = 0;
 
 doOrganize_perCohr_cross = 1;  % average across subsamples
@@ -21,19 +21,21 @@ subjectCode = 'Model';
 % versionName = filer_list(n).name;
 % load(fullfile(filter_folder, filer_list(n).name));
 % load(sprintf('../../results/filtered_neuron_synthetic/filtered_neurons_%s.mat',versionName));
-b_PF_list = [0.8,0];
-subject_code_list = {'rolo';'gremlin'};
+% b_PF_list = [0.8,0];
+% subject_code_list = {'rolo';'gremlin'};
 
+versionName = 'sampled_subset_uniform_nTotal_128_nSample_64_b_PF_0_80_random_250';
+b_PF = 0.8;
 filter_folder   = '../../results/filtered_neuron_synthetic';
 
-for ip_1 = 1:2
-    for ip_2 = 1:2
-        b_PF            = b_PF_list(ip_1);
-        subject_code    = subject_code_list{ip_2};
+% for ip_1 = 1:2
+%     for ip_2 = 1:2
+        % b_PF            = b_PF_list(ip_1);
+        % subject_code    = subject_code_list{ip_2};
 
 
         b_PF_str        = strrep(sprintf('%.2f',b_PF),'.','_');
-        versionName = sprintf('sampled_subset_empirical_%s_nTotal_128_nSample_64_b_PF_%s_random_250',subject_code, b_PF_str);
+        % versionName = sprintf('sampled_subset_empirical_%s_nTotal_128_nSample_64_b_PF_%s_random_250',subject_code, b_PF_str);
         load(fullfile(filter_folder, versionName));
 
 
@@ -84,7 +86,7 @@ for ip_1 = 1:2
                 sessionStr = synthData_interleaved(1).sessionStr;
 
                 saveName   = fullfile(saveFolder_session,sprintf('%s.mat',sessionStr));
-                if isfile(saveName)
+                if isfile(saveName) & ~doReplace
                     continue
                 end
 
@@ -320,5 +322,5 @@ for ip_1 = 1:2
             save(saveName,'results_cross_sizeControl');
         end
 
-    end
-end
+%     end
+% end
