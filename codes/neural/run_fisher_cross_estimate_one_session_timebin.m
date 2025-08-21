@@ -17,7 +17,7 @@ i_win                       = info_run.i_win;
 
 
 signal_abs_list     = nonzeros(unique(abs(signal)));
-nNeuron             = size(spikeCount,2);
+nNeuron             = size(spikeCount_whole,2);
 
 for i = 1:numel(signal_abs_list) % run analysis for each coherence level
     coher               = signal_abs_list(i);

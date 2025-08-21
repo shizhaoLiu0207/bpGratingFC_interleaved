@@ -20,24 +20,24 @@ end
 % dimension_G              = 64;
 % number_repetitions        = 512;
 
-%%%% 2. March 25. Second batch of simulation with more dense sample of prior
-%%%% and delta. More realistic list of b_PF. With smaller number of trials and neurons
-stimulus_contrast_list    = {[12,0],[9,0],[6,0],[3,0],[0,0],[0,3],[0,6],[0,9],[0,12]};
-prior_list                = [0.5:0.1:1]; % prior for the correct task
-b_PF_list                 = [0.8, 0];
-delta_list                = [0.04:0.01:0.08];
-dimension_X              = 128;
-dimension_G              = 32;
-number_repetitions        = 256;
+% %%%% 2. March 25. Second batch of simulation with more dense sample of prior
+% %%%% and delta. More realistic list of b_PF. With smaller number of trials and neurons
+% stimulus_contrast_list    = {[12,0],[9,0],[6,0],[3,0],[0,0],[0,3],[0,6],[0,9],[0,12]};
+% prior_list                = [0.5:0.1:1]; % prior for the correct task
+% b_PF_list                 = [0.8, 0];
+% delta_list                = [0.04:0.01:0.08];
+% dimension_X              = 128;
+% dimension_G              = 32;
+% number_repetitions        = 256;
 
-% %%%% 3. generate a no-learning session
-% stimulus_contrast_list  = {[12,0],[9,0],[6,0],[3,0],[0,0],[0,3],[0,6],[0,9],[0,12]};
-% prior_list              = [1]; % prior for the correct task
-% b_PF_list               = [0];
-% delta_list              = [0];
-% dimension_X              = 256;
-% dimension_G              = 64;
-% number_repetitions        = 512;
+% %%%% 3. generate single session
+stimulus_contrast_list  = {[12,0],[9,0],[6,0],[3,0],[0,0],[0,3],[0,6],[0,9],[0,12]};
+prior_list              = [1]; % prior for the correct task
+b_PF_list               = [0];
+delta_list              = [0.08];
+dimension_X              = 256;
+dimension_G              = 64;
+number_repetitions       = 512;
 %%
 nPrior      = numel(prior_list);
 nStim       = numel(stimulus_contrast_list);

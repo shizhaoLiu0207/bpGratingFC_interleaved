@@ -99,7 +99,14 @@ if  doRunCross
         eval(sprintf('oriDataPath  = oriDataPath_%s;', subjectCode));
         eval(sprintf('unitPropertiesPath = unitPropertiesPath_%s;', subjectCode));
        % saveName = fullfile(saveFolder_session, sprintf('%s_%s.mat',sessionStr_save,filter_name));
-        saveName_cross = fullfile(saveFolder_session_cross, sprintf('%s_%s.mat',sessionStr,filter_name));
+
+        if doMultiple_timebin
+            saveName_cross = fullfile(saveFolder_session_cross, sprintf('%s_%s_timebin.mat',sessionStr,filter_name));
+        else
+            saveName_cross = fullfile(saveFolder_session_cross, sprintf('%s_%s.mat',sessionStr,filter_name));
+        end
+
+        
 
         % run_fisher = 0;
         % if doRun & (~isfile(saveName) | doReplace)
@@ -213,21 +220,34 @@ if  doRunCross
         
                     info_run.timeWin                      = spkWindow;
                     info_run.i_win                        = i_win;
-                    % if run_fisher
-                    %     nBefore = numel(dat_fisher);
-                    %     dat_fisher    = run_fisher_estimate_one_session(dat_fisher,data_run,info_run);
-                    %     nCurrent = numel(dat_fisher);
-                    %     idx_add = [nBefore + 1 :nCurrent];
-                    % 
-                    %     for i_a = 1:numel(idx_add)
-                    %         dat_fisher(idx_add(i_a)).i_subSample = i_sample;
-                    %     end
-                    % 
-                    % end
-        
+ 
+                    
+                    if doMultiple_timebin
+                        %%%% spike count of whole trial
+                        for n = 1:nNeuron
+                            spkWindow   = spkWindow_list{1};
+                            data_run.spikeCount_whole(:,n) = arrayfun(@(t)sum(neuro.spikeTimeMS{n,t} >= neuro.stimOnMS(t) + spkWindow(1) & ...
+                                neuro.spikeTimeMS{n,t} <= neuro.stimOnMS(t) + spkWindow(2)),trialInd);
+                        end
+                        % throw away not kept neurons
+                        data_run.spikeCount_whole(:,~boolean(is_to_keep)) = [];
+                        %%%%% the above spike count is spike count per bin,
+                        %%%%% just copy it
+                        data_run.spikeCount_bin = data_run.spikeCount;
+                        if i_win > 1
+                            data_run.spikeCount_bin = data_run.spikeCount_bin * (nWin) - 1; % normalize
+                        end
+                    end
+
                     if run_fisher_cross
                         nBefore = numel(dat_fisher_cross);
-                        dat_fisher_cross    = run_fisher_cross_estimate_one_session(dat_fisher_cross,data_run,info_run);
+                       if doMultiple_timebin
+                            dat_fisher_cross     = run_fisher_cross_estimate_one_session_timebin(dat_fisher_cross,data_run,info_run);
+                        else
+                            dat_fisher_cross     = run_fisher_cross_estimate_one_session(dat_fisher_cross,data_run,info_run);
+                       end
+
+                        %dat_fisher_cross    = run_fisher_cross_estimate_one_session(dat_fisher_cross,data_run,info_run);
                      
                         nCurrent = numel(dat_fisher_cross);
                         idx_add = [nBefore + 1 :nCurrent];

@@ -4,13 +4,13 @@ close all
 
 %%
 
-filter_name_list = {'all_trials_coef1_hVis2_FR1_hVisOri2_FROri2_interleaved_sizeControl'};
+filter_name_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl'};
 
 %runOptions.doRun = 1;
 runOptions.doRuncross = 1;
 
 %runOptions.doReplace = 1;
-runOptions.doReplace_cross = 1;
+runOptions.doReplace_cross = 0;
 
 %runOptions.doOrganize = 0;
 runOptions.doOrganizeCross = 0;
@@ -22,7 +22,7 @@ runOptions.doTask = 1;
 runOptions.doOrientation = 1;
 
 
-runOptions.doMultiple_timebin = 0;
+runOptions.doMultiple_timebin = 1;
 
 runOptions.timebinsize = 200;
 

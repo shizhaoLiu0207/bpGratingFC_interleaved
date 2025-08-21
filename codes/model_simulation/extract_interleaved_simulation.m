@@ -52,19 +52,19 @@ nDelta                  = numel(delta_list);
 organizeData_saveFolder = '/Users/liushizhao/projectData_local/probinf_data/syntheticData_interleaved/synthData_use_interleaved';
 
 % on linux
-if ~exist(saveFolder)
+if ~exist(organizeData_saveFolder)
     organizeData_saveFolder = '/home/shizhao/Documents/projectData/probinf_data/syntheticData_interleaved/synthData_use_interleaved';
 
 end
 
 %organizeData_saveFolder = '/home/shizhao/Documents/projectData/probinf_data/syntheticData_interleaved/synthData_use_interleaved';
 timeBin_list{1} = [4:99];
-% T_total = numel(timeBin_list{1});
-% nTimebin = 8;
-% for n = 1:nTimebin
-%     binSize = T_total / nTimebin;
-%     timeBin_list{n+1} = [4 + (n-1) * binSize: n*binSize + 3];
-% end
+T_total = numel(timeBin_list{1});
+nTimebin = 8;
+for n = 1:nTimebin
+    binSize = T_total / nTimebin;
+    timeBin_list{n+1} = [4 + (n-1) * binSize: n*binSize + 3];
+end
 
 for i = 1:nTask
     for j = 1:nPrior

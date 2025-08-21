@@ -9,7 +9,7 @@ data_out                = struct();
 % tmp_original            = {synthData_use(idx_data).X_response_original};
 % tmp_shift               = {synthData_use(idx_data).X_response_shift};
 % data_out.spikeCount     = [cat(1,tmp_original{:}); cat(1,tmp_shift{:})];
-tmp                     = {synthData_use(:).X_response};
+tmp                     = {synthData_use(idx_data).X_response};
 data_out.spikeCount     = cat(1, tmp{:});
 
 

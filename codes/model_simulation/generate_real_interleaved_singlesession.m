@@ -15,9 +15,9 @@ end
 
 b_PF            = 0;
 cardinal_prior  = 1;
-cardinal_delta  = 0;
+cardinal_delta  = 0.08;
 oblique_prior   = 1;
-oblique_delta   = 0;
+oblique_delta   = 0.08;
 
 bPF_str                     = strrep(sprintf('%.2f', b_PF), '.', '_');
 cardinal_delta_str          = strrep(sprintf('%.2f', cardinal_delta), '.', '_');
