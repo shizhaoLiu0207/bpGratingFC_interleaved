@@ -23,12 +23,12 @@ close all
 % filter_name_list = {'all_trials_lower_stimulusdprime_sizeControl';'all_trials_higher_stimulusdprime_sizeControl';...
 %     'choice_1_coef1_hVis2_FR1_sizeControl';'choice_2_coef1_hVis2_FR1_sizeControl'};
 
-filter_name_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl'};
+filter_name_list = {'all_trials_coef1_hVis2_FR1_hVisOri2_FROri2_interleaved_sizeControl'};
 
 runOptions.doRun = 1;
 runOptions.doRuncross = 0;
 
-runOptions.doReplace = 1;
+runOptions.doReplace = 0;
 runOptions.doReplace_cross = 0;
 
 runOptions.doOrganize = 0;
@@ -43,7 +43,7 @@ runOptions.doOrientation = 1;
 
 runOptions.doMultiple_timebin = 1;
 
-runOptions.timebinsize = 200;
+runOptions.timebinsize = 400;
 
 combineOptions = struct();
 
