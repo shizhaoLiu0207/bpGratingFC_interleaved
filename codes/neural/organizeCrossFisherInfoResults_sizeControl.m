@@ -3,8 +3,8 @@ clc
 close all
 
 %%
-versionName_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl';...
-    'all_trials_coef1_hVis2_FR1_hVisOri2_FROri2_interleaved_sizeControl'};
+versionName_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl'};
+%...'all_trials_coef1_hVis2_FR1_hVisOri2_FROri2_interleaved_sizeControl'};
 for n = 1:numel(versionName_list)
     versionName = versionName_list{n};
     saveFolder = sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_%s', versionName);

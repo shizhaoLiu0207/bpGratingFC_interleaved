@@ -6,6 +6,7 @@ if isfield(dat_input, 'sessionStr')
    nSession = numel(session_list);
    load_flag = false;
 elseif isfield(dat_input, 'folder')
+    file_name_list = dat_input;
     nSession = numel(file_name_list);
     load_flag = true;
 end
