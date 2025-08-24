@@ -8,7 +8,7 @@ bpGratingFCGlobal();
 filter_folder   = '../../results/filtered_neuron_synthetic';
 
 b_PF            = 0.8;
-subject_code    = 'rolo';
+subject_code    = 'gremlin';
 
 
 b_PF_str        = strrep(sprintf('%.2f',b_PF),'.','_');

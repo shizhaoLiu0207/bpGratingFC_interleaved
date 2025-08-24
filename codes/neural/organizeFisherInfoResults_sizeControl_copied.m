@@ -5,17 +5,22 @@ close all
 versionName_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl'};
 for i_version = 1:numel(versionName_list)
     versionName = versionName_list{i_version};% 'all_trials_coef1_hVis2_FR1_sizeControl';
-    saveName = sprintf('../../results/neural/fisherInfo_direct/fisherInfo_direct_%s/results_sizeControl_combined_allSessions', versionName);
+    saveFolder =  sprintf('../../results/neural/fisherInfo_direct/fisherInfo_direct_%s', versionName);
+    saveName = fullfile(saveFolder, 'results_sizeControl_combined_allSessions');
+    sprintf('../../results/neural/fisherInfo_direct/fisherInfo_direct_%s/results_sizeControl_combined_allSessions', versionName);
     
     
     results_folder = sprintf('../../results/neural/fisherInfo_direct/fisherInfo_direct_%s/individual_sessions/',versionName);
     
     flist = dir(fullfile(results_folder,'*.mat'));
     
-    
-    results_sizeControl_combined = struct();
-    k = 1;
+    organized_folder = fullfile(saveFolder, 'results_cohr_combined_session');
+    %results_sizeControl_combined = struct();
+  
     for n = 1:numel(flist)
+        k = 1;
+
+        saveName_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', flist(n).name));
         fprintf('Organizing session %d/%d\n',n,numel(flist))
         load(fullfile(results_folder, flist(n).name));
         if isempty(dat_fisher)
@@ -37,20 +42,13 @@ for i_version = 1:numel(versionName_list)
                     continue
                 end
                 % dat_fisher_combine = struct();
-                for i = 1:nSample
+                parfor i = 1:nSample
                     idx = idx_base & cell2mat({dat_fisher(:).i_subSample}) == i;
                     options = struct();
-                    % if exist('dat_fisher_combine')
-                    %     nOld = numel(dat_fisher_combine);
-                    % else
-                    %     nOld = 0;
-                    % end
-                    % 
-                    % 
-                    % [tmp, options] = combine_coherence_fisherInfo(dat_fisher(idx),options);
-                    % nNew = nOld + numel(tmp);
-                    % dat_fisher_combine([nOld+1 : nNew]) = tmp;
+                 
+                
                     [dat_fisher_combine(i), options] = combine_coherence_fisherInfo(dat_fisher(idx),options);
+                   
                 end
         
                 if isempty(fieldnames(dat_fisher_combine(1)))
@@ -80,12 +78,38 @@ for i_version = 1:numel(versionName_list)
                 clear dat_fisher_combine
             end
         end
+       save(saveName_session, 'results_sizeControl_combined');
+       clear results_sizeControl_combined
     end
     
     
 
-    results_sizeControl_combined = get_sample_CI(results_sizeControl_combined);
+    %results_sizeControl_combined = get_sample_CI(results_sizeControl_combined);
     
-    save(saveName,'results_sizeControl_combined');
+    %save(saveName,'results_sizeControl_combined');
 
 end
+%%
+versionName = 'all_trials_coef1_hVis2_FR1_interleaved_sizeControl';
+saveFolder =  sprintf('../../results/neural/fisherInfo_direct/fisherInfo_direct_%s', versionName);
+saveName = fullfile(saveFolder,'results_SubsampleCombined_combinedCohr_fisherInfo_all_sessions');
+
+
+individual_folder = fullfile(saveFolder,'results_cohr_combined_session');
+
+file_list = dir(fullfile(individual_folder,'*.mat'));
+
+%results_sizeControl_combined = struct();
+for n = 1:numel(file_list)
+    results_sizeControl_individual = load(fullfile(individual_folder, file_list(n).name));
+
+    if n == 1
+        results_sizeControl_combined = results_sizeControl_individual.results_sizeControl_combined;
+    else
+    results_sizeControl_combined = [results_sizeControl_combined,...
+        results_sizeControl_individual.results_sizeControl_combined];
+    end
+
+end
+
+save(saveName,'results_sizeControl_combined');

@@ -5,7 +5,7 @@ close all
 global   bpGlobal  ftsize
 bpGratingFCGlobal();
 filter_name = 'all_trials_coef1_hVis2_FR1_interleaved_sizeControl';
-saveFolder = sprintf('../../results/neural/fisherInfo_direct/fisherInfo_direct_%s', filter_name);
+saveFolder = sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_direct_%s', filter_name);
 
 
 load(fullfile(saveFolder, 'results_SubsampleCombined_combinedCohr_fisherInfo_all_sessions'));
