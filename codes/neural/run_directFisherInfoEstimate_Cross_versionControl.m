@@ -194,7 +194,11 @@ if  doRunCross
             
             nTrial      = numel(trialInd);
             nNeuron     = numel(neuro.unitId);
-            for i_sample = 1:numel(neuronIdx_kept)
+            nSample_total = numel(neuronIdx_kept);
+            if nSample_total == 1000
+                nSample_total = 100;
+            end
+            for i_sample = 1:nSample_total
                 %%%%%%%%%% kept neurons %%%%%%%%
             
 
