@@ -195,8 +195,8 @@ if  doRunCross
             nTrial      = numel(trialInd);
             nNeuron     = numel(neuro.unitId);
             nSample_total = numel(neuronIdx_kept);
-            if nSample_total == 1000
-                nSample_total = 100;
+            if nSample_total > 5
+                nSample_total = 5;
             end
             for i_sample = 1:nSample_total
                 %%%%%%%%%% kept neurons %%%%%%%%
@@ -227,20 +227,21 @@ if  doRunCross
  
                     
                     if doMultiple_timebin
-                        %%%% spike count of whole trial
-                        for n = 1:nNeuron
-                            spkWindow   = spkWindow_list{1};
-                            data_run.spikeCount_whole(:,n) = arrayfun(@(t)sum(neuro.spikeTimeMS{n,t} >= neuro.stimOnMS(t) + spkWindow(1) & ...
-                                neuro.spikeTimeMS{n,t} <= neuro.stimOnMS(t) + spkWindow(2)),trialInd);
-                        end
-                        % throw away not kept neurons
-                        data_run.spikeCount_whole(:,~boolean(is_to_keep)) = [];
-                        %%%%% the above spike count is spike count per bin,
-                        %%%%% just copy it
+                        % %%%% spike count of whole trial
+                        % for n = 1:nNeuron
+                        %     spkWindow   = spkWindow_list{1};
+                        %     data_run.spikeCount_whole(:,n) = arrayfun(@(t)sum(neuro.spikeTimeMS{n,t} >= neuro.stimOnMS(t) + spkWindow(1) & ...
+                        %         neuro.spikeTimeMS{n,t} <= neuro.stimOnMS(t) + spkWindow(2)),trialInd);
+                        % end
+                        % % throw away not kept neurons
+                        % data_run.spikeCount_whole(:,~boolean(is_to_keep)) = [];
+                        % %%%%% the above spike count is spike count per bin,
+                        % %%%%% just copy it
                         data_run.spikeCount_bin = data_run.spikeCount;
-                        if i_win > 1
-                            data_run.spikeCount_bin = data_run.spikeCount_bin * (nWin) - 1; % normalize
-                        end
+                        data_run.spikeCount_whole  = data_run.spikeCount_bin;
+                        % if i_win > 1
+                        %     data_run.spikeCount_whole = data_run.spikeCount_whole / (nWin - 1); % normalize
+                        % end
                     end
 
                     if run_fisher_cross

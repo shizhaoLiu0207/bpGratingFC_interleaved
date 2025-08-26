@@ -10,7 +10,7 @@ filter_name_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl'};
 runOptions.doRuncross = 1;
 
 %runOptions.doReplace = 1;
-runOptions.doReplace_cross = 0;
+runOptions.doReplace_cross = 1;
 
 %runOptions.doOrganize = 0;
 runOptions.doOrganizeCross = 0;

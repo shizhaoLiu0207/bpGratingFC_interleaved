@@ -133,12 +133,13 @@ if doRun_cross
                 % subsample neurons
                 if doMultipleTimebin
                     data_run.spikeCount_bin = data_out.spikeCount(:, neuronIdx_kept(i_sample,:));
-                    data_out_whole = get_synthetic_data_realInterleaved(synthData_interleaved, 0);
-                    data_run.spikeCount_whole = data_out_whole.spikeCount(:, neuronIdx_kept(i_sample,:));
+                    data_run.spikeCount_whole = data_run.spikeCount_bin;
+                  %  data_out_whole = get_synthetic_data_realInterleaved(synthData_interleaved, 0);
+                   % data_run.spikeCount_whole = data_out_whole.spikeCount(:, neuronIdx_kept(i_sample,:));
 
-                    if t > 1
-                        data_run.spikeCount_bin = data_run.spikeCount_bin * (nTimeBin - 1);
-                    end
+                    % if t > 1
+                    %     data_run.spikeCount_bin = data_run.spikeCount_bin * (nTimeBin - 1);
+                    % end
 
                 else
                     data_run.spikeCount = data_out.spikeCount(:, neuronIdx_kept(i_sample,:));

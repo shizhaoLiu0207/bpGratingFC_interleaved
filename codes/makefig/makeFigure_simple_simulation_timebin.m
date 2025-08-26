@@ -8,7 +8,7 @@ color_C = bpGlobal.color_list.color_cardinal; color_O = bpGlobal.color_list.colo
 
 %%
 save_name = '../../results/neural/organized_simple_simulation_timebin';
-doOrganize = 0;
+doOrganize = 1;
 if doOrganize
     b_PF            = 0;
     cardinal_delta  = 0.08;
@@ -37,8 +37,8 @@ if doOrganize
     % results_fisher_afterlearning = organize_sample_fisher(fisher_afterlearning.dat_fisher_cross);
     % results_fisher_beforelearning = organize_sample_fisher(fisher_beforelearning.dat_fisher_cross);
     
-    results_fisher_afterlearning = util_it.run_organize_cross_fisherinfo_sizeControl(fisher_afterlearning.dat_fisher_cross);
-    results_fisher_beforelearning = util_it.run_organize_cross_fisherinfo_sizeControl(fisher_beforelearning.dat_fisher_cross);
+    results_fisher_afterlearning = util_it.run_organize_cross_fisherinfo_sizeControl(fisher_afterlearning.dat_fisher_cross,fisher_folder);
+    results_fisher_beforelearning = util_it.run_organize_cross_fisherinfo_sizeControl(fisher_beforelearning.dat_fisher_cross,fisher_folder);
     
     
     results_fisher_afterlearning = get_sample_CI_cross(results_fisher_afterlearning);

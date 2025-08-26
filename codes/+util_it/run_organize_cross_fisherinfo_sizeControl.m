@@ -1,4 +1,4 @@
-function results_cross_sizeControl = run_organize_cross_fisherinfo_sizeControl(dat_input)
+function results_cross_sizeControl = run_organize_cross_fisherinfo_sizeControl(dat_input, organized_folder)
 
 if isfield(dat_input, 'sessionStr')
    dat_fisher_cross = dat_input;
@@ -10,9 +10,17 @@ elseif isfield(dat_input, 'folder')
     nSession = numel(file_name_list);
     load_flag = true;
 end
-t = 1;
+
 for n = 1:nSession
     fprintf('Organizing session %d/%d\n',n,nSession)
+    results_cross_sizeControl = struct();
+    t = 1;
+    if isfield(dat_input, 'sessionStr')
+         save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', session_list{n}));
+    else
+        save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', file_name_list(n).name));
+    end
+
     if load_flag
         load(fullfile(file_name_list(n).folder, file_name_list(n).name));
     
@@ -41,18 +49,18 @@ for n = 1:nSession
                         cell2mat({dat_fisher_cross(:).timeWinIndex}) == k-1 & ...
                         strcmp({dat_fisher_cross(:).sessionType}, sessionType_list{m});
             end
+            clear dat_fisher_cross_combine
+            for i = 1:nSample
+                idx = idx_base & cell2mat({dat_fisher_cross(:).i_subSample}) == i;
+                options = struct();
 
-             for i = 1:nSample
-                    idx = idx_base & cell2mat({dat_fisher_cross(:).i_subSample}) == i;
-                    options = struct();
-                  
-                    [dat_fisher_cross_combine(i), options] = combine_coherence_crossfisherInfo(dat_fisher_cross(idx),options);
-                end
+                [dat_fisher_cross_combine(i), options] = combine_coherence_crossfisherInfo(dat_fisher_cross(idx),options);
+            end
         
-                if isempty(fieldnames(dat_fisher_cross_combine(1)))
-                    clear dat_fisher_cross_combine
-                    continue
-                end
+            if isempty(fieldnames(dat_fisher_cross_combine(1)))
+                clear dat_fisher_cross_combine
+                continue
+            end
 
 
                 results_cross_sizeControl(t).sessionStr     = dat_fisher_cross_combine(1).sessionStr;
@@ -92,6 +100,7 @@ for n = 1:nSession
 
         end
     end
+    save(save_name_session,'results_cross_sizeControl')
    
 end
 
