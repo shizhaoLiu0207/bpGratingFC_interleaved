@@ -195,8 +195,8 @@ if  doRunCross
             nTrial      = numel(trialInd);
             nNeuron     = numel(neuro.unitId);
             nSample_total = numel(neuronIdx_kept);
-            if nSample_total > 5
-                nSample_total = 5;
+            if runOptions.doSmallSample
+                nSample_total = min([100, nSample_total]);
             end
             for i_sample = 1:nSample_total
                 %%%%%%%%%% kept neurons %%%%%%%%
