@@ -12,7 +12,7 @@ runOptions.doRuncross = 1;
 %runOptions.doReplace = 1;
 runOptions.doReplace_cross = 1;
 
-runOptions.doSmallSample = 1;
+runOptions.doSmallSample = 0;
 %runOptions.doOrganize = 0;
 runOptions.doOrganizeCross = 0;
 
