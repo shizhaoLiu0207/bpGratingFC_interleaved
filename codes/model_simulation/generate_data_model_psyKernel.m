@@ -9,6 +9,9 @@ clamp_prior     = runOptions.clamp_prior;
 nSession        = runOptions.nSession;
 save_folder     = runOptions.save_folder;
 
+if ~isfolder(save_folder)
+    mkdir(save_folder)
+end
 switch task_mode
     case 'single'
         run_model_mode = 'test-interleaved';
@@ -65,8 +68,10 @@ for i  = 1:nCond_single
             data_use(n).orientation_bins_center = dat.orientation_bins_center / pi * 180;
             data_use(n).P = P;
             %data_use(n).n_zero_signal = P.I.n_zero_signal;
+            
 
         end
         save(fullfile(save_folder, save_name),'data_use');
+        clear data_use
     end
 end
