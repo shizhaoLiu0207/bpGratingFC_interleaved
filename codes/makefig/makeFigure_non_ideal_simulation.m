@@ -136,6 +136,35 @@ end
 
 save_name = fullfile(save_folder,'effect_sample_simple.svg');
 print(save_name,'-dsvg','-vector')
+%% 6. Effect of subsample
+b_PF                = 0;
+cardinal_delta      = 0.08;
+oblique_delta       = 0.08;
+cardinal_prior      = 1;
+oblique_prior       = 1;
+
+session_name_str    = util_it.para_to_namestr(b_PF, cardinal_delta, oblique_delta, cardinal_prior, oblique_prior); 
+session_name = ['Model_',session_name_str];
+
+filter_name = 'nNeuron_256_bPF_original_0_bPF_sample_2_tao_cardinal_0_tao_oblique_0_nSample_128_random_1000.mat';
+    
+fisher_struct = load(sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_modelInterleaved_versionControl/%s/individual_sessions_cross/%s',...
+        filter_name,session_name ));
+
+results_fisher = util_it.run_organize_cross_fisherinfo_sizeControl(fisher_struct.dat_fisher_cross);
+results_fisher = get_sample_CI_cross(results_fisher);
+
+data_struct = [];
+figure
+set(gcf,'Units','inches','Position',[0,0,8,4])
+makefig_session_simulation(data_struct, results_fisher);
+
+
+% sgtitle(sprintf('b_{PF} = %.1f, \\color{red}Cardinal: \\delta = %.2f, prior = %.1f,  \\color{blue}Oblique: \\delta = %.2f, prior = %.1f',...
+%             b_PF, cardinal_delta, cardinal_prior, oblique_delta, oblique_prior),'interpreter','tex','fontweight','bold')
+save_name = fullfile(save_folder,'effect_b_sample_simple.svg');
+print(save_name,'-dsvg','-vector')
+
 %% helper function
 function makefig_session_simulation_diffonly( results_fisher)
 ax_1 = subplot(2,1,1);
@@ -181,6 +210,7 @@ function makefig_session_simulation(data_struct, results_fisher)
     plotOptions.dottest = false;
     plotOptions.plotShuffle = false;
     plotOptions.ftsize = 14;
+    plotOptions.plot_data = 'real';
     fig_it.plot_bar_cross_Info(results_fisher, results_fisher(1).sessionStr, plotOptions); 
     
     %%%% diff cross- real

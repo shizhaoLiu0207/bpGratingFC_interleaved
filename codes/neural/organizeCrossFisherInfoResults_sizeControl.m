@@ -5,7 +5,7 @@ close all
 %%
 versionName_list = {'all_trials_coef1_hVis2_FR1_interleaved_sizeControl'};
 %...'all_trials_coef1_hVis2_FR1_hVisOri2_FROri2_interleaved_sizeControl'};
-doTimebin = false;
+doTimebin = true;
 for n = 1:numel(versionName_list)
     versionName = versionName_list{n};
   
@@ -36,12 +36,14 @@ versionName = 'all_trials_coef1_hVis2_FR1_interleaved_sizeControl';
 saveFolder =  sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_%s', versionName);
 if doTimebin
     saveName = fullfile(saveFolder,'results_SubsampleCombined_combinedCohr_fisherInfo_all_sessions_timebin');
+    individual_folder = fullfile(saveFolder,'results_cohr_combined_session_timebin');
 else
     saveName = fullfile(saveFolder,'results_SubsampleCombined_combinedCohr_fisherInfo_all_sessions');
+    individual_folder = fullfile(saveFolder,'results_cohr_combined_session');
 end
 
 
-individual_folder = fullfile(saveFolder,'results_cohr_combined_session');
+
 
 file_list = dir(fullfile(individual_folder,'*.mat'));
 

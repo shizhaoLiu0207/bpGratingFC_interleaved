@@ -121,3 +121,5 @@ function add_stats_annotations(stats_info, ax_plot, plotColor)
     annotation('textbox',[ax_pos(1) + 0.01,ax_pos(2)-0.23,0.15,0.04],'string',late_stats_string,'fontsize',ftsize,'EdgeColor','none','Interpreter','latex')
 
 end
+
+

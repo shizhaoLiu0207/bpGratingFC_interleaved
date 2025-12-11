@@ -68,6 +68,7 @@ set(gcf,'unit','inches','position',[0,0,6,4])
 ax_1 = subplot(3,2,[1,3]); hold on
 set(ax_1,'position',get(ax_1,'position')+[-0.02 0.04 0.03 -0.03]);
 plotOptions = struct();
+plotOptions.plot_data = 'real';
 plotOptions.errorbar = 'CI_sample';
 plotOptions.dottest = false;
 plotOptions.plotShuffle = false;
@@ -215,54 +216,38 @@ title('After learning')
 save_folder = '../../figures/figures_final/model_fisher_ideal';
 save_name = fullfile(save_folder,'model_redundancy_real_cross.svg');
 print(save_name,'-dsvg','-vector')
-% %% 5. (I_cross - I_real / I_cross)
-% figure
-% set(gcf,'unit','inches','position',[0,0,4,3])
-% ax_1 = subplot(1,2,1); hold on
-% set(ax_1,'position',get(ax_1,'position')+[0.01 0.03 0.04 -0.03]);
-% plotOptions = struct();
-% plotOptions.errorbar = 'CI_sample';
-% plotOptions.ftsize = 14;
-% plotOptions.plotdata = 'info';
-% fig_it.plot_diff_errorbar(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions)
-% title('Before learning')
-% ylim([-10,55])
-% 
-% ax_2 = subplot(1,2,2); hold on
-% set(ax_2,'position',get(ax_2,'position')+[-0.01 0.03 0.04 -0.03]);
-% fig_it.plot_diff_errorbar(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions)
-% ylabel('')
-% set(gca,'YColor', 'none')
-% title('After learning')
-% ylim([-10,55])
-% 
-% save_folder = '../../figures/figures_final/model_fisher_ideal';
-% save_name = fullfile(save_folder,'model_cross_minus_real_percent.svg');
-% print(save_name,'-dsvg','-vector')
-% %% 6. I_redundancy_within - I_redundancy_cross
-% figure
-% set(gcf,'unit','inches','position',[0,0,4,3])
-% ax_1 = subplot(1,2,1); hold on
-% set(ax_1,'position',get(ax_1,'position')+[0.01 0.03 0.04 -0.03]);
-% plotOptions = struct();
-% plotOptions.errorbar = 'CI_sample';
-% plotOptions.ftsize = 14;
-% plotOptions.plotdata = 'delta';
-% fig_it.plot_diff_errorbar(results_fisher_beforelearning, results_fisher_beforelearning(1).sessionStr, plotOptions)
-% title('Before learning')
-% ylim([-5,20])
-% 
-% ax_2 = subplot(1,2,2); hold on
-% set(ax_2,'position',get(ax_2,'position')+[-0.01 0.03 0.04 -0.03]);
-% fig_it.plot_diff_errorbar(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions)
-% ylabel('')
-% set(gca,'YColor', 'none')
-% ylim([-5,20])
-% title('After learning')
-% 
-% save_folder = '../../figures/figures_final/model_fisher_ideal';
-% save_name = fullfile(save_folder,'diff_redundancy_percent.svg');
-% print(save_name,'-dsvg','-vector')
+%% 6. I shuffle
+figure
+set(gcf,'unit','inches','position',[0,0,7,4])
+
+ax_3 = subplot(3,1,[1,2]); hold on
+set(ax_3,'position',get(ax_3,'position')+[0 0.04 0.02 -0.03]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.dottest = false;
+plotOptions.plot_data = 'shuffle';
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 14;
+fig_it.plot_bar_cross_Info(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions); 
+ylabel('Linear Fisher information')
+title('After learning')
+ylim([0, 0.5])
+text(0.5,0.5,'Cardinal','color','red','FontSize',14,'FontWeight','bold')
+text(5.5,0.5,'Oblique','color','blue','FontSize',14,'FontWeight','bold')
+
+ax_4 = subplot(3,1,3); hold on
+set(ax_4,'position',get(ax_4,'position')+[0 0 0.02 -0.02]);
+plotOptions = struct();
+plotOptions.errorbar = 'CI_sample';
+plotOptions.ftsize = 14;
+plotOptions.plotdata = 'shuffle';
+plotOptions.markersize = 6;
+fig_it.plot_diff_errorbar(results_fisher_afterlearning, results_fisher_afterlearning(1).sessionStr, plotOptions)
+ylabel('Diff.(\%)','Interpreter','latex')
+ylim([-1, 5])
+save_folder = '../../figures/figures_final/model_fisher_ideal';
+save_name = fullfile(save_folder,'model_fisher_shuffle_real_cross.svg');
+print(save_name,'-dsvg','-vector')
 %% helper function
 
 function results_cross_sizeControl_perCohr = organize_sample_fisher(dat_fisher_cross)

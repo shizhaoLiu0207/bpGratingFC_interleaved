@@ -16,7 +16,7 @@ load('../../results/neural/stimulus_dprime_twoanimals_interleaved_all_trials_coe
 doThis  = 1;
 plotSession = 'mainTask'; %% 'mainTask' or 'passiveViewing'
 if doThis
-    plot_field  = 'dprime_stimulus_sign';
+    plot_field  = 'dprime_stimulus';
     save_folder = '../../figures/figures_final/psth_basic_neural';
 
     save_name       = fullfile(save_folder ,sprintf('%s_interleaved_histograms_highestcohr_%s.svg',plot_field, plotSession)) ;
@@ -73,8 +73,8 @@ if doThis
     
         switch plotSession
             case 'mainTask'
-                [Y_cardinal, ttest_cardinal] = get_data(results_fprime_choice_all, session_list, plot_field, cohr_list, 'cardinal');
-                [Y_oblique, ttest_oblique]   = get_data(results_fprime_choice_all, session_list, plot_field, cohr_list, 'oblique');
+                [Y_cardinal, ttest_cardinal, sessions_cardinal] = get_data(results_fprime_choice_all, session_list, plot_field, cohr_list, 'cardinal');
+                [Y_oblique, ttest_oblique,sessions_oblique]   = get_data(results_fprime_choice_all, session_list, plot_field, cohr_list, 'oblique');
             case 'passiveViewing'
                 % [Y_early, ttest_early] = get_data(results_fprime_choice_passive_all, session_list_early, plot_field, cohr_list_passive, plotTask);
                 % [Y_late, ttest_late]   = get_data(results_fprime_choice_passive_all, session_list_late, plot_field, cohr_list_passive, plotTask);
@@ -160,7 +160,7 @@ if doThis
             'FontSize', ftsize ,'Interpreter','latex');
         
 
-        %%%% statsitic test, compare between early and late learning
+        %%%% statsitic test, compare between cardinal and oblique
         if ~isempty(Y_cardinal) & ~isempty(Y_oblique)
             [~,p_t, ~,stats_t] = ttest2(Y_cardinal, Y_oblique);
             [p_rank,~,stats_rank]  = ranksum(Y_cardinal, Y_oblique);
@@ -189,18 +189,19 @@ if doThis
         else
             stats_string_onesample{k} = '';
         end
-        % median_mean_string{k} = sprintf(['%s, late: $Fraction = %.2f$, $Median = %.2f$, $Mean = %.2f$; ', ...
-        %             '%s, early: $Fraction = %.2f$, $Median = %.2f$, $Mean = %.2f$; \n'],...
-        %             epoch_string,  sum(ttest_late) / numel(ttest_late), median(Y_late,'omitnan'), mean(Y_late,'omitnan'),...
-        %             epoch_string,  sum(ttest_early) / numel(ttest_early), median(Y_early,'omitnan'), mean(Y_early,'omitnan'));
-       
+      
+        %%%%% hierarchical version of t-test that compares cardinal vs. oblique
+        Y_all = [Y_cardinal;Y_oblique];
+        group_all = [zeros(size(Y_cardinal));ones(size(Y_oblique))];
+        session_all = [sessions_cardinal;sessions_oblique];
+        lmm_results = util_it.hierarchical_ttest(Y_all, group_all, session_all);
+        stats_string_lmm{k} = sprintf('%s: $\\t(%1.f) = %.2f$, $p = \\num{%.2e}$; \n',...
+                                            epoch_string, lmm_results.df, lmm_results.tval, lmm_results.pval);
     end
     % 
-    % %%%%%%% add some annotations
-    % annotation('textbox',[0,0.95,0.1,0.04],'string','Late-learning','fontsize',12,'FontWeight','bold','EdgeColor','none');
-    % annotation('textbox',[0,0.49,0.1,0.04],'string','Early-learning','fontsize',12,'FontWeight','bold','EdgeColor','none');
-    
-    %%% save figure
+   
+
+
     print(save_name, '-dsvg','-vector');
     %%%% generate a tex file with statistics information
     fid = fopen(tex_name,'wt');
@@ -211,15 +212,19 @@ if doThis
         'Wilcoxon rank sum test:',...
         stats_string_ranksum{1}, stats_string_ranksum{2}, ...
         'Onesample t-test:',...
-        stats_string_onesample{1}, stats_string_onesample{2}]);
+        stats_string_onesample{1}, stats_string_onesample{2},...
+        'hierarchinal lmm:',...
+        stats_string_lmm{1}, stats_string_lmm{2}]);
     
     fclose(fid);
 end
 %% helper functions
 
-function [Y, Y_ttest] = get_data(results_fprime_choice_all,session_list,plot_field, cohr_list, plotTask)
-    [Y,Y_ttest, nOri] = deal(cell(numel(session_list),1));
+function [Y, Y_ttest,sessions] = get_data(results_fprime_choice_all,session_list,plot_field, cohr_list, plotTask)
+    [Y,Y_ttest, nOri, sessions] = deal(cell(numel(session_list),1));
+    session_list_all = unique({results_fprime_choice_all(:).sessionStr});
      for n = 1:numel(session_list)
+         
          switch plot_field
              case {'tuningIndex';'dprime_stimulus';'dprime_stimulus_sign'}
                 idx = strcmp({results_fprime_choice_all(:).sessionStr},  session_list{n}) & ...
@@ -235,6 +240,7 @@ function [Y, Y_ttest] = get_data(results_fprime_choice_all,session_list,plot_fie
                     end
 
                 end
+                sessions{n} = ones(size(Y{n})) * find(strcmp(session_list_all, session_list{n}));
              case {'dprime_choice';'firingRate';'fano_per_stim'}
                  idx = strcmp({results_fprime_choice_all(:).sessionStr},  session_list{n}) & ...
                      strcmp({results_fprime_choice_all(:).task}, plotTask);
@@ -246,6 +252,7 @@ function [Y, Y_ttest] = get_data(results_fprime_choice_all,session_list,plot_fie
                      Y_ttest{n} = sum(cat(2,tmp{:}),2) > 0;
                     
                  end
+                  sessions{n} = ones(size(Y{n})) * find(strcmp(session_list_all, session_list{n}));
              case {'dprime_stimulus_norm'}
              
                 idx_base = strcmp({results_fprime_choice_all(:).sessionStr},  session_list{n}) ...
@@ -263,7 +270,7 @@ function [Y, Y_ttest] = get_data(results_fprime_choice_all,session_list,plot_fie
                    
                 Y{n} = mean(cat(2,dprime_stimulus_norm{:}),2);
                 Y_ttest{n} = nan * ones(size(Y{n}));
-    
+                sessions{n} = ones(size(Y{n})) * find(strcmp(session_list_all, session_list{n}));
          end
     
      end
@@ -271,7 +278,7 @@ function [Y, Y_ttest] = get_data(results_fprime_choice_all,session_list,plot_fie
      Y = cat(1,Y{:});
      Y_ttest = cat(1, Y_ttest{:});
 
-     
+     sessions = cat(1, sessions{:});
      % if exist('nOri','var')
      %    nOri = cat(1,nOri{:});
      %    Y(nOri < 8) = [];

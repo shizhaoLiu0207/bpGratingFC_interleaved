@@ -77,8 +77,8 @@ switch subject_code
         idx_session = contains({results_all_empirical(:).sessionStr},'Gr');
 end
 
-diff_redundancy_cardinal_empirical  = cell2mat({results_all_empirical(idx_session).diff_info_percent_cardinal_median});
-diff_redundancy_oblique_empirical   = cell2mat({results_all_empirical(idx_session).diff_info_percent_oblique_median});
+diff_redundancy_cardinal_empirical  = cell2mat({results_all_empirical(idx_session).diff_delta_percent_cardinal_median});
+diff_redundancy_oblique_empirical   = cell2mat({results_all_empirical(idx_session).diff_delta_percent_oblique_median});
 
 diff_fisher_cardinal_empirical      = cell2mat({results_all_empirical(idx_session).diff_info_percent_cardinal_median});
 diff_fisher_oblique_empirical       = cell2mat({results_all_empirical(idx_session).diff_info_percent_oblique_median});
@@ -101,18 +101,18 @@ for n = 1:5
     best_params{n} = [cardinal_delta(idx_sort(n)), cardinal_prior(idx_sort(n)), oblique_delta(idx_sort(n)), oblique_prior(idx_sort(n))];
 end
 
-%% match between simulation and each session
-nSession = numel(diff_redundancy_cardinal_empirical);
-[cardinal_delta_best, oblique_delta_best] = deal(zeros(nSession,1));
-for n = 1:nSession
-    dist_feature = sqrt((diff_redundancy_cardinal - diff_redundancy_cardinal_empirical(n)).^ 2 + ...
-            (diff_redundancy_oblique - diff_redundancy_oblique_empirical(n)).^ 2 );
-
-    [~,idx_sort] = sort(dist_feature,'ascend');
-    cardinal_delta_best(n)  = cardinal_delta(idx_sort(1));
-    oblique_delta_best(n)   = oblique_delta(idx_sort(1));
-end
-
-figure;
-plot(cardinal_delta_best,'-o','color','red'); hold on
-plot(oblique_delta_best,'-o','color','blue')
+% %% match between simulation and each session
+% nSession = numel(diff_redundancy_cardinal_empirical);
+% [cardinal_delta_best, oblique_delta_best] = deal(zeros(nSession,1));
+% for n = 1:nSession
+%     dist_feature = sqrt((diff_redundancy_cardinal - diff_redundancy_cardinal_empirical(n)).^ 2 + ...
+%             (diff_redundancy_oblique - diff_redundancy_oblique_empirical(n)).^ 2 );
+% 
+%     [~,idx_sort] = sort(dist_feature,'ascend');
+%     cardinal_delta_best(n)  = cardinal_delta(idx_sort(1));
+%     oblique_delta_best(n)   = oblique_delta(idx_sort(1));
+% end
+% 
+% figure;
+% plot(cardinal_delta_best,'-o','color','red'); hold on
+% plot(oblique_delta_best,'-o','color','blue')

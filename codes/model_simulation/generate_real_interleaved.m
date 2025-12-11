@@ -29,7 +29,7 @@ for n = 1:nFile
     
     
     imagetask{n}               = imagetask_str;
-    bPF(n)        = str2double(bPF_str);
+    bPF(n)                      = str2double(bPF_str);
     taskprior(n)               = str2double(taskprior_str);
     delta(n)                   = str2double(delta_str);
 end

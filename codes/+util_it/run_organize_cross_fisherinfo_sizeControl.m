@@ -11,15 +11,18 @@ elseif isfield(dat_input, 'folder')
     load_flag = true;
 end
 
+t = 1;
 for n = 1:nSession
     fprintf('Organizing session %d/%d\n',n,nSession)
     results_cross_sizeControl = struct();
-    t = 1;
-    if isfield(dat_input, 'sessionStr')
-         save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', session_list{n}));
-    else
-        save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', file_name_list(n).name));
+    if load_flag
+        t = 1;
     end
+    % if isfield(dat_input, 'sessionStr')
+    % 
+    % else
+    %     save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', file_name_list(n).name));
+    % end
 
     if load_flag
         load(fullfile(file_name_list(n).folder, file_name_list(n).name));
@@ -30,6 +33,7 @@ for n = 1:nSession
          nSample = max(cell2mat({dat_fisher_cross(:).i_subSample}));
          sessionType_list = unique({dat_fisher_cross(:).sessionType});
          timebin_list = unique(cell2mat({dat_fisher_cross(:).timeWinIndex}));
+         save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', session_list{n}));
     else
         idx_base = strcmp({dat_fisher_cross(:).sessionStr}, session_list{n});
         nSample = max(cell2mat({dat_fisher_cross(idx_base).i_subSample}));
@@ -100,8 +104,12 @@ for n = 1:nSession
 
         end
     end
-    save(save_name_session,'results_cross_sizeControl')
+    if load_flag
+        save(save_name_session,'results_cross_sizeControl')
+    end
    
 end
+
+
 
 end

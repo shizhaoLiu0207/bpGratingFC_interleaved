@@ -8,19 +8,26 @@ idx = strcmp({results_all(:).sessionType}, 'mainTask') & cell2mat({results_all(:
 diff_info_percent_cardinal  = cell2mat({results_all(idx).diff_info_percent_cardinal_median});
 diff_info_percent_oblique   = cell2mat({results_all(idx).diff_info_percent_oblique_median});
 
+diff_shuffle_percent_cardinal = cell2mat({results_all(idx).diff_shuffle_percent_cardinal_median});
+diff_shuffle_percent_oblique  = cell2mat({results_all(idx).diff_shuffle_percent_oblique_median});
+
 diff_delta_percent_cardinal =  cell2mat({results_all(idx).diff_delta_percent_cardinal_median});
 diff_delta_percent_oblique  =  cell2mat({results_all(idx).diff_delta_percent_oblique_median});
 
 
 if strcmp(plotOptions.errorbar,'CI_sample')
-    diff_info_percent_cardinal_CI  = results_all(idx).diff_info_percent_cardinal_CI;
-    diff_info_percent_oblique_CI  = results_all(idx).diff_info_percent_oblique_CI;
+    diff_info_percent_cardinal_CI       = results_all(idx).diff_info_percent_cardinal_CI;
+    diff_info_percent_oblique_CI        = results_all(idx).diff_info_percent_oblique_CI;
+    
+    diff_shuffle_percent_cardinal_CI    = results_all(idx).diff_shuffle_percent_cardinal_CI;
+    diff_shuffle_percent_oblique_CI     = results_all(idx).diff_shuffle_percent_oblique_CI;
 
-    diff_delta_percent_cardinal_CI =  results_all(idx).diff_delta_percent_cardinal_CI;
-    diff_delta_percent_oblique_CI  =  results_all(idx).diff_delta_percent_oblique_CI;
-
+    diff_delta_percent_cardinal_CI      =  results_all(idx).diff_delta_percent_cardinal_CI;
+    diff_delta_percent_oblique_CI       =  results_all(idx).diff_delta_percent_oblique_CI;
 
 end
+
+
 switch plotOptions.plotdata
     case 'info'
         data_plot_cardinal  = diff_info_percent_cardinal;
@@ -29,6 +36,13 @@ switch plotOptions.plotdata
             CI_plot_cardinal = diff_info_percent_cardinal_CI;
             CI_plot_oblique = diff_info_percent_oblique_CI;
         end
+    case 'shuffle'
+        data_plot_cardinal  = diff_shuffle_percent_cardinal;
+        data_plot_oblique   = diff_shuffle_percent_oblique;
+        if strcmp(plotOptions.errorbar,'CI_sample')
+            CI_plot_cardinal = diff_shuffle_percent_cardinal_CI;
+            CI_plot_oblique = diff_shuffle_percent_oblique_CI;
+        end
     case 'delta'
         data_plot_cardinal  = diff_delta_percent_cardinal;
         data_plot_oblique   = diff_delta_percent_oblique;
@@ -36,6 +50,7 @@ switch plotOptions.plotdata
             CI_plot_cardinal = diff_delta_percent_cardinal_CI;
             CI_plot_oblique = diff_delta_percent_oblique_CI;
         end
+
 end
 
 hold on

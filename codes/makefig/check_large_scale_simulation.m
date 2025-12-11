@@ -61,57 +61,7 @@ diff_cardinal_oblique_delta = cardinal_delta - oblique_delta;
 diff_cardinal_oblique_prior = cardinal_prior - oblique_prior;
 
 
-% %% correlation between parameters and results as a sanity check
-% 
-% param_name_list  = {'cardinal_delta';'cardinal_prior';'oblique_delta';'oblique_prior'};
-% data_name_list = {'diff_fisher_cardinal';'diff_fisher_oblique';'diff_redundancy_cardinal';'diff_redundancy_oblique'};
-% params_str  = {'$\delta_\\textrm{cardinal}$';'prior_{cardinal}';'$\delta_\\textrm{oblique}$';'prior_{oblique}'};
-% data_str    = {'Diff. Information_{cardinal}';'Diff. Information_{oblique}';...
-%                'Diff. Redundancy_{cardinal}';'Diff. Redundancy_{oblique}'};
-% for i = 1:numel(data_name_list)
-%     for j = 1:numel(param_name_list)
-% 
-%         idx_control = setdiff([1:numel(param_name_list)],j);
-%         eval(sprintf('z = [%s,%s,%s];', ...
-%             param_name_list{idx_control(1)}, param_name_list{idx_control(2)}, param_name_list{idx_control(3)}));
-%         eval(sprintf('[r(i,j),p(i,j)] = partialcorr(%s, %s, z);',data_name_list{i}, param_name_list{j}))
-%     end
-% end
-% 
-% 
-% % Create LaTeX table with r and p in each cell
-% tex_name = '../../figures/figures_final/model_fisher_largescale/simulation_corrs.tex';
-% fid = fopen(tex_name,'w');
-% fprintf(fid, '\\begin{table}[h!]\n\\centering\n');
-% fprintf(fid, '\\caption{}\n');
-% fprintf(fid, '\\begin{tabular}{lcccc}\n');
-% fprintf(fid, '\\toprule\n');
-% fprintf(fid, ' & %s \\\\\n', strjoin(params_str, ' & '));
-% fprintf(fid, '\\midrule\n');
-% 
-% for i = 1:4
-%     rowStr = data_str{i};
-%     for j = 1:4
-%         rowStr = sprintf('%s & \\makecell{$r=%.2f$}', rowStr, r(i,j));
-%     end
-%     fprintf(fid, '%s \\\\\n', rowStr);
-% end
-% 
-% fprintf(fid, '\\bottomrule\n\\end{tabular}\n\\end{table}\n');
-% fclose(fid);
-% 
-% %%
-% 
-% param_diff_name_list    = {'diff_cardinal_oblique_delta';'diff_cardinal_oblique_prior'};
-% data_diff_name_list     = {'diff_cardinal_oblique_fisher';'diff_cardinal_oblique_redundancy'};
-% 
-% for i = 1:numel(param_diff_name_list)
-%     for j = 1:numel(data_diff_name_list)
-%         eval(sprintf('[r_diff(i,j),p_diff(i,j)] = partialcorr(%s,%s,%s);',...
-%             param_diff_name_list{i}, data_diff_name_list{j}, param_diff_name_list{setdiff([1,2],i)}));
-%     end
-% end
-% %% anova
+
 
 
 %% visualize the heat map
@@ -125,7 +75,7 @@ for k = 1:4
     eval(sprintf('feature_target = %s;',feature_target_str_list{k}));
     figure
     set(gcf,'Units','inches','position',[0,0,12,5])
-    make_heatmap_4D(feature_target, cardinal_delta,cardinal_prior, oblique_delta,oblique_prior, plotOptions)
+    fig_it.make_heatmap_4D(feature_target, cardinal_delta,cardinal_prior, oblique_delta,oblique_prior, plotOptions)
     save_folder = '../../figures/figures_final/model_fisher_largescale';
     save_name = fullfile(save_folder,sprintf('heatmap_4D_%s.svg',feature_target_str_list{k}));
     print(save_name,'-dsvg')
@@ -139,7 +89,7 @@ p1_name = '\color{red}\delta_{cardinal} \color{black}- \color{blue}\delta_{obliq
 p2_name =  '\color{red}prior_{cardinal} \color{black}- \color{blue}prior_{oblique}';
 figure
 set(gcf,'Units','inches','position',[0,0,5,4])
-make_heatmap(p1,p2,f,p1_name,p2_name);
+fig_it.make_heatmap(p1,p2,f,p1_name,p2_name);
 set(gca,'fontsize',14)
 title('\color{red}Diff. Redundancy_{cardinal} - \color{blue}Diff. Redundancy_{oblique}','Interpreter','tex',...
     'FontWeight','bold')
@@ -157,7 +107,7 @@ p1_name = '\color{red}\delta_{cardinal} \color{black}- \color{blue}\delta_{obliq
 p2_name =  '\color{red}prior_{cardinal} \color{black}- \color{blue}prior_{oblique}';
 figure
 set(gcf,'Units','inches','position',[0,0,5,4])
-make_heatmap(p1,p2,f,p1_name,p2_name);
+fig_it.make_heatmap(p1,p2,f,p1_name,p2_name);
 set(gca,'fontsize',14)
 title('\color{red}Diff. Information_{cardinal} - \color{blue}Diff. Information_{oblique}','Interpreter','tex',...
     'FontWeight','bold')
@@ -167,79 +117,4 @@ print(save_name,'-dsvg')
 
 
 %%
-function make_heatmap_4D(feature_target, cardinal_delta,cardinal_prior, oblique_delta,oblique_prior, plotOptions)
-    
-    
-    subplot(2,3,1)
-    p1 = cardinal_delta;
-    p2 = cardinal_prior;
-    p1_name = '\color{red}\delta_{cardinal}';
-    p2_name = '\color{red}prior_{cardinal}';
-    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
-    set(gca,'fontsize',plotOptions.ftsize)
-    
 
-    subplot(2,3,2)
-    p1 = cardinal_delta;
-    p2 = oblique_delta;
-    p1_name = '\color{red}\delta_{cardinal}';
-    p2_name = '\color{blue}\delta_{oblique}';
-    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
-    set(gca,'fontsize',plotOptions.ftsize)
-    
-    subplot(2,3,3)
-    p1 = cardinal_delta;
-    p2 = oblique_prior;
-    p1_name = '\color{red}\delta_{cardinal}';
-    p2_name = '\color{blue}prior_{oblique}';
-    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
-    set(gca,'fontsize',plotOptions.ftsize)
-
-    subplot(2,3,4)
-    p1 = cardinal_prior;
-    p2 = oblique_delta;
-    p1_name = '\color{red}prior_{cardinal}';
-    p2_name = '\color{blue}\delta_{oblique}';
-    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
-    set(gca,'fontsize',plotOptions.ftsize)
-
-    subplot(2,3,5)
-    p1 = cardinal_prior;
-    p2 = oblique_prior;
-    p1_name = '\color{red}prior_{cardinal}';
-    p2_name = '\color{blue}prior_{oblique}';
-    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
-    set(gca,'fontsize',plotOptions.ftsize)
-    
-    subplot(2,3,6)
-    p1 = oblique_delta;
-    p2 = oblique_prior;
-    p1_name = '\color{blue}\delta_{oblique}';
-    p2_name = '\color{blue}prior_{oblique}';
-    make_heatmap(p1,p2,feature_target,p1_name,p2_name)
-    set(gca,'fontsize',plotOptions.ftsize)
-    sgtitle(plotOptions.feature_title, 'fontweight','bold','fontsize',plotOptions.ftsize + 2,'interpreter','tex')
-end
-function make_heatmap(p1,p2,f,p1_name,p2_name)
-
-    valid = isfinite(p1) & isfinite(p2) & isfinite(f);
-    p1 = p1(valid); p2 = p2(valid); f = f(valid);
-    
-    
-    ng = 20; 
-    xg = linspace(min(p1),max(p1),ng);
-    yg = linspace(min(p2),max(p2),ng);
-    [Xg,Yg] = meshgrid(xg,yg);
-    
-    Fint = scatteredInterpolant(p1,p2,f,'linear','none'); % 'natural' is smooth
-    Z = Fint(Xg,Yg);
-    
-    %nexttile; hold on
-    
-    contourf(Xg,Yg,Z,15,'LineStyle','none'); colorbar
-    xlabel(p1_name); ylabel(p2_name); 
-    set(gca, 'xtick',unique(p1));
-    set(gca, 'ytick',unique(p2));
-    set(gca,'fontsize',14)
-
-end

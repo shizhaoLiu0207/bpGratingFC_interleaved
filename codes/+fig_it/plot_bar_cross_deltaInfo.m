@@ -2,7 +2,10 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
  global bpGlobal ftsize
     idx = strcmp({results_all(:).sessionType}, 'mainTask') & cell2mat({results_all(:).timeWinIndex}) == 0 &...
         ismember({results_all(:).sessionStr}, session_list_plot);
-
+    
+    if ~isfield(plotOptions,'plotOrder')
+        plotOptions.plotOrder = 'bytask'; %%%%% default by task, the other is by context
+    end
     
   
     if plotOptions.plotPercent
@@ -41,11 +44,22 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
 
 
     hold on
-    bar(0.5, mean(deltaI_cardinal, 'omitnan'), 'facecolor',bpGlobal.color_list.color_cardinal, 'EdgeColor',bpGlobal.color_list.color_cardinal);
-    bar(2.5, mean(deltaI_cardinal_cross), 'facecolor',bpGlobal.color_list.color_cardinal, 'EdgeColor',bpGlobal.color_list.color_oblique, 'linewidth',3);
+    %%%% x position for each measurement in this order:
+    %%%% cardinal, cardinal_cross, oblique, oblique_cross
+    switch plotOptions.plotOrder
+        case 'bytask'
+          
+            x_pos = [0.5,2.5,5.5,7.5];
 
-    bar(5.5, mean(deltaI_oblique), 'facecolor',bpGlobal.color_list.color_oblique, 'EdgeColor',bpGlobal.color_list.color_oblique);
-    bar(7.5, mean(deltaI_oblique_cross), 'facecolor',bpGlobal.color_list.color_oblique, 'EdgeColor',bpGlobal.color_list.color_cardinal, 'linewidth',3);
+        case 'bycontext'
+
+            x_pos = [0.5,5.5,7.5,2.5];
+    end
+    bar(x_pos(1), mean(deltaI_cardinal, 'omitnan'), 'facecolor',bpGlobal.color_list.color_cardinal, 'EdgeColor',bpGlobal.color_list.color_cardinal);
+    bar(x_pos(2), mean(deltaI_cardinal_cross), 'facecolor',bpGlobal.color_list.color_cardinal, 'EdgeColor',bpGlobal.color_list.color_oblique, 'linewidth',3);
+
+    bar(x_pos(3), mean(deltaI_oblique), 'facecolor',bpGlobal.color_list.color_oblique, 'EdgeColor',bpGlobal.color_list.color_oblique);
+    bar(x_pos(4), mean(deltaI_oblique_cross), 'facecolor',bpGlobal.color_list.color_oblique, 'EdgeColor',bpGlobal.color_list.color_cardinal, 'linewidth',3);
     
 
   
@@ -56,24 +70,24 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
             ymean           = [mean(deltaI_cardinal), mean(deltaI_cardinal_cross), mean(deltaI_oblique), mean(deltaI_oblique_cross)];
             y_errorbar_low  =  ymean - [deltaI_cardinal_CI(1), deltaI_cardinal_cross_CI(1), deltaI_oblique_CI(1), deltaI_oblique_cross_CI(1)];
             y_errorbar_high  = [deltaI_cardinal_CI(2), deltaI_cardinal_cross_CI(2), deltaI_oblique_CI(2), deltaI_oblique_cross_CI(2)] - ymean;
-            errorbar([0.5,2.5, 5.5,7.5], ymean, y_errorbar_low, y_errorbar_high, '.', 'LineWidth', 2, 'color', 'black');
+            errorbar(x_pos, ymean, y_errorbar_low, y_errorbar_high, '.', 'LineWidth', 2, 'color', 'black');
 
 
         case 'SEM_session'
             ymean = [mean(deltaI_cardinal), mean(deltaI_cardinal_cross), mean(deltaI_oblique), mean(deltaI_oblique_cross)];
             ysem = [std(deltaI_cardinal), std(deltaI_cardinal_cross), std(deltaI_oblique), std(deltaI_oblique_cross)] / sqrt(numel(idx));
         
-            errorbar([0.5,2.5, 5.5,7.5], ymean, ysem, '.', 'LineWidth', 2, 'color', 'black');
+            errorbar(x_pos, ymean, ysem, '.', 'LineWidth', 2, 'color', 'black');
     end
 
      if plotOptions.dottest
-        stats_info_cardinal = fig.show_ttest(deltaI_cardinal, deltaI_cardinal_cross, [0.5,2.5]);
+        stats_info_cardinal = fig_it.show_ttest(deltaI_cardinal, deltaI_cardinal_cross, [x_pos(1),x_pos(2)]);
         stats_info_cardinal.mu_within   = stats_info_cardinal.mu_1;
         stats_info_cardinal.mu_cross    = stats_info_cardinal.mu_2;
         stats_info_cardinal.std_within  = stats_info_cardinal.std_1;
         stats_info_cardinal.std_cross   = stats_info_cardinal.std_2;
 
-        stats_info_oblique = fig.show_ttest(deltaI_oblique, deltaI_oblique_cross, [5.5,7.5]);
+        stats_info_oblique = fig_it.show_ttest(deltaI_oblique, deltaI_oblique_cross, [x_pos(3),x_pos(4)]);
 
         stats_info_oblique.mu_within   = stats_info_oblique.mu_1;
         stats_info_oblique.mu_cross    = stats_info_oblique.mu_2;
@@ -83,8 +97,15 @@ function [stats_info_cardinal, stats_info_oblique] = plot_bar_cross_deltaInfo(re
 
      end
     set(gca, 'fontsize', plotOptions.ftsize)
-    set(gca, 'xtick', [0.5,2.5, 5.5,7.5], 'xticklabels', {'Within';'Cross'; 'Within';'Cross'})
-    set(gca, 'TickLabelInterpreter','latex')
+     set(gca, 'TickLabelInterpreter','tex')
+    switch plotOptions.plotOrder
+        case 'bytask'
+            set(gca, 'xtick', [0.5,2.5,5.5,7.5], 'xticklabels', {'Within';'Cross'; 'Within';'Cross'})
+        case 'bycontext'
+            set(gca, 'xtick', [0.5,2.5,5.5,7.5], 'xticklabels', ...
+                {'\color{red}{Cardinal}';'\color{blue}{Oblique}'; '\color{red}{Cardinal}';'\color{blue}{Oblique}'})
+    end
+   
       if plotOptions.plotPercent
           ylabel('$I_\textrm{redundancy}$ (Percent)','Interpreter','latex');
       else

@@ -1,0 +1,1469 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8.5in"
+   height="13in"
+   viewBox="0 0 215.9 330.2"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   sodipodi:docname="conceptual_swap_cov.svg"
+   inkscape:export-filename="conceptual_swap_cov.pdf"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.63841048"
+     inkscape:cx="140.19193"
+     inkscape:cy="569.38288"
+     inkscape:window-width="1920"
+     inkscape:window-height="957"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g63278-6-8-6" />
+  <defs
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter37476"
+       x="-0.040008111"
+       y="-0.041781716"
+       width="1.0800162"
+       height="1.0835634">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.036000725"
+         id="feGaussianBlur37478" />
+    </filter>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath34008">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path34006" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font34020"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face34010" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph34012" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph34014" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph34016" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph34018" />
+    </font>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11696-5">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path11694-2" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font11708-2"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face11698-6" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph11700-6" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph11702-7" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph11704-8" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph11706-4" />
+    </font>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter37476-8"
+       x="-0.040010381"
+       y="-0.041784087"
+       width="1.0800208"
+       height="1.0835682">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.036000725"
+         id="feGaussianBlur37478-4" />
+    </filter>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11696-6">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path11694-4" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font11708-3"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face11698-8" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph11700-4" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph11702-0" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph11704-0" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph11706-9" />
+    </font>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11696-50">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path11694-21" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font11708-8"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face11698-7" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph11700-1" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph11702-5" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph11704-5" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph11706-8" />
+    </font>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11696-8">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path11694-49" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font11708-7"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face11698-3" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph11700-10" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph11702-2" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph11704-3" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph11706-7" />
+    </font>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter37476-8-4"
+       x="-0.040010381"
+       y="-0.041784087"
+       width="1.0800208"
+       height="1.0835682">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.036000725"
+         id="feGaussianBlur37478-4-8" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter37476-8-4-1"
+       x="-0.040010381"
+       y="-0.041784087"
+       width="1.0800208"
+       height="1.0835682">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.036000725"
+         id="feGaussianBlur37478-4-8-5" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter37476-8-5"
+       x="-0.040010381"
+       y="-0.041784087"
+       width="1.0800208"
+       height="1.0835682">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.036000725"
+         id="feGaussianBlur37478-4-5" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter37476-82"
+       x="-0.040008111"
+       y="-0.041781716"
+       width="1.0800162"
+       height="1.0835634">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.036000725"
+         id="feGaussianBlur37478-9" />
+    </filter>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11696-58">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path11694-3" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font11708-0"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face11698-62" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph11700-2" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph11702-52" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph11704-2" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph11706-71" />
+    </font>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath69509-6">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path69507-3" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font69521-0"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face69511-8" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph69513-4" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph69515-0" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph69517-4" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph69519-6" />
+    </font>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath74214-9">
+      <path
+         d="M 0,0 H 144 V 144 H 0 Z"
+         id="path74212-3" />
+    </clipPath>
+    <font
+       horiz-adv-x="50"
+       id="font74226-7"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         ascent="95.200005"
+         descent="21.3"
+         units-per-em="100"
+         style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+         id="font-face74216-5" />
+      <missing-glyph
+         horiz-adv-x="50.0"
+         d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+         id="missing-glyph74218-7" />
+      <glyph
+         unicode="1"
+         horiz-adv-x="55.6"
+         d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+         id="glyph74220-2" />
+      <glyph
+         unicode="r"
+         horiz-adv-x="33.3"
+         d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+         id="glyph74222-9" />
+      <glyph
+         unicode="2"
+         horiz-adv-x="55.6"
+         d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+         id="glyph74224-7" />
+    </font>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g70587-3"
+       transform="matrix(0.74014254,0,0,0.78106395,-144.86658,0.39983653)">
+      <g
+         style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:auto;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+         id="g64934-6-0"
+         transform="matrix(0.46117732,0,0,0.46117732,203.85079,41.587064)">
+        <g
+           id="g63278-6-8">
+          <defs
+             id="defs1-0-7-4">
+            <clipPath
+               clipPathUnits="userSpaceOnUse"
+               id="clipPath11696">
+              <path
+                 d="M 0,0 H 144 V 144 H 0 Z"
+                 id="path11694" />
+            </clipPath>
+            <font
+               horiz-adv-x="50"
+               id="font11708"
+               horiz-origin-x="0"
+               horiz-origin-y="0"
+               vert-origin-x="512"
+               vert-origin-y="768"
+               vert-adv-y="1024">
+              <font-face
+                 ascent="95.200005"
+                 descent="21.3"
+                 units-per-em="100"
+                 style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+                 id="font-face11698" />
+              <missing-glyph
+                 horiz-adv-x="50.0"
+                 d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+                 id="missing-glyph11700" />
+              <glyph
+                 unicode="1"
+                 horiz-adv-x="55.6"
+                 d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+                 id="glyph11702" />
+              <glyph
+                 unicode="r"
+                 horiz-adv-x="33.3"
+                 d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+                 id="glyph11704" />
+              <glyph
+                 unicode="2"
+                 horiz-adv-x="55.6"
+                 d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+                 id="glyph11706" />
+            </font>
+          </defs>
+          <g
+             style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60042-1-7">
+            <line
+               y2="120"
+               style="fill:none"
+               x1="24"
+               x2="130"
+               y1="120"
+               id="line60040-5-5" />
+          </g>
+          <g
+             transform="translate(77.0001,124.8)"
+             style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60046-5-7">
+            <text
+               x="-46.619152"
+               xml:space="preserve"
+               y="9.3636456"
+               style="font-size:12.073px;stroke:none"
+               id="text60044-5-2">Response of Neuron 1 (r1)</text>
+          </g>
+          <g
+             style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60050-8-9">
+            <line
+               y2="11"
+               style="fill:none"
+               x1="24"
+               x2="24"
+               y1="120"
+               id="line60048-2-7" />
+          </g>
+          <g
+             transform="rotate(-90,42.34995,23.14995)"
+             style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60054-9-5">
+            <text
+               x="-54.669647"
+               xml:space="preserve"
+               y="-7.587707"
+               style="font-size:12.073px;stroke:none"
+               id="text60052-8-6">Response of Neuron 2 (r2)</text>
+          </g>
+          <g
+             style="color-interpolation:linearRGB;fill:#298c8c;stroke:#298c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g63276-3-8"
+             transform="translate(-0.55832265,-3.7034993)">
+            <path
+               d="m 51.7396,96.6429 1.0318,0.2636 1.5143,0.1697 1.5143,-0.011 1.5143,-0.1659 1.2318,-0.2564 0.2825,-0.0453 1.5143,-0.3517 1.5142,-0.4785 1.5143,-0.6412 0.0817,-0.0405 1.4326,-0.5855 1.5143,-0.8058 0.2724,-0.1658 1.2419,-0.6532 1.3617,-0.904 0.1526,-0.0906 1.5143,-1.0037 0.5987,-0.4628 0.9155,-0.6638 1.0701,-0.8934 0.4442,-0.3604 1.3267,-1.1967 0.1876,-0.1705 1.4217,-1.3866 0.0926,-0.0944 1.3852,-1.4628 0.1291,-0.1476 1.2308,-1.4095 0.2835,-0.3647 0.9581,-1.1925 0.5562,-0.8071 0.5529,-0.75 0.9504,-1.5572 0.0109,-0.0202 0.9342,-1.5369 0.5801,-1.2424 0.1714,-0.3147 0.7056,-1.5572 0.5195,-1.5571 0.1178,-0.4762 0.3343,-1.081 0.3099,-1.5571 0.1417,-1.5572 L 86.8313,65.5 86.5639,63.9429 86.0857,62.6318 85.9907,62.3857 85.0005,60.8286 84.5714,60.3678 83.1529,59.2714 83.0571,59.2104 81.5429,58.5102 80.0286,58.133 78.5143,57.977 77,57.9842 l -1.5143,0.1403 -1.5143,0.2635 -1.5143,0.3938 -1.3629,0.4896 -0.1513,0.0434 -1.5143,0.5343 -1.5143,0.7009 -0.5055,0.2786 -1.0088,0.4699 -1.5143,0.8827 -0.309,0.2045 -1.2053,0.7066 -1.1837,0.8506 -0.3306,0.2179 -1.5142,1.1373 -0.2447,0.2019 -1.2696,1.0076 -0.6182,0.5495 -0.8961,0.7936 -0.797,0.7636 -0.7173,0.7095 -0.82,0.8476 -0.6943,0.7681 -0.7066,0.7891 -0.8077,1.0012 -0.4599,0.5559 -1.0544,1.4677 -0.0682,0.0895 -1.0814,1.5571 -0.3646,0.6389 -0.5858,0.9182 -0.7973,1.5572 -0.1312,0.3082 -0.6261,1.2489 -0.5908,1.5572 -0.2974,1.0505 -0.1779,0.5066 -0.3836,1.5572 -0.2146,1.5571 -0.0429,1.5571 0.1591,1.5572 0.429,1.5571 0.2309,0.4988 0.5436,1.0584 0.9707,1.1726 0.4249,0.3845 1.0894,0.7756 1.5142,0.6601 0.4825,0.1215"
+               style="fill:#298c8c;fill-opacity:0.4;fill-rule:evenodd"
+               id="path63272-7-6" />
+            <path
+               d="m 75.701471,62.818751 0.5549,0.3041 1.5143,0.5401 1.5143,0.2657 1.5143,0.0723 1.5143,-0.0775 1.5143,-0.2093 1.5142,-0.3426 1.5143,-0.4971 0.1355,-0.0557 1.3788,-0.4469 1.5143,-0.6475 0.8637,-0.4627 0.6506,-0.2895 1.5143,-0.8215 0.6831,-0.4462 0.8312,-0.4751 1.5142,-1.0788 0.0043,-0.0032 1.51,-1.0642 0.5969,-0.493 0.9174,-0.7271 0.9292,-0.83 0.585099,-0.5219 1.0709,-1.0352 0.4434,-0.4455 1.0614,-1.1117 0.4529,-0.5134 0.9182,-1.0437 0.5961,-0.764 0.6415,-0.7932 0.8727,-1.2679 0.2145,-0.2892 1.0133,-1.5572 0.2865,-0.5357 0.6238,-1.0214 0.7418,-1.5571 0.1487,-0.3857 0.5465,-1.1715 0.5375,-1.5571 0.376,-1.5572 0.0543,-0.356 0.2395,-1.2011 0.1223,-1.5572 -0.082,-1.5571 -0.2798,-1.3176 -0.0486,-0.2395 -0.61,-1.5572 -0.8557,-1.2305 -0.284,-0.3266 -1.2303,-1.0388 -0.967,-0.5184 -0.5473,-0.2648 -1.5142,-0.4643 -1.5143,-0.2131 -1.5143,-0.0301 -1.5143,0.1181 -1.514299,0.2551 -1.5143,0.4008 -0.5542,0.1983 -0.9601,0.2673 -1.5142,0.5489 -1.5143,0.7386 -0.0044,0.0024 -1.5099,0.6955 -1.4111,0.8616 -0.1032,0.0544 -1.5143,0.8987 -0.8318,0.6041 -0.6825,0.4512 -1.4013,1.1059 -0.113,0.0844 -1.5142,1.2416 -0.2567,0.2311 -1.2576,1.131 -0.4387,0.4262 -1.0756,1.0861 -0.4489,0.471 -1.0654,1.2096 -0.3061,0.3476 -1.2082,1.5452 -0.0097,0.0119 -1.174,1.5572 -0.3306,0.5301 -0.7053,1.027 -0.809,1.4894 -0.0421,0.0677 -0.8471,1.5572 -0.6206,1.5571 -0.0044,0.0139 -0.6105,1.5433 -0.4271,1.5571 -0.2717,1.5572 -0.1238,1.5571 0.0424,1.5571 0.26,1.5572 0.5783,1.5571 0.5524,0.8878 0.4998,0.6694 1.0144,0.9528 0.9594,0.6043"
+               style="fill:#f2c45f;fill-opacity:0.4;fill-rule:evenodd;stroke:#f2c45f;filter:url(#filter37476)"
+               id="path63274-2-7" />
+          </g>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#298c8c;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         x="237.44279"
+         y="88.560432"
+         id="text15041-7-8-8-4-0-4"
+         transform="translate(-2.6470844,5.294169)"><tspan
+           sodipodi:role="line"
+           id="tspan15039-5-8-2-6-4-0"
+           style="font-size:6.35px;fill:#298c8c;fill-opacity:1;stroke-width:0"
+           x="237.44279"
+           y="88.560432">90 degree</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#f1c460;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         x="219.65948"
+         y="47.950897"
+         id="text15041-7-8-8-1-0"><tspan
+           sodipodi:role="line"
+           id="tspan15039-5-8-2-2-8"
+           style="font-size:6.35px;fill:#f1c460;fill-opacity:1;stroke-width:0"
+           x="219.65948"
+           y="47.950897">0 degree</tspan></text>
+    </g>
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0404;stroke-width:0.986273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.95882, 2.95882;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 15.713106,75.124829 46.729418,36.656702"
+       id="path59013-6-3-6" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="40.793373"
+       y="25.446337"
+       id="text59283-6-3"><tspan
+         sodipodi:role="line"
+         id="tspan59281-5-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+         x="40.793373"
+         y="25.446337">Cardinal Task </tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+         x="40.793373"
+         y="31.623829"
+         id="tspan73305">tuning axis</tspan></text>
+    <g
+       id="g70587-3-0"
+       transform="matrix(0.74014254,0,0,0.78106395,-14.597196,0.39983737)">
+      <g
+         style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:auto;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+         id="g64934-6-0-4"
+         transform="matrix(0.46117732,0,0,0.46117732,203.85079,41.587064)">
+        <g
+           id="g63278-6-8-6">
+          <defs
+             id="defs1-0-7-4-4">
+            <clipPath
+               clipPathUnits="userSpaceOnUse"
+               id="clipPath69509">
+              <path
+                 d="M 0,0 H 144 V 144 H 0 Z"
+                 id="path69507" />
+            </clipPath>
+            <font
+               horiz-adv-x="50"
+               id="font69521"
+               horiz-origin-x="0"
+               horiz-origin-y="0"
+               vert-origin-x="512"
+               vert-origin-y="768"
+               vert-adv-y="1024">
+              <font-face
+                 ascent="95.200005"
+                 descent="21.3"
+                 units-per-em="100"
+                 style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+                 id="font-face69511" />
+              <missing-glyph
+                 horiz-adv-x="50.0"
+                 d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+                 id="missing-glyph69513" />
+              <glyph
+                 unicode="1"
+                 horiz-adv-x="55.6"
+                 d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+                 id="glyph69515" />
+              <glyph
+                 unicode="r"
+                 horiz-adv-x="33.3"
+                 d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+                 id="glyph69517" />
+              <glyph
+                 unicode="2"
+                 horiz-adv-x="55.6"
+                 d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+                 id="glyph69519" />
+            </font>
+          </defs>
+          <g
+             style="color-interpolation:linearRGB;fill:#298c8c;stroke:#298c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g63276-3-8-6"
+             transform="translate(-0.55832265,-3.7034993)">
+            <path
+               d="m 111.21633,94.020954 0.24662,-0.985319 0.13287,-1.439466 -0.0577,-1.433963 -0.22112,-1.429243 -0.30797,-1.158911 -0.0564,-0.266194 -0.4171,-1.423584 -0.55085,-1.419626 -0.72246,-1.414764 -0.0452,-0.07615 -0.66123,-1.339078 -0.89609,-1.40975 -0.18318,-0.252959 -0.72683,-1.156389 -0.99501,-1.262222 -0.10018,-0.141778 -1.10484,-1.403723 -0.50639,-0.552971 -0.72806,-0.846912 -0.97496,-0.98635 -0.39368,-0.409757 -1.30269,-1.220154 -0.18556,-0.172494 -1.505895,-1.30435 -0.10239,-0.08483 L 97.264876,69.16256 97.105255,69.044776 95.581023,67.921939 95.187702,67.664526 93.900668,66.79337 93.032397,66.291141 92.224455,65.7903 90.55297,64.937546 l -0.02164,-0.0097 -1.649579,-0.838027 -1.328153,-0.511607 -0.337167,-0.152757 -1.664026,-0.620886 -1.658253,-0.444621 -0.505884,-0.09707 -1.15042,-0.283708 -1.651868,-0.246094 -1.646849,-0.08678 -1.6412,0.08561 -1.634281,0.300706 -1.36838,0.492875 -0.256692,0.09748 -1.612263,0.985318 -0.47298,0.420468 -1.113271,1.376957 -0.06142,0.0926 -0.692444,1.455532 -0.351741,1.445788 -0.118419,1.439049 0.05373,1.434078 0.194118,1.430022 0.324069,1.42627 0.461509,1.422306 0.557946,1.275981 0.05039,0.141984 0.609709,1.418021 0.785437,1.412946 0.309266,0.470307 0.52638,0.941189 0.977201,1.407408 0.225119,0.286446 0.782038,1.120097 0.93327,1.095252 0.239911,0.306495 1.245749,1.399558 0.220418,0.225622 1.101491,1.171831 0.598443,0.5688 0.864386,0.824583 0.829722,0.731632 0.770231,0.657791 0.919027,0.750858 0.83134,0.634221 0.853867,0.64523 1.080669,0.73453 0.600372,0.418669 1.580248,0.953984 0.09648,0.06187 1.675369,0.976835 0.685019,0.325874 0.98636,0.526879 1.66682,0.707739 0.329086,0.114881 1.336411,0.554986 1.66053,0.51215 1.117125,0.249679 0.539781,0.15307 1.654221,0.315904 1.648962,0.155826 1.64373,-0.0068 1.63769,-0.198134 1.62936,-0.453762 0.5191,-0.233902 1.09984,-0.547123 1.20729,-0.955131 0.39262,-0.414166 0.78492,-1.055472 0.65015,-1.45431 0.11345,-0.46071"
+               style="fill:#00ffff;fill-opacity:0.4;fill-rule:evenodd;stroke:#00f9ff;stroke-width:3.00018;stroke-dasharray:none;stroke-opacity:1"
+               id="path63272-7-6-5" />
+            <path
+               d="m 36.611597,63.333222 0.5549,0.3041 1.5143,0.5401 1.5143,0.2657 1.5143,0.0723 1.5143,-0.0775 1.5143,-0.2093 1.5142,-0.3426 1.5143,-0.4971 0.1355,-0.0557 1.3788,-0.4469 1.5143,-0.6475 0.8637,-0.4627 0.6506,-0.2895 1.5143,-0.8215 0.6831,-0.4462 0.8312,-0.4751 1.5142,-1.0788 0.0043,-0.0032 1.51,-1.0642 0.5969,-0.493 0.9174,-0.7271 0.9292,-0.83 0.585099,-0.5219 1.0709,-1.0352 0.4434,-0.4455 1.0614,-1.1117 0.4529,-0.5134 0.9182,-1.0437 0.5961,-0.764 0.6415,-0.7932 0.8727,-1.2679 0.2145,-0.2892 1.0133,-1.5572 0.2865,-0.5357 0.6238,-1.0214 0.7418,-1.5571 0.1487,-0.3857 0.5465,-1.1715 0.5375,-1.5571 0.376,-1.5572 0.0543,-0.356 0.2395,-1.2011 0.1223,-1.5572 -0.082,-1.5571 -0.2798,-1.3176 -0.0486,-0.2395 -0.61,-1.5572 -0.8557,-1.2305 -0.284,-0.3266 -1.2303,-1.0388 -0.967,-0.5184 -0.5473,-0.2648 -1.5142,-0.4643 -1.5143,-0.2131 -1.5143,-0.0301 -1.5143,0.1181 -1.514299,0.2551 -1.5143,0.4008 -0.5542,0.1983 -0.9601,0.2673 -1.5142,0.5489 -1.5143,0.7386 -0.0044,0.0024 -1.5099,0.6955 -1.4111,0.8616 -0.1032,0.0544 -1.5143,0.8987 -0.8318,0.6041 -0.6825,0.4512 -1.4013,1.1059 -0.113,0.0844 -1.5142,1.2416 -0.2567,0.2311 -1.2576,1.131 -0.4387,0.4262 -1.0756,1.0861 -0.4489,0.471 -1.0654,1.2096 -0.3061,0.3476 -1.2082,1.5452 -0.0097,0.0119 -1.174,1.5572 -0.3306,0.5301 -0.7053,1.027 -0.809,1.4894 -0.0421,0.0677 -0.8471,1.5572 -0.6206,1.5571 -0.0044,0.0139 -0.6105,1.5433 -0.4271,1.5571 -0.2717,1.5572 -0.1238,1.5571 0.0424,1.5571 0.26,1.5572 0.5783,1.5571 0.5524,0.8878 0.4998,0.6694 1.0144,0.9528 0.9594,0.6043"
+               style="fill:#ff00ff;fill-opacity:0.4;fill-rule:evenodd;stroke:#f25fe6;stroke-width:3.00018;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter37476-8)"
+               id="path63274-2-7-3"
+               transform="matrix(0.01012048,-0.94755959,1.0552345,0.01012048,3.9533527,94.846382)" />
+            <path
+               d="m -98.993677,286.51392 0.24662,-0.98531 0.13287,-1.43947 -0.0577,-1.43396 -0.22112,-1.42925 -0.30797,-1.15891 -0.0564,-0.26619 -0.4171,-1.42359 -0.550853,-1.41962 -0.72246,-1.41477 -0.0452,-0.0761 -0.66123,-1.33907 -0.89609,-1.40975 -0.18318,-0.25296 -0.72683,-1.15639 -0.99501,-1.26222 -0.10018,-0.14178 -1.10484,-1.40373 -0.50639,-0.55297 -0.72806,-0.84691 -0.97496,-0.98635 -0.39368,-0.40976 -1.30269,-1.22015 -0.18556,-0.17249 -1.50589,-1.30435 -0.10239,-0.0848 -1.58516,-1.26746 -0.15962,-0.11778 -1.52423,-1.12284 -0.39332,-0.25741 -1.28704,-0.87116 -0.86827,-0.50223 -0.80794,-0.50084 -1.67149,-0.85275 -0.0216,-0.01 -1.64958,-0.83803 -1.32815,-0.51161 -0.33717,-0.15276 -1.66402,-0.62088 -1.65825,-0.44462 -0.50589,-0.0971 -1.15042,-0.28371 -1.65187,-0.24609 -1.64685,-0.0868 -1.6412,0.0856 -1.63428,0.3007 -1.36838,0.49288 -0.25669,0.0975 -1.61226,0.98532 -0.47298,0.42046 -1.11327,1.37696 -0.0614,0.0926 -0.69245,1.45553 -0.35174,1.44579 -0.11842,1.43905 0.0537,1.43408 0.19412,1.43002 0.32407,1.42627 0.46151,1.4223 0.55795,1.27599 0.0504,0.14198 0.6097,1.41802 0.78544,1.41295 0.30927,0.4703 0.52638,0.94119 0.9772,1.40741 0.22512,0.28645 0.78204,1.12009 0.93327,1.09526 0.23991,0.30649 1.24575,1.39956 0.22041,0.22562 1.10149,1.17183 0.59845,0.5688 0.86438,0.82459 0.82973,0.73163 0.77023,0.65779 0.91902,0.75086 0.83134,0.63422 0.85387,0.64523 1.08067,0.73453 0.60037,0.41867 1.58025,0.95398 0.0965,0.0619 1.67537,0.97683 0.68502,0.32588 0.98636,0.52688 1.66682,0.70774 0.32908,0.11488 1.33641,0.55498 1.66053,0.51215 1.11713,0.24968 0.53978,0.15307 1.65422,0.31591 1.64896,0.15582 1.64373,-0.007 1.63769,-0.19813 1.62936,-0.45376 0.5191,-0.2339 1.09984,-0.54713 1.20729,-0.95513 0.39262,-0.41417 0.784923,-1.05547 0.65015,-1.45431 0.11345,-0.46071"
+               style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#00ffff;fill-opacity:0.4;fill-rule:evenodd;stroke:#00f9ff;stroke-width:3.00018;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+               id="path63272-7-6-5-5" />
+          </g>
+          <g
+             id="g70587-3-8"
+             transform="matrix(2.1683634,0,0,2.1683633,-625.84154,122.90328)">
+            <g
+               style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:auto;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+               id="g64934-6-0-6"
+               transform="matrix(0.46117732,0,0,0.46117732,203.85079,41.587064)">
+              <g
+                 id="g63278-6-8-7">
+                <defs
+                   id="defs1-0-7-4-1">
+                  <clipPath
+                     clipPathUnits="userSpaceOnUse"
+                     id="clipPath74214">
+                    <path
+                       d="M 0,0 H 144 V 144 H 0 Z"
+                       id="path74212" />
+                  </clipPath>
+                  <font
+                     horiz-adv-x="50"
+                     id="font74226"
+                     horiz-origin-x="0"
+                     horiz-origin-y="0"
+                     vert-origin-x="512"
+                     vert-origin-y="768"
+                     vert-adv-y="1024">
+                    <font-face
+                       ascent="95.200005"
+                       descent="21.3"
+                       units-per-em="100"
+                       style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+                       id="font-face74216" />
+                    <missing-glyph
+                       horiz-adv-x="50.0"
+                       d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+                       id="missing-glyph74218" />
+                    <glyph
+                       unicode="1"
+                       horiz-adv-x="55.6"
+                       d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+                       id="glyph74220" />
+                    <glyph
+                       unicode="r"
+                       horiz-adv-x="33.3"
+                       d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+                       id="glyph74222" />
+                    <glyph
+                       unicode="2"
+                       horiz-adv-x="55.6"
+                       d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+                       id="glyph74224" />
+                  </font>
+                </defs>
+                <g
+                   style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60042-1-7-1">
+                  <line
+                     y2="120"
+                     style="fill:none"
+                     x1="24"
+                     x2="130"
+                     y1="120"
+                     id="line60040-5-5-8" />
+                </g>
+                <g
+                   transform="translate(77.0001,124.8)"
+                   style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60046-5-7-9">
+                  <text
+                     x="-46.619152"
+                     xml:space="preserve"
+                     y="9.3636456"
+                     style="font-size:12.073px;stroke:none"
+                     id="text60044-5-2-3">Response of Neuron 1 (r1)</text>
+                </g>
+                <g
+                   style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60050-8-9-7">
+                  <line
+                     y2="11"
+                     style="fill:none"
+                     x1="24"
+                     x2="24"
+                     y1="120"
+                     id="line60048-2-7-4" />
+                </g>
+                <g
+                   transform="rotate(-90,42.34995,23.14995)"
+                   style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60054-9-5-8">
+                  <text
+                     x="-54.669647"
+                     xml:space="preserve"
+                     y="-7.587707"
+                     style="font-size:12.073px;stroke:none"
+                     id="text60052-8-6-0">Response of Neuron 2 (r2)</text>
+                </g>
+              </g>
+            </g>
+          </g>
+          <path
+             style="fill:#ff0000;fill-opacity:1;stroke:#ff0404;stroke-width:2.81273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:8.4382, 8.4382;stroke-dashoffset:0;stroke-opacity:1"
+             d="M -155.39822,330.35228 -64.531078,223.55836"
+             id="path59013-6-3-6-7" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:14.0851px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             x="-79.746758"
+             y="197.68484"
+             id="text59283-6-3-8"
+             transform="scale(1.0272724,0.97345164)"><tspan
+               sodipodi:role="line"
+               id="tspan59281-5-7-0"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.0851px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-79.746758"
+               y="197.68484">Cardinal Task </tspan><tspan
+               sodipodi:role="line"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.0851px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-79.746758"
+               y="215.30229"
+               id="tspan73305-6">tuning axis</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:18.1094px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000beb;fill-opacity:1;stroke:#0008e7;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+             x="-357.18835"
+             y="-47.153503"
+             id="text74389"
+             transform="scale(1.0272724,0.97345164)"><tspan
+               id="tspan74387"
+               style="font-size:18.1094px;fill:#000000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-357.18835"
+               y="-47.153503"
+               sodipodi:role="line">Within (<tspan
+   style="fill:#ff0000"
+   id="tspan1212">cardinal</tspan><tspan
+   id="tspan1318"
+   style="fill:#1a1a1a">)</tspan></tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:bold;font-size:18.1094px;font-family:Arial;-inkscape-font-specification:'Arial Bold';color-interpolation:auto;fill:#000beb;fill-opacity:1;stroke:#0008e7;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+             x="-160.68585"
+             y="178.44806"
+             id="text74389-0"
+             transform="scale(1.0272724,0.97345164)"><tspan
+               sodipodi:role="line"
+               id="tspan74387-8"
+               style="font-size:18.1094px;fill:#000000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-160.68585"
+               y="178.44806">Cross (<tspan
+   style="fill:#ff0000"
+   id="tspan1526">cardinal</tspan>)</tspan></text>
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:7.05556px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ff0000;fill-opacity:0.4;stroke:#0008e7;stroke-width:0.815999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.448, 2.448;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       x="99.22229"
+       y="9.7396116"
+       id="text73309"><tspan
+         sodipodi:role="line"
+         id="tspan73307"
+         style="stroke-width:0.816"
+         x="99.22229"
+         y="9.7396116" /></text>
+    <g
+       id="g74655">
+      <g
+         id="g74675">
+        <g
+           style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60042-1-7-3"
+           transform="matrix(0.34133695,0,0,0.36020899,136.28145,32.881993)">
+          <line
+             y2="120"
+             style="fill:none"
+             x1="24"
+             x2="130"
+             y1="120"
+             id="line60040-5-5-7" />
+        </g>
+        <g
+           transform="matrix(0.34133695,0,0,0.36020899,162.56442,77.836075)"
+           style="font-style:normal;font-weight:normal;font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60046-5-7-5">
+          <text
+             x="-46.619152"
+             xml:space="preserve"
+             y="9.3636456"
+             style="font-size:12.073px;stroke:none"
+             id="text60044-5-2-7">Response of Neuron 1 (r1)</text>
+        </g>
+        <g
+           style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60050-8-9-2"
+           transform="matrix(0.34133695,0,0,0.36020899,136.28145,32.881993)">
+          <line
+             y2="11"
+             style="fill:none"
+             x1="24"
+             x2="24"
+             y1="120"
+             id="line60048-2-7-9" />
+        </g>
+        <g
+           transform="matrix(0,-0.36020899,0.34133695,0,142.83511,56.475646)"
+           style="font-style:normal;font-weight:normal;font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60054-9-5-7">
+          <text
+             x="-54.669647"
+             xml:space="preserve"
+             y="-7.587707"
+             style="font-size:12.073px;stroke:none"
+             id="text60052-8-6-5">Response of Neuron 2 (r2)</text>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:bold;font-size:18.1094px;font-family:Arial;-inkscape-font-specification:'Arial Bold';color-interpolation:auto;fill:#000beb;fill-opacity:1;stroke:#0008e7;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+           x="16.477606"
+           y="-33.14259"
+           id="text74389-2"
+           transform="matrix(0.35064602,0,0,0.35064602,136.28145,32.881993)"><tspan
+             id="tspan74387-4"
+             style="font-size:18.1094px;fill:#000000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+             x="16.477606"
+             y="-33.14259"
+             sodipodi:role="line">Within (<tspan
+   style="fill:#0000ff"
+   id="tspan1422">oblique</tspan>)</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#ff7f2a;fill-opacity:0.94902;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+           x="218.69872"
+           y="93.453186"
+           id="text15041-7-8-8-4-0-4-0"
+           transform="matrix(0.74014253,0,0,0.78106394,-14.597196,0.39983738)"><tspan
+             sodipodi:role="line"
+             id="tspan15039-5-8-2-6-4-0-4"
+             style="font-size:6.35px;fill:#00ffff;fill-opacity:0.94902;stroke:#5c02f7;stroke-width:0;stroke-opacity:1"
+             x="218.69872"
+             y="93.453186">135 degree</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#f1c460;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+           x="224.31914"
+           y="47.549484"
+           id="text15041-7-8-8-1-0-8"
+           transform="matrix(0.74014253,0,0,0.78106394,-14.597196,0.39983738)"><tspan
+             sodipodi:role="line"
+             id="tspan15039-5-8-2-2-8-5"
+             style="font-size:6.35px;fill:#ff00ff;fill-opacity:1;stroke-width:0"
+             x="224.31914"
+             y="47.549484">45 degree</tspan></text>
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#0008e7;stroke-width:0.816;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.448, 2.448;stroke-dashoffset:0;stroke-opacity:1"
+           d="M 145.34135,38.560274 178.51339,73.34058"
+           id="path59013-6-3-6-5" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           x="172.64621"
+           y="49.333263"
+           id="text59283-6-3-9"><tspan
+             sodipodi:role="line"
+             id="tspan59281-5-7-9"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#000beb;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+             x="172.64621"
+             y="49.333263">Oblique Task </tspan><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#000beb;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+             x="172.64621"
+             y="55.510757"
+             id="tspan73305-3">tuning axis</tspan></text>
+      </g>
+    </g>
+    <path
+       d="m 36.611597,63.333222 0.5549,0.3041 1.5143,0.5401 1.5143,0.2657 1.5143,0.0723 1.5143,-0.0775 1.5143,-0.2093 1.5142,-0.3426 1.5143,-0.4971 0.1355,-0.0557 1.3788,-0.4469 1.5143,-0.6475 0.8637,-0.4627 0.6506,-0.2895 1.5143,-0.8215 0.6831,-0.4462 0.8312,-0.4751 1.5142,-1.0788 0.0043,-0.0032 1.51,-1.0642 0.5969,-0.493 0.9174,-0.7271 0.9292,-0.83 0.585099,-0.5219 1.0709,-1.0352 0.4434,-0.4455 1.0614,-1.1117 0.4529,-0.5134 0.9182,-1.0437 0.5961,-0.764 0.6415,-0.7932 0.8727,-1.2679 0.2145,-0.2892 1.0133,-1.5572 0.2865,-0.5357 0.6238,-1.0214 0.7418,-1.5571 0.1487,-0.3857 0.5465,-1.1715 0.5375,-1.5571 0.376,-1.5572 0.0543,-0.356 0.2395,-1.2011 0.1223,-1.5572 -0.082,-1.5571 -0.2798,-1.3176 -0.0486,-0.2395 -0.61,-1.5572 -0.8557,-1.2305 -0.284,-0.3266 -1.2303,-1.0388 -0.967,-0.5184 -0.5473,-0.2648 -1.5142,-0.4643 -1.5143,-0.2131 -1.5143,-0.0301 -1.5143,0.1181 -1.514299,0.2551 -1.5143,0.4008 -0.5542,0.1983 -0.9601,0.2673 -1.5142,0.5489 -1.5143,0.7386 -0.0044,0.0024 -1.5099,0.6955 -1.4111,0.8616 -0.1032,0.0544 -1.5143,0.8987 -0.8318,0.6041 -0.6825,0.4512 -1.4013,1.1059 -0.113,0.0844 -1.5142,1.2416 -0.2567,0.2311 -1.2576,1.131 -0.4387,0.4262 -1.0756,1.0861 -0.4489,0.471 -1.0654,1.2096 -0.3061,0.3476 -1.2082,1.5452 -0.0097,0.0119 -1.174,1.5572 -0.3306,0.5301 -0.7053,1.027 -0.809,1.4894 -0.0421,0.0677 -0.8471,1.5572 -0.6206,1.5571 -0.0044,0.0139 -0.6105,1.5433 -0.4271,1.5571 -0.2717,1.5572 -0.1238,1.5571 0.0424,1.5571 0.26,1.5572 0.5783,1.5571 0.5524,0.8878 0.4998,0.6694 1.0144,0.9528 0.9594,0.6043"
+       style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#ff00ff;fill-opacity:0.4;fill-rule:evenodd;stroke:#f25fe6;stroke-width:3.00018;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter37476-8-4);color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+       id="path63274-2-7-3-7"
+       transform="matrix(0.00345449,-0.34131948,0.36019053,0.00364549,88.119523,142.20667)" />
+    <g
+       id="g70587-3-82"
+       transform="matrix(0.74014254,0,0,0.78106395,-141.33741,160.62122)">
+      <g
+         style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:auto;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+         id="g64934-6-0-0"
+         transform="matrix(0.46117732,0,0,0.46117732,203.85079,41.587064)">
+        <g
+           id="g63278-6-8-74">
+          <defs
+             id="defs1-0-7-4-8">
+            <clipPath
+               clipPathUnits="userSpaceOnUse"
+               id="clipPath2746">
+              <path
+                 d="M 0,0 H 144 V 144 H 0 Z"
+                 id="path2744" />
+            </clipPath>
+            <font
+               horiz-adv-x="50"
+               id="font2758"
+               horiz-origin-x="0"
+               horiz-origin-y="0"
+               vert-origin-x="512"
+               vert-origin-y="768"
+               vert-adv-y="1024">
+              <font-face
+                 ascent="95.200005"
+                 descent="21.3"
+                 units-per-em="100"
+                 style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+                 id="font-face2748" />
+              <missing-glyph
+                 horiz-adv-x="50.0"
+                 d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+                 id="missing-glyph2750" />
+              <glyph
+                 unicode="1"
+                 horiz-adv-x="55.6"
+                 d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+                 id="glyph2752" />
+              <glyph
+                 unicode="r"
+                 horiz-adv-x="33.3"
+                 d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+                 id="glyph2754" />
+              <glyph
+                 unicode="2"
+                 horiz-adv-x="55.6"
+                 d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+                 id="glyph2756" />
+            </font>
+          </defs>
+          <g
+             style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60042-1-7-5">
+            <line
+               y2="120"
+               style="fill:none"
+               x1="24"
+               x2="130"
+               y1="120"
+               id="line60040-5-5-2" />
+          </g>
+          <g
+             transform="translate(77.0001,124.8)"
+             style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60046-5-7-1">
+            <text
+               x="-46.619152"
+               xml:space="preserve"
+               y="9.3636456"
+               style="font-size:12.073px;stroke:none"
+               id="text60044-5-2-1">Response of Neuron 1 (r1)</text>
+          </g>
+          <g
+             style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60050-8-9-0">
+            <line
+               y2="11"
+               style="fill:none"
+               x1="24"
+               x2="24"
+               y1="120"
+               id="line60048-2-7-1" />
+          </g>
+          <g
+             transform="rotate(-90,42.34995,23.14995)"
+             style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g60054-9-5-87">
+            <text
+               x="-54.669647"
+               xml:space="preserve"
+               y="-7.587707"
+               style="font-size:12.073px;stroke:none"
+               id="text60052-8-6-6">Response of Neuron 2 (r2)</text>
+          </g>
+          <g
+             style="color-interpolation:linearRGB;fill:#298c8c;stroke:#298c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g63276-3-8-0"
+             transform="translate(-0.55832265,-3.7034993)">
+            <path
+               d="m 76.963213,98.534403 0.358331,-0.95402 0.29743,-1.41721 0.107329,-1.4314 -0.05563,-1.44356 -0.173022,-1.18379 -0.02548,-0.27043 -0.251099,-1.45815 -0.384503,-1.46801 -0.555661,-1.48087 -0.03619,-0.0804 -0.503478,-1.39933 -0.728825,-1.4938 -0.153038,-0.27035 -0.589674,-1.22449 -0.844117,-1.35736 -0.08333,-0.15127 -0.937022,-1.50934 -0.439871,-0.60192 -0.626454,-0.91698 -0.855861,-1.08105 -0.344274,-0.44793 -1.154794,-1.34727 -0.164641,-0.19061 -1.347116,-1.45193 -0.09204,-0.0949 -1.430146,-1.423432 -0.145143,-0.133548 -1.386196,-1.273387 -0.361415,-0.296454 -1.179318,-0.998733 -0.805422,-0.588805 -0.74561,-0.581204 -1.563598,-1.020096 -0.0204,-0.01188 -1.543513,-1.003197 -1.261494,-0.645562 -0.317616,-0.186629 -1.582819,-0.788837 -1.597327,-0.613024 -0.491727,-0.148674 -1.110996,-0.400686 -1.613784,-0.415019 -1.627101,-0.256131 -1.641281,-0.08419 -1.659113,0.130347 -1.416864,0.348802 -0.266364,0.07042 -1.715866,0.813163 -0.518468,0.369182 -1.264825,1.253944 -0.0717,0.08571 -0.855525,1.37546 -0.515727,1.400915 -0.283017,1.418284 -0.111326,1.431098 0.0287,1.441545 0.158309,1.45123 0.295389,1.46145 0.408061,1.32595 0.03378,0.14634 0.443199,1.47248 0.618468,1.48557 0.253404,0.49941 0.41514,0.98989 0.809726,1.49985 0.190878,0.30796 0.648726,1.19411 0.801915,1.18501 0.203279,0.32942 1.077582,1.51973 0.193191,0.24702 0.960339,1.27848 0.52955,0.62715 0.764536,0.90885 0.740751,0.81287 0.690095,0.73333 0.827315,0.84119 0.753549,0.7162 0.774676,0.72947 0.989874,0.84164 0.548713,0.4781 1.461275,1.11132 0.0888,0.0714 1.553206,1.14384 0.643515,0.3946 0.919978,0.62549 1.575619,0.875475 0.313934,0.14814 1.26472,0.68953 1.591834,0.68038 1.081806,0.36344 0.51899,0.20783 1.608102,0.48465 1.621267,0.32499 1.634748,0.16279 1.650715,-0.028 1.671801,-0.28301 0.542882,-0.17896 1.156152,-0.43042 1.309829,-0.82494 0.437869,-0.3712 0.901493,-0.96824 0.813338,-1.378615 0.165707,-0.44627"
+               style="fill:#298c8c;fill-opacity:0.4;fill-rule:evenodd"
+               id="path63272-7-6-0" />
+            <path
+               d="m -78.754925,92.318499 0.5549,0.3041 1.5143,0.5401 1.5143,0.2657 1.5143,0.0723 1.5143,-0.0775 1.5143,-0.2093 1.5142,-0.3426 1.5143,-0.4971 0.1355,-0.0557 1.3788,-0.4469 1.5143,-0.6475 0.8637,-0.4627 0.6506,-0.2895 1.5143,-0.8215 0.6831,-0.4462 0.8312,-0.4751 1.5142,-1.0788 0.0043,-0.0032 1.51,-1.0642 0.5969,-0.493 0.9174,-0.7271 0.9292,-0.83 0.585099,-0.5219 1.0709,-1.0352 0.4434,-0.4455 1.0614,-1.1117 0.4529,-0.5134 0.9182,-1.0437 0.5961,-0.764 0.6415,-0.7932 0.8727,-1.2679 0.2145,-0.2892 1.0133,-1.5572 0.2865,-0.5357 0.6238,-1.0214 0.7418,-1.5571 0.1487,-0.3857 0.5465,-1.1715 0.5375,-1.5571 0.376,-1.5572 0.0543,-0.356 0.2395,-1.2011 0.1223,-1.5572 -0.082,-1.5571 -0.2798,-1.3176 -0.0486,-0.2395 -0.61,-1.5572 -0.8557,-1.2305 -0.284,-0.3266 -1.2303,-1.0388 -0.967,-0.5184 -0.5473,-0.2648 -1.5142,-0.4643 -1.5143,-0.2131 -1.5143,-0.0301 -1.5143,0.1181 -1.514299,0.2551 -1.5143,0.4008 -0.5542,0.1983 -0.9601,0.2673 -1.5142,0.5489 -1.5143,0.7386 -0.0044,0.0024 -1.5099,0.6955 -1.4111,0.8616 -0.1032,0.0544 -1.5143,0.8987 -0.8318,0.6041 -0.6825,0.4512 -1.4013,1.1059 -0.113,0.0844 -1.5142,1.2416 -0.2567,0.2311 -1.2576,1.131 -0.4387,0.4262 -1.0756,1.0861 -0.4489,0.471 -1.0654,1.2096 -0.3061,0.3476 -1.2082,1.5452 -0.0097,0.0119 -1.174,1.5572 -0.3306,0.5301 -0.7053,1.027 -0.809,1.4894 -0.0421,0.0677 -0.8471,1.5572 -0.6206,1.5571 -0.0044,0.0139 -0.6105,1.5433 -0.4271,1.5571 -0.2717,1.5572 -0.1238,1.5571 0.0424,1.5571 0.26,1.5572 0.5783,1.5571 0.5524,0.8878 0.4998,0.6694 1.0144,0.9528 0.9594,0.6043"
+               style="fill:#f2c45f;fill-opacity:0.4;fill-rule:evenodd;stroke:#f2c45f;filter:url(#filter37476-82)"
+               id="path63274-2-7-9"
+               transform="matrix(0.02743609,-0.9472514,1.0548913,0.02743609,14.738136,-10.87599)" />
+          </g>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#298c8c;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         x="237.44279"
+         y="88.560432"
+         id="text15041-7-8-8-4-0-4-5"
+         transform="translate(-2.6470844,5.294169)"><tspan
+           sodipodi:role="line"
+           id="tspan15039-5-8-2-6-4-0-6"
+           style="font-size:6.35px;fill:#298c8c;fill-opacity:1;stroke-width:0"
+           x="237.44279"
+           y="88.560432">90 degree</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#f1c460;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         x="219.65948"
+         y="47.950897"
+         id="text15041-7-8-8-1-0-2"><tspan
+           sodipodi:role="line"
+           id="tspan15039-5-8-2-2-8-8"
+           style="font-size:6.35px;fill:#f1c460;fill-opacity:1;stroke-width:0"
+           x="219.65948"
+           y="47.950897">0 degree</tspan></text>
+    </g>
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0404;stroke-width:0.986273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.95882, 2.95882;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 19.24227,235.34621 50.258582,196.87808"
+       id="path59013-6-3-6-59" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="44.322536"
+       y="185.66733"
+       id="text59283-6-3-4"><tspan
+         sodipodi:role="line"
+         id="tspan59281-5-7-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+         x="44.322536"
+         y="185.66733">Cardinal Task </tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+         x="44.322536"
+         y="191.84482"
+         id="tspan73305-9">tuning axis</tspan></text>
+    <g
+       id="g70587-3-0-0"
+       transform="matrix(0.74014254,0,0,0.78106395,-11.597199,141.04193)">
+      <g
+         style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:auto;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+         id="g64934-6-0-4-5"
+         transform="matrix(0.46117732,0,0,0.46117732,203.85079,41.587064)">
+        <g
+           id="g63278-6-8-6-6">
+          <defs
+             id="defs1-0-7-4-4-3">
+            <clipPath
+               clipPathUnits="userSpaceOnUse"
+               id="clipPath2785">
+              <path
+                 d="M 0,0 H 144 V 144 H 0 Z"
+                 id="path2783" />
+            </clipPath>
+            <font
+               horiz-adv-x="50"
+               id="font2797"
+               horiz-origin-x="0"
+               horiz-origin-y="0"
+               vert-origin-x="512"
+               vert-origin-y="768"
+               vert-adv-y="1024">
+              <font-face
+                 ascent="95.200005"
+                 descent="21.3"
+                 units-per-em="100"
+                 style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+                 id="font-face2787" />
+              <missing-glyph
+                 horiz-adv-x="50.0"
+                 d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+                 id="missing-glyph2789" />
+              <glyph
+                 unicode="1"
+                 horiz-adv-x="55.6"
+                 d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+                 id="glyph2791" />
+              <glyph
+                 unicode="r"
+                 horiz-adv-x="33.3"
+                 d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+                 id="glyph2793" />
+              <glyph
+                 unicode="2"
+                 horiz-adv-x="55.6"
+                 d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+                 id="glyph2795" />
+            </font>
+          </defs>
+          <g
+             style="color-interpolation:linearRGB;fill:#298c8c;stroke:#298c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+             id="g63276-3-8-6-4"
+             transform="translate(-0.55832265,-3.7034993)">
+            <path
+               d="m 77.878209,154.44856 1.036775,0.24546 1.517356,0.14309 1.513826,-0.0375 1.510798,-0.19244 1.226577,-0.27797 0.281566,-0.0503 1.507167,-0.37821 1.50459,-0.50499 1.501509,-0.66765 0.08089,-0.0419 1.420913,-0.61055 1.498292,-0.83223 0.269114,-0.17055 1.228921,-0.67489 1.3438,-0.92772 0.150803,-0.0932 1.494427,-1.03011 0.589552,-0.47322 0.902371,-0.67975 1.052457,-0.91202 0.437085,-0.36813 1.303082,-1.21977 0.18424,-0.17377 1.39436,-1.41131 0.0907,-0.096 1.35638,-1.48685 0.12619,-0.14984 1.20304,-1.43085 0.27633,-0.36961 0.93463,-1.20911 0.54033,-0.81672 0.53815,-0.75957 0.9198,-1.5736 0.0105,-0.0204 0.904,-1.55303 0.55572,-1.25237 0.16522,-0.31765 0.67505,-1.5693 0.48898,-1.56595 0.10848,-0.47819 0.31311,-1.08667 0.27942,-1.56227 0.11124,-1.55941 -0.0707,-1.55612 -0.29779,-1.55214 -0.50374,-1.30248 -0.0998,-0.24439 -1.02046,-1.53945 -0.43804,-0.45318 -1.43968,-1.07132 -0.097,-0.0593 -1.52762,-0.67351 -1.52141,-0.35056 -1.51709,-0.1294 -1.5139,0.0338 -1.51131,0.16685 -1.508888,0.29003 -1.50635,0.4203 -1.353098,0.51344 -0.150425,0.046 -1.503599,0.56078 -1.500343,0.72735 -0.499969,0.28742 -0.999443,0.48752 -1.496791,0.90912 -0.304951,0.20989 -1.191284,0.72762 -1.166874,0.87123 -0.326284,0.22366 -1.491715,1.16368 -0.240713,0.20616 -1.249691,1.0297 -0.607355,0.56025 -0.880437,0.80919 -0.781941,0.77745 -0.703311,0.72196 -0.803295,0.86184 -0.679171,0.78015 -0.691056,0.80136 -0.787997,1.0152 -0.448957,0.56387 -1.025536,1.48595 -0.06644,0.0907 -1.050785,1.57581 -0.35205,0.64519 -0.567754,0.92831 -0.766729,1.57092 -0.125156,0.31045 -0.601594,1.25967 -0.560266,1.5673 -0.276811,1.05553 -0.16797,0.50963 -0.353109,1.56367 -0.18413,1.56059 -0.01246,1.55758 0.189508,1.55414 0.45935,1.5493 0.240614,0.49465 0.564192,1.04868 0.993443,1.15536 0.432343,0.37697 1.104371,0.75635 1.52684,0.63342 0.484791,0.113"
+               style="fill:#00ffff;fill-opacity:0.4;fill-rule:evenodd;stroke:#00f9ff;stroke-width:3.00018;stroke-dasharray:none;stroke-opacity:1"
+               id="path63272-7-6-5-6" />
+            <path
+               d="m 36.611597,63.333222 0.5549,0.3041 1.5143,0.5401 1.5143,0.2657 1.5143,0.0723 1.5143,-0.0775 1.5143,-0.2093 1.5142,-0.3426 1.5143,-0.4971 0.1355,-0.0557 1.3788,-0.4469 1.5143,-0.6475 0.8637,-0.4627 0.6506,-0.2895 1.5143,-0.8215 0.6831,-0.4462 0.8312,-0.4751 1.5142,-1.0788 0.0043,-0.0032 1.51,-1.0642 0.5969,-0.493 0.9174,-0.7271 0.9292,-0.83 0.585099,-0.5219 1.0709,-1.0352 0.4434,-0.4455 1.0614,-1.1117 0.4529,-0.5134 0.9182,-1.0437 0.5961,-0.764 0.6415,-0.7932 0.8727,-1.2679 0.2145,-0.2892 1.0133,-1.5572 0.2865,-0.5357 0.6238,-1.0214 0.7418,-1.5571 0.1487,-0.3857 0.5465,-1.1715 0.5375,-1.5571 0.376,-1.5572 0.0543,-0.356 0.2395,-1.2011 0.1223,-1.5572 -0.082,-1.5571 -0.2798,-1.3176 -0.0486,-0.2395 -0.61,-1.5572 -0.8557,-1.2305 -0.284,-0.3266 -1.2303,-1.0388 -0.967,-0.5184 -0.5473,-0.2648 -1.5142,-0.4643 -1.5143,-0.2131 -1.5143,-0.0301 -1.5143,0.1181 -1.514299,0.2551 -1.5143,0.4008 -0.5542,0.1983 -0.9601,0.2673 -1.5142,0.5489 -1.5143,0.7386 -0.0044,0.0024 -1.5099,0.6955 -1.4111,0.8616 -0.1032,0.0544 -1.5143,0.8987 -0.8318,0.6041 -0.6825,0.4512 -1.4013,1.1059 -0.113,0.0844 -1.5142,1.2416 -0.2567,0.2311 -1.2576,1.131 -0.4387,0.4262 -1.0756,1.0861 -0.4489,0.471 -1.0654,1.2096 -0.3061,0.3476 -1.2082,1.5452 -0.0097,0.0119 -1.174,1.5572 -0.3306,0.5301 -0.7053,1.027 -0.809,1.4894 -0.0421,0.0677 -0.8471,1.5572 -0.6206,1.5571 -0.0044,0.0139 -0.6105,1.5433 -0.4271,1.5571 -0.2717,1.5572 -0.1238,1.5571 0.0424,1.5571 0.26,1.5572 0.5783,1.5571 0.5524,0.8878 0.4998,0.6694 1.0144,0.9528 0.9594,0.6043"
+               style="fill:#ff00ff;fill-opacity:0.4;fill-rule:evenodd;stroke:#f25fe6;stroke-width:3.00018;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter37476-8-5)"
+               id="path63274-2-7-3-4"
+               transform="matrix(0.99673229,0.0765439,-0.08524188,0.99673228,5.6030822,50.482894)" />
+            <path
+               d="m -132.16296,373.49508 1.03886,0.23734 1.51856,0.13123 1.51344,-0.0494 1.50908,-0.20424 1.22412,-0.28755 0.28111,-0.0525 1.50383,-0.38997 1.50014,-0.51674 1.49565,-0.67937 0.0805,-0.0425 1.41554,-0.62163 1.491,-0.84392 0.26762,-0.17264 1.22301,-0.68447 1.33568,-0.9382 0.14998,-0.0944 1.48542,-1.04175 0.58542,-0.47781 0.89642,-0.68678 1.04448,-0.92022 0.43387,-0.37154 1.29242,-1.22991 0.18271,-0.1752 1.38203,-1.42216 0.0899,-0.0967 1.34339,-1.49741 0.12488,-0.15082 1.19056,-1.44021 0.27309,-0.37176 0.92408,-1.21638 0.53321,-0.82091 0.53152,-0.76375 0.90607,-1.58075 0.0106,-0.0204 0.89047,-1.56004 0.544797,-1.25666 0.16245,-0.31894 0.66137,-1.57453 0.47533,-1.56972 0.10434,-0.47902 0.303651,-1.08909 0.265806,-1.5644 0.09769,-1.56024 -0.08426,-1.55552 -0.311276,-1.54976 -0.515061,-1.2985 -0.10194,-0.2436 -1.03382,-1.53143 -0.441957,-0.44975 -1.44896,-1.06003 -0.0975,-0.0585 -1.53343,-0.66155 -1.52442,-0.33866 -1.51816,-0.11754 -1.51356,0.0456 -1.50979,0.17866 -1.50631,0.30181 -1.50264,0.43206 -1.34859,0.524 -0.15002,0.0472 -1.49866,0.5725 -1.49397,0.73906 -0.49744,0.29133 -0.99517,0.49531 -1.48883,0.92079 -0.30312,0.21226 -1.1849,0.73692 -1.15926,0.88032 -0.32432,0.2262 -1.48154,1.1753 -0.23891,0.20802 -1.24069,1.03944 -0.60245,0.56499 -0.87338,0.81604 -0.77514,0.78354 -0.69701,0.72744 -0.79576,0.86809 -0.67236,0.78543 -0.68406,0.80674 -0.77913,1.02133 -0.44404,0.56736 -1.01257,1.49392 -0.0657,0.0912 -1.03703,1.58397 -0.34643,0.64792 -0.55966,0.93273 -0.75303,1.57686 -0.12245,0.31141 -0.59061,1.26433 -0.5466,1.57163 -0.26762,1.05767 -0.16353,0.51093 -0.33949,1.56637 -0.17054,1.56198 10e-4,1.55763 0.20302,1.55261 0.47281,1.54566 0.24491,0.49277 0.57331,1.04423 1.00346,1.14757 0.43562,0.37358 1.11091,0.7477 1.5323,0.62146 0.48576,0.10921"
+               style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#00ffff;fill-opacity:0.4;fill-rule:evenodd;stroke:#00f9ff;stroke-width:3.00018;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+               id="path63272-7-6-5-5-3" />
+          </g>
+          <g
+             id="g70587-3-8-8"
+             transform="matrix(2.1683634,0,0,2.1683633,-624.29126,186.07243)">
+            <g
+               style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:auto;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+               id="g64934-6-0-6-4"
+               transform="matrix(0.46117732,0,0,0.46117732,203.85079,41.587064)">
+              <g
+                 id="g63278-6-8-7-0">
+                <defs
+                   id="defs1-0-7-4-1-0">
+                  <clipPath
+                     clipPathUnits="userSpaceOnUse"
+                     id="clipPath2806">
+                    <path
+                       d="M 0,0 H 144 V 144 H 0 Z"
+                       id="path2804" />
+                  </clipPath>
+                  <font
+                     horiz-adv-x="50"
+                     id="font2818"
+                     horiz-origin-x="0"
+                     horiz-origin-y="0"
+                     vert-origin-x="512"
+                     vert-origin-y="768"
+                     vert-adv-y="1024">
+                    <font-face
+                       ascent="95.200005"
+                       descent="21.3"
+                       units-per-em="100"
+                       style="font-style:normal; font-family:Helvetica Neue; font-weight:normal;"
+                       id="font-face2808" />
+                    <missing-glyph
+                       horiz-adv-x="50.0"
+                       d="M40.9 66.6 L10.2 66.6 L10.2 4.7 L40.9 4.7 ZM46 71.2 L46 0.1 L5.1 0.1 L5.1 71.2 Z"
+                       id="missing-glyph2810" />
+                    <glyph
+                       unicode="1"
+                       horiz-adv-x="55.6"
+                       d="M35.6 0 L35.6 70.9 L29.1 70.9 Q28.4 66.9 26.5 64.3 Q24.6 61.7 21.85 60.2 Q19.1 58.7 15.7 58.15 Q12.3 57.6 8.7 57.6 L8.7 50.8 L27.1 50.8 L27.1 0 Z"
+                       id="glyph2812" />
+                    <glyph
+                       unicode="r"
+                       horiz-adv-x="33.3"
+                       d="M6.1 51.7 L6.1 0 L14.6 0 L14.6 23 Q14.6 28 15.6 31.85 Q16.6 35.7 18.8 38.4 Q21 41.1 24.6 42.5 Q28.2 43.9 33.3 43.9 L33.3 52.9 Q26.4 53.1 21.9 50.1 Q17.4 47.1 14.3 40.8 L14.1 40.8 L14.1 51.7 Z"
+                       id="glyph2814" />
+                    <glyph
+                       unicode="2"
+                       horiz-adv-x="55.6"
+                       d="M4.4 45.8 L12.9 45.8 Q12.8 49 13.55 52.15 Q14.3 55.3 16 57.8 Q17.7 60.3 20.35 61.85 Q23 63.4 26.7 63.4 Q29.5 63.4 32 62.5 Q34.5 61.6 36.35 59.9 Q38.2 58.2 39.3 55.85 Q40.4 53.5 40.4 50.6 Q40.4 46.9 39.25 44.1 Q38.1 41.3 35.85 38.9 Q33.6 36.5 30.2 34.15 Q26.8 31.8 22.3 29 Q18.6 26.8 15.2 24.3 Q11.8 21.8 9.1 18.5 Q6.4 15.2 4.65 10.75 Q2.9 6.3 2.4 0 L48.7 0 L48.7 7.5 L12.3 7.5 Q12.9 10.8 14.85 13.35 Q16.8 15.9 19.55 18.1 Q22.3 20.3 25.6 22.25 Q28.9 24.2 32.2 26.2 Q35.5 28.3 38.6 30.6 Q41.7 32.9 44.1 35.75 Q46.5 38.6 47.95 42.2 Q49.4 45.8 49.4 50.5 Q49.4 55.5 47.65 59.3 Q45.9 63.1 42.9 65.65 Q39.9 68.2 35.85 69.55 Q31.8 70.9 27.2 70.9 Q21.6 70.9 17.2 69 Q12.8 67.1 9.85 63.75 Q6.9 60.4 5.5 55.8 Q4.1 51.2 4.4 45.8 Z"
+                       id="glyph2816" />
+                  </font>
+                </defs>
+                <g
+                   style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60042-1-7-1-5">
+                  <line
+                     y2="120"
+                     style="fill:none"
+                     x1="24"
+                     x2="130"
+                     y1="120"
+                     id="line60040-5-5-8-6" />
+                </g>
+                <g
+                   transform="translate(77.0001,124.8)"
+                   style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60046-5-7-9-5">
+                  <text
+                     x="-46.619152"
+                     xml:space="preserve"
+                     y="9.3636456"
+                     style="font-size:12.073px;stroke:none"
+                     id="text60044-5-2-3-3">Response of Neuron 1 (r1)</text>
+                </g>
+                <g
+                   style="color-interpolation:linearRGB;fill:#262626;stroke:#262626;stroke-width:0.5;stroke-linejoin:round;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60050-8-9-7-0">
+                  <line
+                     y2="11"
+                     style="fill:none"
+                     x1="24"
+                     x2="24"
+                     y1="120"
+                     id="line60048-2-7-4-4" />
+                </g>
+                <g
+                   transform="rotate(-90,42.34995,23.14995)"
+                   style="font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;stroke:#262626;color-rendering:optimizeQuality;image-rendering:optimizeQuality;text-rendering:geometricPrecision"
+                   id="g60054-9-5-8-8">
+                  <text
+                     x="-54.669647"
+                     xml:space="preserve"
+                     y="-7.587707"
+                     style="font-size:12.073px;stroke:none"
+                     id="text60052-8-6-0-5">Response of Neuron 2 (r2)</text>
+                </g>
+              </g>
+            </g>
+          </g>
+          <path
+             style="fill:#ff0000;fill-opacity:1;stroke:#ff0404;stroke-width:2.81273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:8.4382, 8.4382;stroke-dashoffset:0;stroke-opacity:1"
+             d="M -153.84794,393.52143 -62.980801,286.72751"
+             id="path59013-6-3-6-7-5" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:14.0851px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             x="-78.23764"
+             y="262.57721"
+             id="text59283-6-3-8-5"
+             transform="scale(1.0272724,0.97345164)"><tspan
+               sodipodi:role="line"
+               id="tspan59281-5-7-0-4"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.0851px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-78.23764"
+               y="262.57721">Cardinal Task </tspan><tspan
+               sodipodi:role="line"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.0851px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#ff0000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-78.23764"
+               y="280.19464"
+               id="tspan73305-6-2">tuning axis</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:18.1094px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000beb;fill-opacity:1;stroke:#0008e7;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+             x="-355.67923"
+             y="8.6839218"
+             id="text74389-1"
+             transform="scale(1.0272724,0.97345164)"><tspan
+               id="tspan74387-9"
+               style="font-size:18.1094px;fill:#000000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-355.67923"
+               y="8.6839218"
+               sodipodi:role="line">Within (<tspan
+   style="fill:#ff0000"
+   id="tspan1212-2">cardinal</tspan><tspan
+   id="tspan1318-4"
+   style="fill:#1a1a1a">)</tspan></tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:bold;font-size:18.1094px;font-family:Arial;-inkscape-font-specification:'Arial Bold';color-interpolation:auto;fill:#000beb;fill-opacity:1;stroke:#0008e7;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+             x="-159.17673"
+             y="243.34042"
+             id="text74389-0-5"
+             transform="scale(1.0272724,0.97345164)"><tspan
+               sodipodi:role="line"
+               id="tspan74387-8-8"
+               style="font-size:18.1094px;fill:#000000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+               x="-159.17673"
+               y="243.34042">Cross (<tspan
+   style="fill:#ff0000"
+   id="tspan1526-6">cardinal</tspan>)</tspan></text>
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:7.05556px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ff0000;fill-opacity:0.4;stroke:#0008e7;stroke-width:0.815999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.448, 2.448;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       x="102.22229"
+       y="150.3817"
+       id="text73309-2"><tspan
+         sodipodi:role="line"
+         id="tspan73307-5"
+         style="stroke-width:0.816"
+         x="102.22229"
+         y="150.3817" /></text>
+    <g
+       id="g74655-1"
+       transform="translate(3.5291638,160.22138)">
+      <g
+         id="g74675-3">
+        <g
+           style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60042-1-7-3-9"
+           transform="matrix(0.34133695,0,0,0.36020899,136.28145,32.881993)">
+          <line
+             y2="120"
+             style="fill:none"
+             x1="24"
+             x2="130"
+             y1="120"
+             id="line60040-5-5-7-7" />
+        </g>
+        <g
+           transform="matrix(0.34133695,0,0,0.36020899,162.56442,77.836075)"
+           style="font-style:normal;font-weight:normal;font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60046-5-7-5-3">
+          <text
+             x="-46.619152"
+             xml:space="preserve"
+             y="9.3636456"
+             style="font-size:12.073px;stroke:none"
+             id="text60044-5-2-7-7">Response of Neuron 1 (r1)</text>
+        </g>
+        <g
+           style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60050-8-9-2-5"
+           transform="matrix(0.34133695,0,0,0.36020899,136.28145,32.881993)">
+          <line
+             y2="11"
+             style="fill:none"
+             x1="24"
+             x2="24"
+             y1="120"
+             id="line60048-2-7-9-0" />
+        </g>
+        <g
+           transform="matrix(0,-0.36020899,0.34133695,0,142.83511,56.475646)"
+           style="font-style:normal;font-weight:normal;font-size:15.4px;font-family:'Helvetica Neue';color-interpolation:linearRGB;fill:#262626;fill-opacity:1;stroke:#262626;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+           id="g60054-9-5-7-2">
+          <text
+             x="-54.669647"
+             xml:space="preserve"
+             y="-7.587707"
+             style="font-size:12.073px;stroke:none"
+             id="text60052-8-6-5-1">Response of Neuron 2 (r2)</text>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:bold;font-size:18.1094px;font-family:Arial;-inkscape-font-specification:'Arial Bold';color-interpolation:auto;fill:#000beb;fill-opacity:1;stroke:#0008e7;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto"
+           x="16.477606"
+           y="-33.14259"
+           id="text74389-2-8"
+           transform="matrix(0.35064602,0,0,0.35064602,136.28145,32.881993)"><tspan
+             id="tspan74387-4-7"
+             style="font-size:18.1094px;fill:#000000;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+             x="16.477606"
+             y="-33.14259"
+             sodipodi:role="line">Within (<tspan
+   style="fill:#0000ff"
+   id="tspan1422-1">oblique</tspan>)</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#ff7f2a;fill-opacity:0.94902;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+           x="218.69872"
+           y="93.453186"
+           id="text15041-7-8-8-4-0-4-0-5"
+           transform="matrix(0.74014253,0,0,0.78106394,-14.597196,0.39983738)"><tspan
+             sodipodi:role="line"
+             id="tspan15039-5-8-2-6-4-0-4-5"
+             style="font-size:6.35px;fill:#00ffff;fill-opacity:0.94902;stroke:#5c02f7;stroke-width:0;stroke-opacity:1"
+             x="218.69872"
+             y="93.453186">135 degree</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:6.35px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#f1c460;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+           x="224.31914"
+           y="47.549484"
+           id="text15041-7-8-8-1-0-8-8"
+           transform="matrix(0.74014253,0,0,0.78106394,-14.597196,0.39983738)"><tspan
+             sodipodi:role="line"
+             id="tspan15039-5-8-2-2-8-5-5"
+             style="font-size:6.35px;fill:#ff00ff;fill-opacity:1;stroke-width:0"
+             x="224.31914"
+             y="47.549484">45 degree</tspan></text>
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#0008e7;stroke-width:0.816;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.448, 2.448;stroke-dashoffset:0;stroke-opacity:1"
+           d="M 145.34135,38.560274 178.51339,73.34058"
+           id="path59013-6-3-6-5-6" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           x="172.64621"
+           y="49.333263"
+           id="text59283-6-3-9-7"><tspan
+             sodipodi:role="line"
+             id="tspan59281-5-7-9-9"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#000beb;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+             x="172.64621"
+             y="49.333263">Oblique Task </tspan><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';fill:#000beb;fill-opacity:1;stroke-width:0;stroke-dasharray:none;stroke-dashoffset:0"
+             x="172.64621"
+             y="55.510757"
+             id="tspan73305-3-4">tuning axis</tspan></text>
+      </g>
+    </g>
+    <path
+       d="m 36.611597,63.333222 0.5549,0.3041 1.5143,0.5401 1.5143,0.2657 1.5143,0.0723 1.5143,-0.0775 1.5143,-0.2093 1.5142,-0.3426 1.5143,-0.4971 0.1355,-0.0557 1.3788,-0.4469 1.5143,-0.6475 0.8637,-0.4627 0.6506,-0.2895 1.5143,-0.8215 0.6831,-0.4462 0.8312,-0.4751 1.5142,-1.0788 0.0043,-0.0032 1.51,-1.0642 0.5969,-0.493 0.9174,-0.7271 0.9292,-0.83 0.585099,-0.5219 1.0709,-1.0352 0.4434,-0.4455 1.0614,-1.1117 0.4529,-0.5134 0.9182,-1.0437 0.5961,-0.764 0.6415,-0.7932 0.8727,-1.2679 0.2145,-0.2892 1.0133,-1.5572 0.2865,-0.5357 0.6238,-1.0214 0.7418,-1.5571 0.1487,-0.3857 0.5465,-1.1715 0.5375,-1.5571 0.376,-1.5572 0.0543,-0.356 0.2395,-1.2011 0.1223,-1.5572 -0.082,-1.5571 -0.2798,-1.3176 -0.0486,-0.2395 -0.61,-1.5572 -0.8557,-1.2305 -0.284,-0.3266 -1.2303,-1.0388 -0.967,-0.5184 -0.5473,-0.2648 -1.5142,-0.4643 -1.5143,-0.2131 -1.5143,-0.0301 -1.5143,0.1181 -1.514299,0.2551 -1.5143,0.4008 -0.5542,0.1983 -0.9601,0.2673 -1.5142,0.5489 -1.5143,0.7386 -0.0044,0.0024 -1.5099,0.6955 -1.4111,0.8616 -0.1032,0.0544 -1.5143,0.8987 -0.8318,0.6041 -0.6825,0.4512 -1.4013,1.1059 -0.113,0.0844 -1.5142,1.2416 -0.2567,0.2311 -1.2576,1.131 -0.4387,0.4262 -1.0756,1.0861 -0.4489,0.471 -1.0654,1.2096 -0.3061,0.3476 -1.2082,1.5452 -0.0097,0.0119 -1.174,1.5572 -0.3306,0.5301 -0.7053,1.027 -0.809,1.4894 -0.0421,0.0677 -0.8471,1.5572 -0.6206,1.5571 -0.0044,0.0139 -0.6105,1.5433 -0.4271,1.5571 -0.2717,1.5572 -0.1238,1.5571 0.0424,1.5571 0.26,1.5572 0.5783,1.5571 0.5524,0.8878 0.4998,0.6694 1.0144,0.9528 0.9594,0.6043"
+       style="font-style:normal;font-weight:normal;font-size:12px;font-family:Dialog;color-interpolation:linearRGB;fill:#ff00ff;fill-opacity:0.4;fill-rule:evenodd;stroke:#f25fe6;stroke-width:3.00018;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter37476-8-4-1);color-rendering:optimizeQuality;image-rendering:optimizeQuality;shape-rendering:auto;text-rendering:geometricPrecision"
+       id="path63274-2-7-3-7-1"
+       transform="matrix(0.34096441,-0.01594349,0.01682497,0.35981582,89.552773,272.29398)" />
+  </g>
+</svg>

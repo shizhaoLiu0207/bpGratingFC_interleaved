@@ -42,6 +42,7 @@ ax_1 = subplot(3,2,[1,3]); hold on
 set(ax_1,'position',get(ax_1,'position')+[-0.02 0.04 0.03 -0.03]);
 
 plotOptions = struct();
+plotOptions.plot_data = 'real';
 plotOptions.errorbar = 'SEM_session';
 plotOptions.dottest = true;
 plotOptions.plotShuffle = false;
@@ -76,6 +77,7 @@ ylim([-10,30])
 ax_3 = subplot(3,2,[2,4]); hold on
 set(ax_3,'position',get(ax_3,'position')+[0 0.04 0.02 -0.03]);
 plotOptions = struct();
+plotOptions.plot_data = 'real';
 plotOptions.errorbar = 'SEM_session';
 plotOptions.dottest = true;
 plotOptions.plotShuffle = false;
@@ -98,6 +100,7 @@ title('Monkey G');
 ax_4 = subplot(3,2,6); hold on
 set(ax_4,'position',get(ax_4,'position')+[0 0 0.02 -0.02]);
 plotOptions = struct();
+
 plotOptions.errorbar = 'SEM_session';
 plotOptions.ftsize = 16;
 plotOptions.plotdata = 'info';
@@ -109,7 +112,7 @@ stats_diff_info_string_monkeyG_oblique =  sprintf('Monkey G oblique, Diff betwee
                                         stats_info_diff_info_gremlin.mean_oblique, stats_info_diff_info_gremlin.std_oblique);
 ylim([-10,30])
 
-print(save_name, '-dsvg');
+%print(save_name, '-dsvg');
 
 fid = fopen(tex_name,'wt');
 fwrite(fid,[stats_real_cross_string_monkeyR_cardinal, stats_real_cross_string_monkeyR_oblique,...
@@ -328,3 +331,73 @@ fid = fopen(tex_name,'wt');
 fwrite(fid,[stats_redundacy_within_cross_string_monkeyR_cardinal, stats_redundacy_within_cross_string_monkeyR_oblique,...
             stats_redundacy_within_cross_string_monkeyG_cardinal, stats_redundacy_within_cross_string_monkeyG_oblique]);
 fclose(fid);
+%% 4. I_redundancy (percent) - reorganized
+plot_per_cohr = false;
+save_folder = '../../figures/figures_final/fisher_info_bar';
+
+
+if plot_per_cohr % & plotOptions.plotPercent
+    results_plot = results_all_perCohr;
+    save_name = fullfile(save_folder, sprintf('redundacy_percent_within_cross_info_bar_perCohr.svg'));
+    tex_name  = fullfile(save_folder, sprintf('redundacy_percent_within_cross_info_bar_perCohr.tex'));
+    ylim_rolo = 60;
+    ylim_gremlin_min = -10;
+    ylim_gremlin_max = 80;
+    ytext_rolo = 50;
+    ytext_gremlin = 70;
+
+    y_diff_lim_rolo = 20;
+    y_diff_lim_gremlin = 80;
+elseif ~plot_per_cohr % & plotOptions.plotPercent
+    results_plot = results_all;
+    save_name = fullfile(save_folder, sprintf('redundacy_percent_within_cross_info_bar_reorg.svg'));
+    tex_name  = fullfile(save_folder, sprintf('redundacy_percent_within_cross_info_bar_reorg.tex'));
+    ylim_rolo = 60;
+    ylim_gremlin_min = -10;
+    ylim_gremlin_max = 70;
+    ytext_rolo = 50;
+    ytext_gremlin = 60;
+
+    y_diff_lim_rolo = 40;
+    y_diff_lim_gremlin = 40;
+end
+
+
+figure
+ftsize = 14;
+set(gcf,'Units','inches','position',[0,0,12,4])
+ax_1 = subplot(1,2,1); hold on
+set(ax_1,'position',get(ax_1,'position')+[-0.02 0.04 0.03 -0.03]);
+plotOptions = struct();
+plotOptions.errorbar = 'SEM_session';
+plotOptions.dottest = true;
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 16;
+plotOptions.plotPercent = true;
+plotOptions.plotOrder = 'bycontext';
+session_list_plot = bpGlobal.rolo.session_list.switching;
+fig_it.plot_bar_cross_deltaInfo(results_plot, session_list_plot, plotOptions);
+ylim([0, ylim_rolo])
+text(0.2,ytext_rolo,'Cardinal Context','color','red','FontSize',14,'FontWeight','bold')
+text(5.2,ytext_rolo,'Oblique Context','color','blue','FontSize',14,'FontWeight','bold')
+title('Monkey R');
+
+
+ax_2 = subplot(1,2,2); hold on
+set(ax_2,'position',get(ax_2,'position')+[0 0.04 0.02 -0.03]);
+plotOptions = struct();
+plotOptions.errorbar = 'SEM_session';
+plotOptions.dottest = true;
+plotOptions.plotShuffle = false;
+plotOptions.ftsize = 16;
+plotOptions.plotPercent = true;
+plotOptions.plotOrder = 'bycontext';
+session_list_plot = bpGlobal.gremlin.session_list.interleaved_real;
+fig_it.plot_bar_cross_deltaInfo(results_plot, session_list_plot, plotOptions);
+ylim([ylim_gremlin_min,ylim_gremlin_max])
+text(0.2,ytext_gremlin,'Cardinal Context','color','red','FontSize',14,'FontWeight','bold')
+text(5.2,ytext_gremlin,'Oblique Context','color','blue','FontSize',14,'FontWeight','bold')
+title('Monkey G');
+
+
+print(save_name, '-dsvg');

@@ -1,4 +1,4 @@
-function  plot_diff_withintrial(results_all, session_list_plot, plotOptions)
+function  stats_info = plot_diff_withintrial(results_all, session_list_plot, plotOptions)
 
 global bpGlobal
 nTimebin = 8;
@@ -57,7 +57,18 @@ if strcmp(plotOptions.errorbar,'CI_sample')
 end
 
 
-line([0.5,nTimebin + 0.5], [0,0],'color','black','linestyle','--'); hold on
+xlabelStrs = cell(nTimebin,2);
+for i = 1:nTimebin
+    idx = find(cell2mat({results_all(:).timeWinIndex}) == i, 1);
+
+        %xlabelStrs{i} = num2str(results_Struct(idx).timeWin(2));
+        xlabelStrs{i,1} = num2str(results_all(idx).timeWin(1) - 1);
+        xlabelStrs{i,2} = num2str(results_all(idx).timeWin(2));
+   
+end
+
+
+%line([0.5,nTimebin + 0.5], [0,0],'color','black','linestyle','--'); hold on
 switch plotOptions.task
     case 'cardinal'
         switch plotOptions.errorbar
@@ -65,8 +76,16 @@ switch plotOptions.task
                h = errorbar([1:nTimebin], mean_cardinal, mean_cardinal - CI_cardinal(:,1),  CI_cardinal(:,2) - mean_cardinal,...
                     'LineWidth',3,'Color',bpGlobal.color_list.color_cardinal);
             case 'SEM_session'
-                h = errorbar([1:nTimebin], mean_cardinal, SEM_cardinal,...
-                    'LineWidth',3,'Color',bpGlobal.color_list.color_cardinal);
+                % h = errorbar([1:nTimebin], mean_cardinal, SEM_cardinal,...
+                %     'LineWidth',3,'Color',bpGlobal.color_list.color_cardinal);
+                plotMarker = '^';
+                %xticklabelStr = {'50','250','450','650','850','1250','1450','1650'};
+                plotStyle = '-';
+                includeOri = false;
+                [h, beta, beta_p] = fig.plot_errobar_ttest(data_plot_cardinal, ...
+                    bpGlobal.color_list.color_cardinal,plotMarker, xlabelStrs,ylabel_str, plotStyle, includeOri);
+                lgd = findobj('type', 'legend');
+                set(lgd, 'visible', 'off')
         end
         %egend(h,'Cardinal task')
     case 'oblique'
@@ -80,13 +99,16 @@ switch plotOptions.task
         end
         %legend(h,'Oblique task')
 end
+stats_info = struct();
+stats_info.beta = beta;
+stats_info.beta_p = beta_p;
 
-
-xlim([0.5,nTimebin + 0.5]);
+%xlim([0.5,nTimebin + 0.5]);
 set(gca, 'fontsize', plotOptions.ftsize)
 set(gca, 'TickLabelInterpreter','tex')
 
 ylabel(ylabel_str,'Interpreter','latex')
 xlabel(plotOptions.xlabelStr,'Interpreter','latex')
 box off
+%set(gca,'xtick',[0.5:1:8.5],'XTicklabels',{'50','250','450','650','850','1250','1450','1650'})
 end
