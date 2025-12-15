@@ -5,12 +5,12 @@ close all
 %%%%% population size: one consistent size across all sessions in each
 %%%%% epoch
 %%
-nBootstrap = 1000;
+nBootstrap = 100;
 neuron_filter_name = 'coef1_hVis2_FR1';
 size_option = 'sizeControl'; % sizeControl or half
-save_filter_name   = [neuron_filter_name,'_interleaved_sizeControl'];
+save_filter_name   = [neuron_filter_name,'_interleaved_forEye_sizeControl'];
 
-load(sprintf('/Users/liushizhao/Documents/projects/bpGratingEx/results/filter_neuron/%s/filtered_neurons_%s',neuron_filter_name, neuron_filter_name));
+load(sprintf('/Users/liushizhao/projects_local/bpGratingEx/results/filter_neuron/%s/filtered_neurons_%s',neuron_filter_name, neuron_filter_name));
 savepath = sprintf('../../results/filter_neuron/%s',save_filter_name);
 mkdir(savepath)
 saveName = fullfile(savepath, sprintf('filtered_neurons_%s', save_filter_name));
@@ -46,12 +46,15 @@ nUnit_sort = sort(nUnit_kept,'ascend');
 plot(nUnit_sort,'-o')
 title({'gremlin interleaved';sprintf('min = %d, 2nd min = %d',nUnit_sort(1), nUnit_sort(2))})
 
-switch neuron_filter_name
-    case 'coef1_hVis2_FR1'
+switch save_filter_name
+    case 'coef1_hVis2_FR1_interleaved_sizeControl'
 
         nSub_rolo_interleaved = 14; %%%%% use the second minimum, the first minimum is 11
         nSub_gremlin_interleaved = 52;
-    case 'coef1_hVis2_FR1_hVisOri2_FROri2'
+    case 'coef1_hVis2_FR1_interleaved_forEye_sizeControl'
+        nSub_rolo_interleaved = 14; %%%%% 
+        nSub_gremlin_interleaved = 30;
+    case 'coef1_hVis2_FR1_hVisOri2_FROri2_interleaved_sizeControl'
 
         nSub_rolo_interleaved = 14; %%%%% just use the same as the other filter. but has to remove 6 sessions
         nSub_gremlin_interleaved = 38;

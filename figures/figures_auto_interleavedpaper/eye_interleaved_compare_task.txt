@@ -1,0 +1,25 @@
+\begin{tabular}{lcc}
+\toprule
+ & Monkey R & Monkey G \\
+\midrule
+x-pos-avg & \makecell{$t(44)=1.62$, \\ $p=\num{1.13e-01}$} & \makecell{$\mathbf{t(36)=14.96}$, \\ $p=\num{5.01e-17}$} \\
+\midrule
+y-pos-avg & \makecell{$\mathbf{t(44)=4.24}$, \\ $p=\num{1.13e-04}$} & \makecell{$\mathbf{t(36)=-5.44}$, \\ $p=\num{3.94e-06}$} \\
+\midrule
+x-vel-avg & \makecell{$\mathbf{t(44)=-4.88}$, \\ $p=\num{1.41e-05}$} & \makecell{$\mathbf{t(36)=11.04}$, \\ $p=\num{4.14e-13}$} \\
+\midrule
+y-vel-avg & \makecell{$\mathbf{t(44)=4.53}$, \\ $p=\num{4.45e-05}$} & \makecell{$\mathbf{t(36)=-3.14}$, \\ $p=\num{3.36e-03}$} \\
+\midrule
+pupil-avg & \makecell{$\mathbf{t(44)=10.83}$, \\ $p=\num{5.47e-14}$} & \makecell{$t(36)=0.49$, \\ $p=\num{6.24e-01}$} \\
+\midrule
+x-pos-var & \makecell{$t(44)=1.06$, \\ $p=\num{2.94e-01}$} & \makecell{$\mathbf{t(36)=4.75}$, \\ $p=\num{3.24e-05}$} \\
+\midrule
+y-pos-var & \makecell{$t(44)=1.32$, \\ $p=\num{1.93e-01}$} & \makecell{$t(36)=0.63$, \\ $p=\num{5.35e-01}$} \\
+\midrule
+x-vel-var & \makecell{$t(44)=1.14$, \\ $p=\num{2.61e-01}$} & \makecell{$\mathbf{t(36)=2.39}$, \\ $p=\num{2.23e-02}$} \\
+\midrule
+y-vel-var & \makecell{$\mathbf{t(44)=2.39}$, \\ $p=\num{2.13e-02}$} & \makecell{$\mathbf{t(36)=2.08}$, \\ $p=\num{4.51e-02}$} \\
+\midrule
+pupil-var & \makecell{$t(44)=-0.79$, \\ $p=\num{4.35e-01}$} & \makecell{$t(36)=0.23$, \\ $p=\num{8.17e-01}$} \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,2 @@
+Compute Euclidean distance of eye position from the average position. 
+Keep the trials within the 
