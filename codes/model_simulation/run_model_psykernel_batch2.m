@@ -9,7 +9,7 @@ if ~exist(home_folder)
     home_folder = '/home/shizhao/Documents/projectData/probinf_data/syntheticData_interleaved/data_for_psykernel';
 end
 
-doGenerate = 0;
+doGenerate = 1;
 if doGenerate 
 
 
@@ -18,8 +18,8 @@ if doGenerate
 number_samples_per_evidence         = 6;
 stimulus_regime                     = 'dynamic-switching-signal-blocked';
 
-prior_task_list                     = {[1, 0];[0.7, 0.3];[0.5, 0.5]; [0.3,0.7]};
-image_task_list                     = {'cardinal';'cardinal';'cardinal';'cardinal'};
+prior_task_list                     = {[0, 1];[0.3,0.7];[0.5,0.5];[0.7,0.3]};
+image_task_list                     = {'oblique';'oblique';'oblique';'oblique'};
 
 
 nRepeats                            = 1000;
@@ -33,13 +33,13 @@ runOptions.run_ori_energy           = true;
 runOptions.n_ori_bin                = 12; 
 runOptions.task_mode                = 'single';
 runOptions.clamp_prior              = true;
-runOptions.save_folder              = fullfile(home_folder, 'moreRepeats');
+runOptions.save_folder              = fullfile(home_folder, 'moreRepeats_contrast6');
 runOptions.nSession                 = 20; %%% run 10 sessions per condition
 
 generate_data_model_psyKernel(prior_task_list, image_task_list, stimulus_contrast_list, nRepeats_list, runOptions);
 end
 %%
-doCompute = true;
+doCompute = 0;
 version_name = 'moreRepeats_contrast_6';
 save_folder = fullfile(home_folder, version_name);
 energy_use = 'proj';
