@@ -9,7 +9,7 @@ if ~exist(home_folder)
     home_folder = '/home/shizhao/Documents/projectData/probinf_data/syntheticData_interleaved/data_for_psykernel';
 end
 
-doGenerate = 1;
+doGenerate = 0;
 if doGenerate 
 
 
@@ -79,6 +79,13 @@ if doCompute
         psyKernel_model(n).orientationsDEG  = orientationsDEG;
     
         psyKernel_model(n).energy_use       = energy_use;
+
+        %%%% number of repeats and list of coherence
+        psyKernel_model(n).cohr_list        = unique(abs(cell2mat({data_use(:).contrast})));
+        for k = 1:numel(psyKernel_model(n).cohr_list)
+            idx = cell2mat({data_use(:).contrast}) == psyKernel_model(n).cohr_list;
+            psyKernel_model(n).num_repeats(k) = numel(data_use(idx).decision);
+        end
     end
     save(save_name,'psyKernel_model');
 end
@@ -90,15 +97,122 @@ save_name = sprintf('../../results/model_behavior/psyKernel_model_single_dual_te
 load(save_name);
 %%% Alignment between the ideal kernel as a function of repeats
 kernel_type = 'spatial';
+mode                    = 'Single';
 figure
-subplot(1,2,1)
+subplot(2,4,1)
 image_task              = 'cardinal';
-prior_task_list{1}      = [1,0];
-mode_list{1}            = 'Single';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-%%% Plot kernels of different priors together to check if makes sense
-%%
+prior_task              = [1,0];
+[r_cardinal, r_oblique] = fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+
+subplot(2,4,2)
+image_task              = 'cardinal';
+prior_task              = [0.7,0.3];
+[r_cardinal, r_oblique] =fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+
+
+subplot(2,4,3)
+image_task              = 'cardinal';
+prior_task              = [0.5,0.5];
+[r_cardinal, r_oblique] = fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+
+subplot(2,4,4)
+image_task              = 'cardinal';
+prior_task              = [0.3,0.7];
+[r_cardinal, r_oblique] = fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+
+subplot(2,4,5)
+image_task              = 'oblique';
+prior_task              = [0, 1];
+[r_cardinal, r_oblique] = fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+
+subplot(2,4,6)
+image_task              = 'oblique';
+prior_task              = [0.3,0.7];
+[r_cardinal, r_oblique] = fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+
+subplot(2,4,7)
+image_task              = 'oblique';
+prior_task              = [0.5,0.5];
+[r_cardinal, r_oblique] = fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+
+subplot(2,4,8)
+image_task              = 'oblique';
+prior_task              = [0.7,0.3];
+[r_cardinal, r_oblique] = fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode);
+title(sprintf('Prior_{cardinal} = %.1f,  Prior_{oblique} = %.1f \n r_{cardinal} = %.2f, r_{oblique} = %.2f', ...
+    prior_task(1), prior_task(2), r_cardinal, r_oblique));
+
+%%  correlation between the template as a function of sessions (each session has 1000 trials in this batch)
+orientationsDEG = psyKernel_model(1).orientationsDEG;
+ideal_kernel_cardinal            = sin(pi * (orientationsDEG - 45)/90);
+ideal_kernel_oblique             = sin(pi * (orientationsDEG - 90)/90);
+
+
+prior_cardinal  = 1;
+prior_oblique   = 0;
+image_task      = 'cardinal';
+mode            = 'Single'; 
+
+idx = find(cell2mat({psyKernel_model(:).prior_cardinal}) == prior_cardinal &...
+      cell2mat({psyKernel_model(:).prior_oblique})  == prior_oblique & ...
+      strcmp({psyKernel_model(:).image_task}, image_task) & ...
+      strcmp({psyKernel_model(:).mode}, mode));
+
+
+w_ori_all = {psyKernel_model(idx).w_ori};
+w_ori_all = cat(2,w_ori_all{:});
+
+
+nSession = size(w_ori_all,2);
+[r_cardinal, r_oblique] = deal(cell(nSession,1));
+for nSample = 1:nSession
+    nBootstrap = 100;
+
+     if nchoosek(nSession,nSample) <= nBootstrap
+            combination_all = nchoosek([1:nSession],nSample); 
+        elseif nchoosek(nSession,nSample) <= 5 * nBootstrap
+            combination_all = nchoosek([1:nSession],nSample); 
+            combination_all = combination_all(1:nBootstrap,:); % each row is one combination
+        else
+            combination_all = zeros(nBootstrap,nSample);
+            for k = 1:nBootstrap
+                 combination_all(k,:) = randsample(nSession,nSample,'false');
+            end
+     end
+     nBootstrap_real = size(combination_all,1);
+     [r_cardinal{nSample}, r_oblique{nSample}] = deal(zeros(nBootstrap_real, 1));
+     for k = 1:nBootstrap_real
+        w_ori_avg = mean(w_ori_all(:,combination_all(k,:)),2);
+        r_cardinal{nSample}(k) = corr(w_ori_avg, ideal_kernel_cardinal');
+        r_oblique{nSample}(k) = corr(w_ori_avg, ideal_kernel_oblique');
+     end
+
+end
+
 figure
-prior_task_list      = {[1,0]};
-mode_list            = {'Single'};
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
+plot([1:nSession], cellfun(@mean,r_cardinal),'color','red'); hold on
+errorbar([1:nSession], cellfun(@mean,r_cardinal),cellfun(@std,r_cardinal),'color','red')
+plot(cellfun(@mean,r_oblique),'color','blue');
+errorbar([1:nSession], cellfun(@mean,r_oblique),cellfun(@std,r_oblique),'color','blue')
+grid on

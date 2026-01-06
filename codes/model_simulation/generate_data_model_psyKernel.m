@@ -1,13 +1,22 @@
-function  generate_data_model_psyKernel(prior_task_list, image_task_list, stimulus_contrast_list, nRepeats_list, runOptions)
-assert(numel(stimulus_contrast_list) == numel(nRepeats_list), 'Contrast and nRepeats number do not match');
-assert(numel(prior_task_list) == numel(image_task_list), 'Task prior and image task numbers do not match');
+function  generate_data_model_psyKernel(runOptions)
 
 run_ori_energy  = runOptions.run_ori_energy;
-n_ori_bin       = 12; 
+n_ori_bin       = runOptions.n_ori_bin; 
 task_mode       = runOptions.task_mode;
 clamp_prior     = runOptions.clamp_prior;
 nSession        = runOptions.nSession;
 save_folder     = runOptions.save_folder;
+
+prior_task_list = runOptions.prior_task_list;
+image_task_list = runOptions.image_task_list;
+delta_list      = runOptions.delta_list; 
+
+stimulus_contrast_list  = runOptions.stimulus_contrast_list;
+nRepeats_list           = runOptions.nRepeats_list;
+assert(numel(stimulus_contrast_list) == numel(nRepeats_list), 'Contrast and nRepeats number do not match');
+assert(numel(prior_task_list) == numel(image_task_list), 'Task prior and image task numbers do not match');
+assert(numel(prior_task_list) == numel(delta_list), 'Task prior and and learning strength numbers do not match');
+
 
 if ~isfolder(save_folder)
     mkdir(save_folder)
@@ -20,21 +29,28 @@ switch task_mode
 end
 
 
-number_samples_per_evidence = 6;
-stimulus_regime             = 'dynamic-switching-signal-blocked';
+number_samples_per_evidence = runOptions.number_samples_per_evidence;
+stimulus_regime             = runOptions.stimulus_regime;
 
 %%%%% generate data of single task mode
 nCond_single    = numel(prior_task_list);
 for i  = 1:nCond_single
     prior_task = prior_task_list{i};
     image_task = image_task_list{i};
+    delta      = delta_list(i);
 
+    delta_str  = strrep(sprintf('%.2f',delta),'.','_'); 
     prior_task_cardinal = prior_task(1);
     prior_task_oblique  = prior_task(2);
-    prior_cardinal_str  = strrep(sprintf('%.1f',prior_task_cardinal), '.', '_');
-    prior_oblique_str   = strrep(sprintf('%.1f',prior_task_oblique), '.', '_');
+    switch image_task
+        case 'cardinal'
+            prior_str  = strrep(sprintf('%.1f',prior_task_cardinal), '.', '_');
+        case 'oblique'
+            prior_str   = strrep(sprintf('%.1f',prior_task_oblique), '.', '_');
+    end
     for t = 1: nSession
-        save_name  = sprintf('Single_image_task_%s_prior_cardinal_%s_prior_oblique_%s_session_%d.mat', image_task, prior_cardinal_str, prior_oblique_str, t);
+        save_name  = sprintf('Single_image_task_%s_delta_%s_prior_%s_session_%d.mat', image_task, delta_str, prior_str, t);
+        save_name_raw = sprintf('Single_image_task_%s_delta_%s_prior_%s_session_%d_raw_data.mat', image_task, delta_str, prior_str, t);
         if isfile(fullfile(save_folder,save_name))
             continue
         end
@@ -50,7 +66,8 @@ for i  = 1:nCond_single
                 'G.prior_task',prior_task,...
                 'I.image_task',image_task,...
                 'S.number_repetitions', nRepeats,...
-                'G.clamp_prior', clamp_prior);
+                'G.clamp_prior', clamp_prior,...
+                'G.delta',delta);
 
            
          
@@ -72,6 +89,7 @@ for i  = 1:nCond_single
 
         end
         save(fullfile(save_folder, save_name),'data_use');
+        save(fullfile(save_folder, save_name_raw),'dat');
         clear data_use
     end
 end

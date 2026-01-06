@@ -33,7 +33,7 @@ for n = 1:nSession
          nSample = max(cell2mat({dat_fisher_cross(:).i_subSample}));
          sessionType_list = unique({dat_fisher_cross(:).sessionType});
          timebin_list = unique(cell2mat({dat_fisher_cross(:).timeWinIndex}));
-         save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', session_list{n}));
+         save_name_session = fullfile(organized_folder, sprintf('results_cohrCombined_%s', file_name_list(n).name(1:10)));
     else
         idx_base = strcmp({dat_fisher_cross(:).sessionStr}, session_list{n});
         nSample = max(cell2mat({dat_fisher_cross(idx_base).i_subSample}));

@@ -185,60 +185,60 @@ figure;
 set(gcf, 'Units','normalized','Position',[0,0,1,1])
 subplot(2,5,1)
 image_task              = 'cardinal';
-prior_task_list{1}      = [1,0];
-mode_list{1}            = 'Single';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [1,0];
+mode                    = 'Single';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 subplot(2,5,2)
 image_task              = 'oblique';
-prior_task_list{1}      = [0,1];
-mode_list{1}            = 'Single';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [0,1];
+mode                    = 'Single';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 subplot(2,5,3)
 image_task              = 'cardinal';
-prior_task_list{1}      = [0.7,0.3];
-mode_list{1}            = 'Single';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [0.7,0.3];
+mode                    = 'Single';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 subplot(2,5,4)
 image_task              = 'oblique';
-prior_task_list{1}      = [0.7,0.3];
-mode_list{1}            = 'Single';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [0.7,0.3];
+mode                    = 'Single';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 subplot(2,5,5)
 image_task              = 'cardinal';
-prior_task_list{1}      = [0.5,0.5];
-mode_list{1}            = 'Single';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [0.5,0.5];
+mode                    = 'Single';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 
 subplot(2,5,6)
 image_task              = 'cardinal';
-prior_task_list{1}      = [0.8,0.2];
-mode_list{1}            = 'Dual';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [0.8,0.2];
+mode                    = 'Dual';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 subplot(2,5,7)
 image_task              = 'cardinal';
-prior_task_list{1}      = [0.8,0.5];
-mode_list{1}            = 'Dual';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [0.8,0.5];
+mode                    = 'Dual';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 subplot(2,5,8)
 image_task              = 'oblique';
-prior_task_list{1}      = [0.2,0.5];
-mode_list{1}            = 'Dual';
-fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task_list, mode_list)
-title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task_list{1}(1), prior_task_list{1}(2)));
+prior_task              = [0.2,0.5];
+mode                    = 'Dual';
+fig_it.plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+title(sprintf('Prior_{cardinal} = %.1f, \n Prior_{oblique} = %.1f', prior_task(1), prior_task(2)));
 
 
 annotation('textbox',[0.05,0.85,0.1,0.1],'string','Single','fontsize',24,'fontweight','bold','LineStyle','none')

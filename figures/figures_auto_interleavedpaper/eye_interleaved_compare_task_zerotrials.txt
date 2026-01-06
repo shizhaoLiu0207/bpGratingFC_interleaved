@@ -2,24 +2,24 @@
 \toprule
  & Monkey R & Monkey G \\
 \midrule
-x-pos-zero-avg & \makecell{$t(39)=1.60$, \\ $p=\num{1.17e-01}$} & \makecell{$\mathbf{t(36)=14.00}$, \\ $p=\num{3.90e-16}$} \\
+x-pos-zero-avg & \makecell{$t(37)=0.87$, \\ $p=\num{3.91e-01}$} & \makecell{$\mathbf{t(36)=14.00}$, \\ $p=\num{3.90e-16}$} \\
 \midrule
-y-pos-zero-avg & \makecell{$\mathbf{t(39)=4.16}$, \\ $p=\num{1.69e-04}$} & \makecell{$\mathbf{t(36)=-5.82}$, \\ $p=\num{1.19e-06}$} \\
+y-pos-zero-avg & \makecell{$\mathbf{t(37)=4.10}$, \\ $p=\num{2.17e-04}$} & \makecell{$\mathbf{t(36)=-5.82}$, \\ $p=\num{1.19e-06}$} \\
 \midrule
-x-vel-zero-avg & \makecell{$\mathbf{t(39)=-2.64}$, \\ $p=\num{1.17e-02}$} & \makecell{$\mathbf{t(36)=12.45}$, \\ $p=\num{1.31e-14}$} \\
+x-vel-zero-avg & \makecell{$\mathbf{t(37)=-3.30}$, \\ $p=\num{2.15e-03}$} & \makecell{$\mathbf{t(36)=12.45}$, \\ $p=\num{1.31e-14}$} \\
 \midrule
-y-vel-zero-avg & \makecell{$\mathbf{t(39)=2.39}$, \\ $p=\num{2.17e-02}$} & \makecell{$\mathbf{t(36)=-5.60}$, \\ $p=\num{2.36e-06}$} \\
+y-vel-zero-avg & \makecell{$\mathbf{t(37)=2.73}$, \\ $p=\num{9.73e-03}$} & \makecell{$\mathbf{t(36)=-5.60}$, \\ $p=\num{2.36e-06}$} \\
 \midrule
-pupil-zero-avg & \makecell{$\mathbf{t(39)=8.33}$, \\ $p=\num{3.43e-10}$} & \makecell{$t(36)=-1.06$, \\ $p=\num{2.98e-01}$} \\
+pupil-zero-avg & \makecell{$\mathbf{t(37)=13.43}$, \\ $p=\num{8.48e-16}$} & \makecell{$t(36)=-1.06$, \\ $p=\num{2.98e-01}$} \\
 \midrule
-x-pos-zero-var & \makecell{$t(39)=0.94$, \\ $p=\num{3.55e-01}$} & \makecell{$\mathbf{t(36)=2.67}$, \\ $p=\num{1.13e-02}$} \\
+x-pos-zero-var & \makecell{$t(37)=0.99$, \\ $p=\num{3.29e-01}$} & \makecell{$\mathbf{t(36)=2.67}$, \\ $p=\num{1.13e-02}$} \\
 \midrule
-y-pos-zero-var & \makecell{$t(39)=1.29$, \\ $p=\num{2.05e-01}$} & \makecell{$t(36)=-0.62$, \\ $p=\num{5.38e-01}$} \\
+y-pos-zero-var & \makecell{$\mathbf{t(37)=2.53}$, \\ $p=\num{1.58e-02}$} & \makecell{$t(36)=-0.62$, \\ $p=\num{5.38e-01}$} \\
 \midrule
-x-vel-zero-var & \makecell{$t(39)=1.02$, \\ $p=\num{3.12e-01}$} & \makecell{$t(36)=0.07$, \\ $p=\num{9.46e-01}$} \\
+x-vel-zero-var & \makecell{$t(37)=1.34$, \\ $p=\num{1.89e-01}$} & \makecell{$t(36)=0.07$, \\ $p=\num{9.46e-01}$} \\
 \midrule
-y-vel-zero-var & \makecell{$t(39)=1.28$, \\ $p=\num{2.08e-01}$} & \makecell{$t(36)=1.30$, \\ $p=\num{2.03e-01}$} \\
+y-vel-zero-var & \makecell{$t(37)=1.47$, \\ $p=\num{1.51e-01}$} & \makecell{$t(36)=1.30$, \\ $p=\num{2.03e-01}$} \\
 \midrule
-pupil-zero-var & \makecell{$t(39)=-0.76$, \\ $p=\num{4.49e-01}$} & \makecell{$t(36)=0.50$, \\ $p=\num{6.22e-01}$} \\
+pupil-zero-var & \makecell{$t(37)=0.81$, \\ $p=\num{4.21e-01}$} & \makecell{$t(36)=0.50$, \\ $p=\num{6.22e-01}$} \\
 \bottomrule
 \end{tabular}
