@@ -91,7 +91,7 @@ if doCompute
     
             
     
-            for k = 20:size(randComb, 1)
+            for k = 1:size(randComb, 1)
                 save_name           = fullfile(save_folder,sprintf('predCross_prior_cardinal_session_%s_%s_prior_oblique_session_%s_%s_combination_%d.mat',...
                                             prior_cardinal_cardinal_str, prior_cardinal_oblique_str, ...
                                             prior_oblique_cardinal_str,  prior_oblique_oblique_str, k)); 
@@ -149,20 +149,19 @@ for n = 1:nSession
     fitCpredO_ll_flip(n,:) = predCross_results.predResults.ll.fitCpredO_flip';
     fitOpredC_ll_flip(n,:) = predCross_results.predResults.ll.fitOpredC_flip';
 
-    fitCpredO_ll_final(n,:) = fitCpredO_ll(n,:);
-    fitOpredC_ll_final(n,:) = fitOpredC_ll(n,:);
-    % % decide whether to flip the sign for this whole session
-    % if mean(fitCpredO_ll_flip(n,:)) > mean(fitCpredO_ll(n,:))
-    %     fitCpredO_ll_final(n,:) = fitCpredO_ll_flip(n,:);
-    % else
-    %     fitCpredO_ll_final(n,:)  = fitCpredO_ll(n,:);
-    % end
-    % 
-    % if mean(fitOpredC_ll_flip(n,:)) > mean(fitOpredC_ll(n,:))
-    %     fitOpredC_ll_final(n,:) = fitOpredC_ll_flip(n,:);
-    % else
-    %     fitOpredC_ll_final(n,:)  = fitOpredC_ll(n,:);
-    % end
+   
+    % decide whether to flip the sign for this whole session
+    if mean(fitCpredO_ll_flip(n,:)) > mean(fitCpredO_ll(n,:))
+        fitCpredO_ll_final(n,:) = fitCpredO_ll_flip(n,:);
+    else
+        fitCpredO_ll_final(n,:)  = fitCpredO_ll(n,:);
+    end
+
+    if mean(fitOpredC_ll_flip(n,:)) > mean(fitOpredC_ll(n,:))
+        fitOpredC_ll_final(n,:) = fitOpredC_ll_flip(n,:);
+    else
+        fitOpredC_ll_final(n,:)  = fitOpredC_ll(n,:);
+    end
 end
 %%
 global bpGlobal
@@ -211,26 +210,3 @@ for i = 1:nCardinal_prior
 end
 %%
 
-function predResults = run_cross_predict_model(dat_cardinal,dat_oblique, nFold)
-
-energy_use = 'proj';
-kernelOptions.orientationsDEG = [0:15:165]; % orientation bin: 0 to 180, 15 degree increment
-kernelOptions.filterMode ='hard';
-kernelOptions.filterSDDeg = 15;
-fittingKernelParams.hypers  = [0.5 6 60 0.15 0.06];
-fittingKernelParams.nLapse  = 2;
-[X_cardinal_norm, choice_cardinal, contrast_cardinal] = util_it.extract_X_psyKernel(dat_cardinal.data_use, energy_use);
-[X_oblique_norm,  choice_oblique, contrast_oblique] = util_it.extract_X_psyKernel(dat_oblique.data_use, energy_use);
-
-X.cardinal            = X_cardinal_norm;
-X.oblique             = X_oblique_norm;
-choice.cardinal       = choice_cardinal;
-choice.oblique        = choice_oblique;
-choice_list.cardinal  = unique(choice_cardinal);
-choice_list.oblique   = unique(choice_oblique);
-signal_level.cardinal = contrast_cardinal;
-signal_level.oblique  = contrast_oblique;
-
-predResults = psyKernel.fitSPTP_kernel_crosstest(X,choice,kernelOptions,choice_list,signal_level,nFold,fittingKernelParams);
-
-end

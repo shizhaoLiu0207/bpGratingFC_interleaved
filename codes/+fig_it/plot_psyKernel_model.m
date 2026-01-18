@@ -1,4 +1,19 @@
-function [r_cardinal, r_oblique, nSession] = plot_psyKernel_model(psyKernel_model, kernel_type, image_task, prior_task, mode)
+function [r_cardinal, r_oblique, nSession, w_return] = plot_psyKernel_model(psyKernel_model, kernel_type, plotOptions)
+mode        = plotOptions.mode;
+image_task  = plotOptions.image_task;
+prior_task  = plotOptions.prior_task;
+if isfield(plotOptions, 'delta')
+    delta = plotOptions.delta;
+end
+
+if isfield(plotOptions, 'plotIndividual')
+    plotIndividual = plotOptions.plotIndividual;
+else
+    plotIndividual = false;
+end
+
+
+
 orientationsDEG = psyKernel_model(1).orientationsDEG;
 ideal_kernel_cardinal            = 0.4*sin(pi * (orientationsDEG - 45)/90);
 ideal_kernel_oblique             = 0.4*sin(pi * (orientationsDEG - 90)/90);
@@ -30,14 +45,21 @@ switch kernel_type
 end
 
 
-
-prior_cardinal = prior_task(1);
-prior_oblique = prior_task(2);
-
-idx = find(cell2mat({psyKernel_model(:).prior_cardinal}) == prior_cardinal &...
-      cell2mat({psyKernel_model(:).prior_oblique})  == prior_oblique & ...
-      strcmp({psyKernel_model(:).image_task}, image_task) & ...
-      strcmp({psyKernel_model(:).mode}, mode));
+if isfield(plotOptions, 'delta')
+    
+    idx = find(cell2mat({psyKernel_model(:).delta}) == delta &...
+          cell2mat({psyKernel_model(:).prior})  == prior_task & ...
+          strcmp({psyKernel_model(:).image_task}, image_task) & ...
+          strcmp({psyKernel_model(:).mode}, mode));
+else
+    prior_cardinal = prior_task(1);
+    prior_oblique = prior_task(2);
+    
+    idx = find(cell2mat({psyKernel_model(:).prior_cardinal}) == prior_cardinal &...
+          cell2mat({psyKernel_model(:).prior_oblique})  == prior_oblique & ...
+          strcmp({psyKernel_model(:).image_task}, image_task) & ...
+          strcmp({psyKernel_model(:).mode}, mode));
+end
 
 
 
@@ -65,18 +87,24 @@ switch kernel_type
         plot(orientationsDEG, w_ori_avg,'Color',plot_color,'LineWidth',2); hold on
         fill([orientationsDEG, fliplr(orientationsDEG)], [w_ori_avg' - w_ori_sem', fliplr(w_ori_avg' + w_ori_sem')],...
             plot_color, 'FaceAlpha',0.5);
-        % for t = 1:size(w_ori_all,2)
-        %     plot(orientationsDEG, w_ori_all(:,t),'Color',plot_color,'LineWidth',0.5); 
-        % end
+        if plotIndividual
+            for t = 1:size(w_ori_all,2)
+                plot(orientationsDEG, w_ori_all(:,t),'Color',plot_color,'LineWidth',0.5); 
+            end
+        end
+        w_return = w_ori_all;
     case 'temporal'
         x = [1:numel(w_time_avg)];
         
         plot(x, w_time_avg,'Color',plot_color,'LineWidth',2);  hold on
         fill([x, fliplr(x)], [w_time_avg' - w_time_sem', fliplr(w_time_avg' + w_time_sem')],...
             plot_color, 'FaceAlpha',0.5);
-        % for t = 1:size(w_ori_all,2)
-        %     plot(orientationsDEG, w_ori_all(:,t),'Color',plot_color,'LineWidth',0.5); 
-        % end
+        if plotIndividual
+            for t = 1:size(w_ori_all,2)
+                plot(orientationsDEG, w_ori_all(:,t),'Color',plot_color,'LineWidth',0.5); 
+            end
+        end
+        w_return = w_time_all;
 end
 set(gca,'fontsize',18);
 box off
