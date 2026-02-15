@@ -2,16 +2,16 @@ clear all
 clc
 close all
 %%
-doRun_cross = 1;
+doRun_cross = 0;
 %doOrganize_cross = 0; % simply put everything into a big struct
-doReplace = 1;
-doMultipleTimebin = 1;
+doReplace = 0;
+doMultipleTimebin = 0;
 
 doOrganize_perCohr_cross = 0;  % average across subsamples
-doOrganize_combine_cross = 0;
+doOrganize_combine_cross = 1;
 
 subjectCode = 'Model';
-versionOption = 'uniform'; % 'uniform', 'subsample_test', 'match_empirical'
+versionOption = 'match_empirical_moreRepeats'; % 'uniform', 'subsample_test', 'match_empirical', 'match_empirical_moreRepeats'
 switch versionOption
 %%%% set filter name
     case 'uniform'
@@ -51,6 +51,14 @@ switch versionOption
         if ~exist(dataFolder)
             dataFolder = '/home/shizhao/Documents/projectData/probinf_data/syntheticData_interleaved/synthData_use_interleaved/real_interleaved/batch_2';
         end
+
+    case 'match_empirical_moreRepeats'
+        b_PF = 0.8;
+        subject_code    = 'rolo';
+        b_PF_str        = strrep(sprintf('%.2f',b_PF),'.','_');
+        versionName = sprintf('sampled_subset_empirical_%s_nTotal_128_nSample_64_b_PF_%s_random_250',subject_code, b_PF_str); 
+        dataFolder =  '/Volumes/T7/dataTransfer/BayesianModel_interleaved_simulation/synthData_use_interleaved_moreRepeats/real_interleaved';
+
 end
 
 filter_folder   = '../../results/filtered_neuron_synthetic';
@@ -58,7 +66,13 @@ load(fullfile(filter_folder, versionName));
 
 
 %%%%% create save folder
-saveFolder = sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_modelInterleaved_versionControl/%s',versionName);
+
+if strcmp(versionOption, 'match_empirical_moreRepeats')
+    saveFolder = sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_modelInterleaved_versionControl/%s_moreRepeats',versionName);
+else
+    saveFolder = sprintf('../../results/neural/fisherInfo_cross_direct/fisherInfo_cross_direct_modelInterleaved_versionControl/%s',versionName);
+
+end
 saveFolder_session = fullfile(saveFolder, 'individual_sessions_cross');
 mkdir(saveFolder_session);
 
@@ -74,17 +88,18 @@ switch versionOption
     case 'subsample_test'
         %%%% specific sessions
         data_list(1).name = 'synthData_use_interleaved_bPF_0_00_cardinal_delta_0_08_prior_1_00_oblique_delta_0_08_prior_1_00.mat';
-    case 'match_empirical'
-        data_list = dir(fullfile(dataFolder,'*.mat')); % all sessions
+    case {'match_empirical';'match_empirical_moreRepeats'}
+        data_list = dir(fullfile(dataFolder,'synthData_*.mat')); % all sessions
         idx_session = contains({data_list(:).name},sprintf('bPF_%s',b_PF_str));
         data_list = data_list(idx_session);
+ 
 end
 
 nSession  = numel(data_list);
 
 
 
-
+%%
 if doMultipleTimebin
     nTimeBin = 9;
 else
@@ -92,7 +107,7 @@ else
 end
 
 if doRun_cross
-    for n = 1:nSession
+    for n = 3478:nSession
 
         dat_fisher_cross    = [];
 

@@ -1,0 +1,4 @@
+Remove neurons with coef covariation larger than 1. 
+Remove neurons with hVis signed smaller than 0.2, which means 
+in any condition, smaller than 20% of time bins are significantly modulated by stimulus
+Remove neurons with FR during task smaller than 1 spk/sec

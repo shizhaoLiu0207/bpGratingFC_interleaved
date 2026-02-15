@@ -7,24 +7,55 @@ bpGratingFCGlobal();
 %%%% This script aims to check psychometric kernel of the model with the
 %%%% parameters that best explain the neural data.
 
+run_version = 'version_2';
+switch run_version
+    case 'version_1'
+        %%%%%%%%%%% Version 1: only use the very best set of parameters for each
+        %%%%%%%%%%% animal. Note: these parameters were based on only one repeat,
+        %%%%%%%%%%% so might not be very reliable
+        
+        %%%% monkey R: delta_cardinal = 0.06, prior_cardinal = 0.60, 
+        %%%% delta_oblique = 0.04, prior_oblique = 0.80;
+        %%%% monkey G: delta_cardinal = 0.08, prior_cardinal = 1.00,
+        %%%% delta_oblique = 0.04, prior_oblique = 0.60
+        monkeyR_delta_cardinal(1) = 0.06;
+        monkeyR_prior_cardinal(1) = 0.60;
+        monkeyR_delta_oblique(1) = 0.04;
+        monkeyR_prior_oblique(1) = 0.80;
+        
+        monkeyG_delta_cardinal(1) = 0.08;
+        monkeyG_prior_cardinal(1) = 1.00;
+        monkeyG_delta_oblique(1) = 0.04;
+        monkeyG_prior_oblique(1) = 0.60;
+    case 'version_2'
+        %%% choose the best 10 sets of parameters for each animal
+        load('../../results/model_match_neural_rolo_moreRepeats.mat');
+        load('../../results/model_match_neural_gremlin_moreRepeats.mat');
 
-%%%% monkey R: delta_cardinal = 0.06, prior_cardinal = 0.60, 
-%%%% delta_oblique = 0.04, prior_oblique = 0.80;
-%%%% monkey G: delta_cardinal = 0.08, prior_cardinal = 1.00,
-%%%% delta_oblique = 0.04, prior_oblique = 0.60
-monkeyR_delta_cardinal = 0.06;
-monkeyR_prior_cardinal = 0.60;
-monkeyR_delta_oblique = 0.04;
-monkeyR_prior_oblique = 0.80;
+        nChoose = 10;
 
-monkeyG_delta_cardinal = 0.08;
-monkeyG_prior_cardinal = 1.00;
-monkeyG_delta_oblique = 0.04;
-monkeyG_prior_oblique = 0.60;
+        [~, index_rolo] = sort(neural_match_result_rolo.dist_feature, 'ascend');
+        monkeyR_delta_cardinal  = neural_match_result_rolo.delta_cardinal(index_rolo(1:nChoose));
+        monkeyR_prior_cardinal  = neural_match_result_rolo.prior_cardinal(index_rolo(1:nChoose));
+        monkeyR_delta_oblique   = neural_match_result_rolo.delta_oblique(index_rolo(1:nChoose));
+        monkeyR_prior_oblique   = neural_match_result_rolo.prior_oblique(index_rolo(1:nChoose));
+
+        [~, index_gremlin] = sort(neural_match_result_gremlin.dist_feature, 'ascend');
+        monkeyG_delta_cardinal  = neural_match_result_gremlin.delta_cardinal(index_gremlin(1:nChoose));
+        monkeyG_prior_cardinal  = neural_match_result_gremlin.prior_cardinal(index_gremlin(1:nChoose));
+        monkeyG_delta_oblique   = neural_match_result_gremlin.delta_oblique(index_gremlin(1:nChoose));
+        monkeyG_prior_oblique   = neural_match_result_gremlin.prior_oblique(index_gremlin(1:nChoose));
+
+end
+% figure;
+% subplot(2,1,1); histogram(neural_match_result_rolo.dist_feature,[0:1:40]);
+% subplot(2,1,2); histogram(neural_match_result_gremlin.dist_feature,[0:1:40]);
+
+%%%%%%
 
 %% Generate synthetic data with pre-set parameters
 
-doGenerate = 0;
+doGenerate = 1;
 %%% on macbook
 home_folder                     = '/Users/liushizhao/projectData_local/probinf_synthetic/syntheticData_interleaved/data_for_psykernel';
 %%%% on linux
@@ -32,39 +63,63 @@ if ~exist(home_folder)
     home_folder = '/home/shizhao/Documents/projectData/probinf_data/syntheticData_interleaved/data_for_psykernel';
 end
 
-
 if doGenerate
+    
+    runOptions.number_samples_per_evidence         = 6;
+    runOptions.stimulus_regime                     = 'dynamic-switching-signal-blocked';
+    
+    %%%%% four "sessions" for each set of parameter
+    %%%%% monkey R
+    nSession = numel(monkeyR_delta_cardinal);
+    for n = 1:nSession
 
+        runOptions.image_task_list                     = {'cardinal';'oblique'};
+    
+        runOptions.delta_list                          = [monkeyR_delta_cardinal(n), monkeyR_delta_oblique(n)];
+        runOptions.prior_task_list                     = {[monkeyR_prior_cardinal(n), 1 - monkeyR_prior_cardinal(n)];...
+                                                           [1 - monkeyR_prior_oblique(n), monkeyR_prior_oblique(n)]};
+        
+        runOptions.nRepeats                            = 5000;
+        
+        runOptions.stimulus_contrast_list              = {[0,6],[6,0]};
+        runOptions.nRepeats_list                       = ones(size(runOptions.stimulus_contrast_list)) * runOptions.nRepeats;
+        
+        runOptions.run_ori_energy           = true;
+        runOptions.n_ori_bin                = 12; 
+        runOptions.task_mode                = 'single';
+        %%%%%%%% 01/06/2025, change back to non-clamp prior
+        runOptions.clamp_prior              = false;
+        runOptions.save_folder              = fullfile(home_folder, sprintf('best_parameters_monkeyR_set_%d_contrast6',n));
+        runOptions.nSession                 = 5; %%% run 5 sessions per condition
+        
+        generate_data_model_psyKernel(runOptions);
+    end
 
+   %%%%% monkey G
+    nSession = numel(monkeyG_delta_cardinal);
+    for n = 1:nSession
 
-
-runOptions.number_samples_per_evidence         = 6;
-runOptions.stimulus_regime                     = 'dynamic-switching-signal-blocked';
-
-runOptions.delta_list                          = [monkeyR_delta_cardinal, monkeyR_delta_oblique, ...
-                                        monkeyG_delta_cardinal, monkeyG_delta_oblique];
-runOptions.prior_task_list                     = {[monkeyR_prior_cardinal, 1 - monkeyR_prior_cardinal];...
-                                       [1 - monkeyR_prior_oblique, monkeyR_prior_oblique];...
-                                       [monkeyG_prior_cardinal, 1 - monkeyG_prior_cardinal];...
-                                       [1 - monkeyG_prior_oblique, monkeyG_prior_oblique]};
-
-runOptions.image_task_list                     = {'cardinal';'oblique';'cardinal';'oblique'};
-
-
-runOptions.nRepeats                            = 5000;
-
-runOptions.stimulus_contrast_list              = {[0,6],[6,0]};
-runOptions.nRepeats_list                       = ones(size(runOptions.stimulus_contrast_list)) * runOptions.nRepeats;
-
-runOptions.run_ori_energy           = true;
-runOptions.n_ori_bin                = 12; 
-runOptions.task_mode                = 'single';
-%%%%%%%% 01/06/2025, change back to non-clamp prior
-runOptions.clamp_prior              = false;
-runOptions.save_folder              = fullfile(home_folder, 'best_parameters_contrast6');
-runOptions.nSession                 = 5; %%% run 5 sessions per condition
-
-generate_data_model_psyKernel(runOptions);
+        runOptions.image_task_list                     = {'cardinal';'oblique'};
+    
+        runOptions.delta_list                          = [monkeyG_delta_cardinal(n), monkeyG_delta_oblique(n)];
+        runOptions.prior_task_list                     = {[monkeyG_prior_cardinal(n), 1 - monkeyG_prior_cardinal(n)];...
+                                                           [1 - monkeyG_prior_oblique(n), monkeyG_prior_oblique(n)]};
+        
+        runOptions.nRepeats                            = 5000;
+        
+        runOptions.stimulus_contrast_list              = {[0,6],[6,0]};
+        runOptions.nRepeats_list                       = ones(size(runOptions.stimulus_contrast_list)) * runOptions.nRepeats;
+        
+        runOptions.run_ori_energy           = true;
+        runOptions.n_ori_bin                = 12; 
+        runOptions.task_mode                = 'single';
+        %%%%%%%% 01/06/2025, change back to non-clamp prior
+        runOptions.clamp_prior              = false;
+        runOptions.save_folder              = fullfile(home_folder, sprintf('best_parameters_monkeyG_set_%d_contrast6',n));
+        runOptions.nSession                 = 5; %%% run 5 sessions per condition
+        
+        generate_data_model_psyKernel(runOptions);
+    end
 
 end
 %% Compute psychometric kernel
@@ -120,6 +175,8 @@ end
 
 
 %% visualization shape of the kernel
+doThis = 0;
+if doThis
 subjectCode = 'Gr';
 kernel_type             = 'spatial';
 switch subjectCode
@@ -157,154 +214,157 @@ title(sprintf('Delta = %.2f,  Prior = %.1f \n r_{cardinal} = %.2f, r_{oblique} =
     plotOptions.delta, plotOptions.prior_task, r_cardinal, r_oblique));
 
 sgtitle(sprintf('Using best parameters for %s',subjectCode),'fontsize',20,'fontweight','bold')
+end
 %% directly compare to the empirical kernels
-psyKernel_Ro = load('/Users/liushizhao/projects_local/bpGratingEx/results/behavior/Rolo_psyKernel_table_final');
-psyKernel_Gr = load('/Users/liushizhao/projects_local/bpGratingEx/results/behavior/Gremlin_psyKernel_table');
-switch subjectCode
-    case 'Ro'
-        sessionName_list  = bpGlobal.rolo.session_list.switching;
-        idx_list                        = ismember({psyKernel_Ro.psyKernel_table(:).sessionName},sessionName_list);
-        
-        tmp = {psyKernel_Ro.psyKernel_table(idx_list).w_ori_cardinal};
-        w_ori_cardinal_empirical = cat(2,tmp{:});
-        tmp = {psyKernel_Ro.psyKernel_table(idx_list).w_ori_oblique};
-        w_ori_oblique_empirical = cat(2,tmp{:});
-    case 'Gr'
-        sessionName_list  = bpGlobal.gremlin.session_list.interleaved_real;
-        idx_list                        = ismember({psyKernel_Gr.psyKernel_table(:).sessionName},sessionName_list);
-        
-        tmp = {psyKernel_Gr.psyKernel_table(idx_list).w_ori_cardinal};
-        w_ori_cardinal_empirical = cat(2,tmp{:});
-        tmp = {psyKernel_Gr.psyKernel_table(idx_list).w_ori_oblique};
-        w_ori_oblique_empirical = cat(2,tmp{:});
-end
-
-
-
-nModel = size(w_ori_cardinal_model,2);
-nEmpirical = size(w_ori_cardinal_empirical,2);
-
-orientationsDEG = psyKernel_model(1).orientationsDEG;
-ideal_kernel_cardinal            = 0.4*sin(pi * (orientationsDEG - 45)/90)';
-ideal_kernel_oblique             = 0.4*sin(pi * (orientationsDEG - 90)/90)';
-
-r_model_empirical_cardinal_avg = corr(mean(w_ori_cardinal_model,2),mean(w_ori_cardinal_empirical,2));
-r_model_empirical_oblique_avg  = corr(mean(w_ori_oblique_model,2),mean(w_ori_oblique_empirical,2));
-
-r_model_ideal_cardinal_cardinal_avg = corr(mean(w_ori_cardinal_model,2),ideal_kernel_cardinal);
-r_model_ideal_cardinal_oblique_avg  = corr(mean(w_ori_cardinal_model,2), ideal_kernel_oblique);
-
-r_model_ideal_oblique_cardinal_avg = corr(mean(w_ori_oblique_model,2),ideal_kernel_cardinal);
-r_model_ideal_oblique_oblique_avg  = corr(mean(w_ori_oblique_model,2), ideal_kernel_oblique);
-
-
-r_empirical_ideal_cardinal_cardinal_avg = corr(mean(w_ori_cardinal_empirical,2),ideal_kernel_cardinal);
-r_empirical_ideal_cardinal_oblique_avg  = corr(mean(w_ori_cardinal_empirical,2), ideal_kernel_oblique);
-
-r_empirical_ideal_oblique_cardinal_avg = corr(mean(w_ori_oblique_empirical,2),ideal_kernel_cardinal);
-r_empirical_ideal_oblique_oblique_avg  = corr(mean(w_ori_oblique_empirical,2), ideal_kernel_oblique);
-
-r_model_empirical_cardinal_all = zeros(nModel,nEmpirical);
-r_model_empirical_oblique_all  = zeros(nModel,nEmpirical);
-
-r_model_ideal_cardinal_cardinal_all = zeros(nModel,1);
-r_model_ideal_cardinal_oblique_all  = zeros(nModel,1);
-r_model_ideal_oblique_cardinal_all = zeros(nModel,1);
-r_model_ideal_oblique_oblique_all  = zeros(nModel,1);
-
-r_empirical_ideal_cardinal_cardinal_all = zeros(nEmpirical,1);
-r_empirical_ideal_cardinal_oblique_all  = zeros(nEmpirical,1);
-r_empirical_ideal_oblique_cardinal_all = zeros(nEmpirical,1);
-r_empirical_ideal_oblique_oblique_all  = zeros(nEmpirical,1);
-
-for i = 1:nModel
-    r_model_ideal_cardinal_cardinal_all(i)  = corr(w_ori_cardinal_model(:,i), ideal_kernel_cardinal);
-    r_model_ideal_cardinal_oblique_all(i)   = corr(w_ori_cardinal_model(:,i), ideal_kernel_oblique);
-    r_model_ideal_oblique_cardinal_all(i)   = corr(w_ori_oblique_model(:,i), ideal_kernel_cardinal);
-    r_model_ideal_oblique_oblique_all(i)    = corr(w_ori_oblique_model(:,i), ideal_kernel_oblique);
-    for j = 1:nEmpirical
-        r_empirical_ideal_cardinal_cardinal_all(j) = corr(w_ori_cardinal_empirical(:,j), ideal_kernel_cardinal);
-        r_empirical_ideal_cardinal_oblique_all(j) = corr(w_ori_cardinal_empirical(:,j), ideal_kernel_oblique);
-        r_empirical_ideal_oblique_cardinal_all(j) = corr(w_ori_oblique_empirical(:,j), ideal_kernel_cardinal);
-        r_empirical_ideal_oblique_oblique_all(j) = corr(w_ori_oblique_empirical(:,j), ideal_kernel_oblique);
-
-        r_model_empirical_cardinal_all(i,j) = corr(w_ori_cardinal_model(:,i), w_ori_cardinal_empirical(:,j));
-        r_model_empirical_oblique_all(i,j) = corr(w_ori_oblique_model(:,i), w_ori_oblique_empirical(:,j));
+doThis = 0;
+if doThis
+    psyKernel_Ro = load('/Users/liushizhao/projects_local/bpGratingEx/results/behavior/Rolo_psyKernel_table_final');
+    psyKernel_Gr = load('/Users/liushizhao/projects_local/bpGratingEx/results/behavior/Gremlin_psyKernel_table');
+    switch subjectCode
+        case 'Ro'
+            sessionName_list  = bpGlobal.rolo.session_list.switching;
+            idx_list                        = ismember({psyKernel_Ro.psyKernel_table(:).sessionName},sessionName_list);
+            
+            tmp = {psyKernel_Ro.psyKernel_table(idx_list).w_ori_cardinal};
+            w_ori_cardinal_empirical = cat(2,tmp{:});
+            tmp = {psyKernel_Ro.psyKernel_table(idx_list).w_ori_oblique};
+            w_ori_oblique_empirical = cat(2,tmp{:});
+        case 'Gr'
+            sessionName_list  = bpGlobal.gremlin.session_list.interleaved_real;
+            idx_list                        = ismember({psyKernel_Gr.psyKernel_table(:).sessionName},sessionName_list);
+            
+            tmp = {psyKernel_Gr.psyKernel_table(idx_list).w_ori_cardinal};
+            w_ori_cardinal_empirical = cat(2,tmp{:});
+            tmp = {psyKernel_Gr.psyKernel_table(idx_list).w_ori_oblique};
+            w_ori_oblique_empirical = cat(2,tmp{:});
     end
-end
-
-
-edge = [-1:0.1:1];
-figure
-subplot(3,2,1)
-histogram(r_model_empirical_cardinal_all(:),edge, 'facecolor','red','FaceAlpha',0.5);
-hold on
-line([r_model_empirical_cardinal_avg, r_model_empirical_cardinal_avg], [0,25],'color','black','linewidth',3)
-title('corr-model-empirical, cardinal')
-set(gca,'fontsize',16)
-
-subplot(3,2,2)
-histogram(r_model_empirical_oblique_all(:),edge,'facecolor','blue','FaceAlpha',0.5);
-hold on
-line([r_model_empirical_oblique_avg, r_model_empirical_oblique_avg], [0,25],'color','black','linewidth',3)
-title('corr-model-empirical, oblique')
-set(gca,'fontsize',16)
-
-subplot(3,2,3)
-histogram(r_model_ideal_cardinal_cardinal_all(:),edge,'facecolor','red','FaceAlpha',0.5);
-hold on
-h(1) = line([r_model_ideal_cardinal_cardinal_avg, r_model_ideal_cardinal_cardinal_avg], [0,10],...
-    'color','black','linewidth',3);
-histogram(r_empirical_ideal_cardinal_cardinal_all(:),edge,'facecolor','red','FaceAlpha',0.2);
-hold on
-h(2) = line([r_empirical_ideal_cardinal_cardinal_avg, r_empirical_ideal_cardinal_cardinal_avg], [0,10],...
-    'color','black','linewidth',3,'linestyle','--');
-title('corr w. ideal, cardinal')
-set(gca,'fontsize',16)
-legend(h, 'Model', 'Empirical')
-
-
-subplot(3,2,4)
-histogram(r_model_ideal_oblique_oblique_all(:),edge,'facecolor','blue','FaceAlpha',0.5);
-hold on
-h(1) = line([r_model_ideal_oblique_oblique_avg, r_model_ideal_oblique_oblique_avg], ...
-    [0,10],'color','black','linewidth',3);
-histogram(r_empirical_ideal_oblique_oblique_all(:),edge,'facecolor','blue','FaceAlpha',0.2);
-hold on
-h(2) = line([r_empirical_ideal_oblique_oblique_avg, r_empirical_ideal_oblique_oblique_avg], [0,10],...
-    'color','black','linewidth',3,'linestyle','--');
-title('corr w. ideal, oblique')
-set(gca,'fontsize',16)
-legend(h, 'Model', 'Empirical')
-
-subplot(3,2,5)
-histogram(r_model_ideal_cardinal_oblique_all(:),edge,'facecolor','red','FaceAlpha',0.5);
-hold on
-h(1) = line([r_model_ideal_cardinal_oblique_avg, r_model_ideal_cardinal_oblique_avg], [0,10], ...
+    
+    
+    
+    nModel = size(w_ori_cardinal_model,2);
+    nEmpirical = size(w_ori_cardinal_empirical,2);
+    
+    orientationsDEG = psyKernel_model(1).orientationsDEG;
+    ideal_kernel_cardinal            = 0.4*sin(pi * (orientationsDEG - 45)/90)';
+    ideal_kernel_oblique             = 0.4*sin(pi * (orientationsDEG - 90)/90)';
+    
+    r_model_empirical_cardinal_avg = corr(mean(w_ori_cardinal_model,2),mean(w_ori_cardinal_empirical,2));
+    r_model_empirical_oblique_avg  = corr(mean(w_ori_oblique_model,2),mean(w_ori_oblique_empirical,2));
+    
+    r_model_ideal_cardinal_cardinal_avg = corr(mean(w_ori_cardinal_model,2),ideal_kernel_cardinal);
+    r_model_ideal_cardinal_oblique_avg  = corr(mean(w_ori_cardinal_model,2), ideal_kernel_oblique);
+    
+    r_model_ideal_oblique_cardinal_avg = corr(mean(w_ori_oblique_model,2),ideal_kernel_cardinal);
+    r_model_ideal_oblique_oblique_avg  = corr(mean(w_ori_oblique_model,2), ideal_kernel_oblique);
+    
+    
+    r_empirical_ideal_cardinal_cardinal_avg = corr(mean(w_ori_cardinal_empirical,2),ideal_kernel_cardinal);
+    r_empirical_ideal_cardinal_oblique_avg  = corr(mean(w_ori_cardinal_empirical,2), ideal_kernel_oblique);
+    
+    r_empirical_ideal_oblique_cardinal_avg = corr(mean(w_ori_oblique_empirical,2),ideal_kernel_cardinal);
+    r_empirical_ideal_oblique_oblique_avg  = corr(mean(w_ori_oblique_empirical,2), ideal_kernel_oblique);
+    
+    r_model_empirical_cardinal_all = zeros(nModel,nEmpirical);
+    r_model_empirical_oblique_all  = zeros(nModel,nEmpirical);
+    
+    r_model_ideal_cardinal_cardinal_all = zeros(nModel,1);
+    r_model_ideal_cardinal_oblique_all  = zeros(nModel,1);
+    r_model_ideal_oblique_cardinal_all = zeros(nModel,1);
+    r_model_ideal_oblique_oblique_all  = zeros(nModel,1);
+    
+    r_empirical_ideal_cardinal_cardinal_all = zeros(nEmpirical,1);
+    r_empirical_ideal_cardinal_oblique_all  = zeros(nEmpirical,1);
+    r_empirical_ideal_oblique_cardinal_all = zeros(nEmpirical,1);
+    r_empirical_ideal_oblique_oblique_all  = zeros(nEmpirical,1);
+    
+    for i = 1:nModel
+        r_model_ideal_cardinal_cardinal_all(i)  = corr(w_ori_cardinal_model(:,i), ideal_kernel_cardinal);
+        r_model_ideal_cardinal_oblique_all(i)   = corr(w_ori_cardinal_model(:,i), ideal_kernel_oblique);
+        r_model_ideal_oblique_cardinal_all(i)   = corr(w_ori_oblique_model(:,i), ideal_kernel_cardinal);
+        r_model_ideal_oblique_oblique_all(i)    = corr(w_ori_oblique_model(:,i), ideal_kernel_oblique);
+        for j = 1:nEmpirical
+            r_empirical_ideal_cardinal_cardinal_all(j) = corr(w_ori_cardinal_empirical(:,j), ideal_kernel_cardinal);
+            r_empirical_ideal_cardinal_oblique_all(j) = corr(w_ori_cardinal_empirical(:,j), ideal_kernel_oblique);
+            r_empirical_ideal_oblique_cardinal_all(j) = corr(w_ori_oblique_empirical(:,j), ideal_kernel_cardinal);
+            r_empirical_ideal_oblique_oblique_all(j) = corr(w_ori_oblique_empirical(:,j), ideal_kernel_oblique);
+    
+            r_model_empirical_cardinal_all(i,j) = corr(w_ori_cardinal_model(:,i), w_ori_cardinal_empirical(:,j));
+            r_model_empirical_oblique_all(i,j) = corr(w_ori_oblique_model(:,i), w_ori_oblique_empirical(:,j));
+        end
+    end
+    
+    
+    edge = [-1:0.1:1];
+    figure
+    subplot(3,2,1)
+    histogram(r_model_empirical_cardinal_all(:),edge, 'facecolor','red','FaceAlpha',0.5);
+    hold on
+    line([r_model_empirical_cardinal_avg, r_model_empirical_cardinal_avg], [0,25],'color','black','linewidth',3)
+    title('corr-model-empirical, cardinal')
+    set(gca,'fontsize',16)
+    
+    subplot(3,2,2)
+    histogram(r_model_empirical_oblique_all(:),edge,'facecolor','blue','FaceAlpha',0.5);
+    hold on
+    line([r_model_empirical_oblique_avg, r_model_empirical_oblique_avg], [0,25],'color','black','linewidth',3)
+    title('corr-model-empirical, oblique')
+    set(gca,'fontsize',16)
+    
+    subplot(3,2,3)
+    histogram(r_model_ideal_cardinal_cardinal_all(:),edge,'facecolor','red','FaceAlpha',0.5);
+    hold on
+    h(1) = line([r_model_ideal_cardinal_cardinal_avg, r_model_ideal_cardinal_cardinal_avg], [0,10],...
         'color','black','linewidth',3);
-histogram(r_empirical_ideal_cardinal_oblique_all(:),edge,'facecolor','red','FaceAlpha',0.2);
-hold on
-h(2) = line([r_empirical_ideal_cardinal_oblique_avg, r_empirical_ideal_cardinal_oblique_avg], [0,10], ...
-    'color','black','linewidth',3,'linestyle','--');
-title('corr w. ideal (cross), cardinal')
-set(gca,'fontsize',16)
-legend(h, 'Model', 'Empirical')
-
-subplot(3,2,6)
-histogram(r_model_ideal_oblique_cardinal_all(:),edge,'facecolor','blue','FaceAlpha',0.5);
-hold on
-h(1) = line([r_model_ideal_oblique_cardinal_avg, r_model_ideal_oblique_cardinal_avg], [0,10], ...
-    'color','black','linewidth',3);
-histogram(r_empirical_ideal_oblique_cardinal_all(:),edge,'facecolor','blue','FaceAlpha',0.2);
-hold on
-h(2) = line([r_empirical_ideal_oblique_cardinal_avg, r_empirical_ideal_oblique_cardinal_avg], [0,10], ...
-    'color','black','linewidth',3,'linestyle','--');
-title('corr w. ideal (cross), oblique')
-set(gca,'fontsize',16)
-legend(h, 'Model', 'Empirical')
-
-sgtitle(sprintf('Using best parameters for %s',subjectCode),'fontsize',20,'fontweight','bold')
-
+    histogram(r_empirical_ideal_cardinal_cardinal_all(:),edge,'facecolor','red','FaceAlpha',0.2);
+    hold on
+    h(2) = line([r_empirical_ideal_cardinal_cardinal_avg, r_empirical_ideal_cardinal_cardinal_avg], [0,10],...
+        'color','black','linewidth',3,'linestyle','--');
+    title('corr w. ideal, cardinal')
+    set(gca,'fontsize',16)
+    legend(h, 'Model', 'Empirical')
+    
+    
+    subplot(3,2,4)
+    histogram(r_model_ideal_oblique_oblique_all(:),edge,'facecolor','blue','FaceAlpha',0.5);
+    hold on
+    h(1) = line([r_model_ideal_oblique_oblique_avg, r_model_ideal_oblique_oblique_avg], ...
+        [0,10],'color','black','linewidth',3);
+    histogram(r_empirical_ideal_oblique_oblique_all(:),edge,'facecolor','blue','FaceAlpha',0.2);
+    hold on
+    h(2) = line([r_empirical_ideal_oblique_oblique_avg, r_empirical_ideal_oblique_oblique_avg], [0,10],...
+        'color','black','linewidth',3,'linestyle','--');
+    title('corr w. ideal, oblique')
+    set(gca,'fontsize',16)
+    legend(h, 'Model', 'Empirical')
+    
+    subplot(3,2,5)
+    histogram(r_model_ideal_cardinal_oblique_all(:),edge,'facecolor','red','FaceAlpha',0.5);
+    hold on
+    h(1) = line([r_model_ideal_cardinal_oblique_avg, r_model_ideal_cardinal_oblique_avg], [0,10], ...
+            'color','black','linewidth',3);
+    histogram(r_empirical_ideal_cardinal_oblique_all(:),edge,'facecolor','red','FaceAlpha',0.2);
+    hold on
+    h(2) = line([r_empirical_ideal_cardinal_oblique_avg, r_empirical_ideal_cardinal_oblique_avg], [0,10], ...
+        'color','black','linewidth',3,'linestyle','--');
+    title('corr w. ideal (cross), cardinal')
+    set(gca,'fontsize',16)
+    legend(h, 'Model', 'Empirical')
+    
+    subplot(3,2,6)
+    histogram(r_model_ideal_oblique_cardinal_all(:),edge,'facecolor','blue','FaceAlpha',0.5);
+    hold on
+    h(1) = line([r_model_ideal_oblique_cardinal_avg, r_model_ideal_oblique_cardinal_avg], [0,10], ...
+        'color','black','linewidth',3);
+    histogram(r_empirical_ideal_oblique_cardinal_all(:),edge,'facecolor','blue','FaceAlpha',0.2);
+    hold on
+    h(2) = line([r_empirical_ideal_oblique_cardinal_avg, r_empirical_ideal_oblique_cardinal_avg], [0,10], ...
+        'color','black','linewidth',3,'linestyle','--');
+    title('corr w. ideal (cross), oblique')
+    set(gca,'fontsize',16)
+    legend(h, 'Model', 'Empirical')
+    
+    sgtitle(sprintf('Using best parameters for %s',subjectCode),'fontsize',20,'fontweight','bold')
+end
 %% cross-prediction 
 
 doPred = 0;
@@ -395,65 +455,67 @@ if doPred
 end
 %% visualization for cross prediction
 
-
-subjectCode = 'Ro';
-dlist = dir(fullfile(save_folder_pred,sprintf('predCross_bestparams_monkey_%s_*',subjectCode)));
-nSession = numel(dlist);
-
-[fitCpredC_ll,fitOpredO_ll,...
- fitCpredO_ll,fitOpredC_ll,...
- fitCpredO_ll_flip,fitOpredC_ll_flip,...
- fitCpredO_ll_final,fitOpredC_ll_final] = deal(zeros(nSession,20));
-for n = 1:nSession
-    load(fullfile(save_folder_pred, dlist(n).name));
-
-   
-    fitCpredC_ll(n,:) = predCross_results.predResults.ll.fitCpredC';
-    fitOpredO_ll(n,:) = predCross_results.predResults.ll.fitOpredO';
-
-
-    fitCpredO_ll(n,:) = predCross_results.predResults.ll.fitCpredO';
-    fitOpredC_ll(n,:) = predCross_results.predResults.ll.fitOpredC';
-
-
-    fitCpredO_ll_flip(n,:) = predCross_results.predResults.ll.fitCpredO_flip';
-    fitOpredC_ll_flip(n,:) = predCross_results.predResults.ll.fitOpredC_flip';
-
-   
-    % decide whether to flip the sign for this whole session
-    if mean(fitCpredO_ll_flip(n,:)) > mean(fitCpredO_ll(n,:))
-        fitCpredO_ll_final(n,:) = fitCpredO_ll_flip(n,:);
-    else
-        fitCpredO_ll_final(n,:)  = fitCpredO_ll(n,:);
+doThis = 0;
+if doThis
+    subjectCode = 'Ro';
+    dlist = dir(fullfile(save_folder_pred,sprintf('predCross_bestparams_monkey_%s_*',subjectCode)));
+    nSession = numel(dlist);
+    
+    [fitCpredC_ll,fitOpredO_ll,...
+     fitCpredO_ll,fitOpredC_ll,...
+     fitCpredO_ll_flip,fitOpredC_ll_flip,...
+     fitCpredO_ll_final,fitOpredC_ll_final] = deal(zeros(nSession,20));
+    for n = 1:nSession
+        load(fullfile(save_folder_pred, dlist(n).name));
+    
+       
+        fitCpredC_ll(n,:) = predCross_results.predResults.ll.fitCpredC';
+        fitOpredO_ll(n,:) = predCross_results.predResults.ll.fitOpredO';
+    
+    
+        fitCpredO_ll(n,:) = predCross_results.predResults.ll.fitCpredO';
+        fitOpredC_ll(n,:) = predCross_results.predResults.ll.fitOpredC';
+    
+    
+        fitCpredO_ll_flip(n,:) = predCross_results.predResults.ll.fitCpredO_flip';
+        fitOpredC_ll_flip(n,:) = predCross_results.predResults.ll.fitOpredC_flip';
+    
+       
+        % decide whether to flip the sign for this whole session
+        if mean(fitCpredO_ll_flip(n,:)) > mean(fitCpredO_ll(n,:))
+            fitCpredO_ll_final(n,:) = fitCpredO_ll_flip(n,:);
+        else
+            fitCpredO_ll_final(n,:)  = fitCpredO_ll(n,:);
+        end
+    
+        if mean(fitOpredC_ll_flip(n,:)) > mean(fitOpredC_ll(n,:))
+            fitOpredC_ll_final(n,:) = fitOpredC_ll_flip(n,:);
+        else
+            fitOpredC_ll_final(n,:)  = fitOpredC_ll(n,:);
+        end
     end
-
-    if mean(fitOpredC_ll_flip(n,:)) > mean(fitOpredC_ll(n,:))
-        fitOpredC_ll_final(n,:) = fitOpredC_ll_flip(n,:);
-    else
-        fitOpredC_ll_final(n,:)  = fitOpredC_ll(n,:);
-    end
+    figure
+    subplot(1,2,1)
+    fig.plot_scatter_errorbar(fitCpredC_ll,fitOpredC_ll_final,...
+                bpGlobal.color_list.color_cardinal,bpGlobal.color_list.color_cardinal_light);
+    
+    [~,p,~,stats] = ttest(mean(fitCpredC_ll,2),mean(fitOpredC_ll_final,2));
+    title(sprintf(' $t(%d) = %.2f^{%s}$', stats.df,stats.tstat,fig.p2star(p)),...
+     'Interpreter','latex','Color',bpGlobal.color_list.color_cardinal,'fontsize',14);
+    line([-1.1,-0.4],[-1.1,-0.4],'linewidth',3,'color','black','linestyle','--')
+    xlabel('LL (within-task)'); ylabel('LL (cross-task)')
+    set(gca,'FontSize',18)
+    
+    subplot(1,2,2)
+    fig.plot_scatter_errorbar(fitOpredO_ll,fitCpredO_ll_final,...
+                bpGlobal.color_list.color_oblique,bpGlobal.color_list.color_oblique_light);
+    
+    [~,p,~,stats] = ttest(mean(fitOpredO_ll,2),mean(fitCpredO_ll_final,2));
+    title(sprintf(' $t(%d) = %.2f^{%s}$', stats.df,stats.tstat,fig.p2star(p)),...
+     'Interpreter','latex','Color',bpGlobal.color_list.color_oblique,'fontsize',14);
+    line([-1.1,-0.4],[-1.1,-0.4],'linewidth',3,'color','black','linestyle','--')
+    xlabel('LL (within-task)'); ylabel('LL (cross-task)')
+    set(gca,'FontSize',18)
+    
+    sgtitle(sprintf('Using best parameters for %s',subjectCode),'fontsize',20,'fontweight','bold');
 end
-figure
-subplot(1,2,1)
-fig.plot_scatter_errorbar(fitCpredC_ll,fitOpredC_ll_final,...
-            bpGlobal.color_list.color_cardinal,bpGlobal.color_list.color_cardinal_light);
-
-[~,p,~,stats] = ttest(mean(fitCpredC_ll,2),mean(fitOpredC_ll_final,2));
-title(sprintf(' $t(%d) = %.2f^{%s}$', stats.df,stats.tstat,fig.p2star(p)),...
- 'Interpreter','latex','Color',bpGlobal.color_list.color_cardinal,'fontsize',14);
-line([-1.1,-0.4],[-1.1,-0.4],'linewidth',3,'color','black','linestyle','--')
-xlabel('LL (within-task)'); ylabel('LL (cross-task)')
-set(gca,'FontSize',18)
-
-subplot(1,2,2)
-fig.plot_scatter_errorbar(fitOpredO_ll,fitCpredO_ll_final,...
-            bpGlobal.color_list.color_oblique,bpGlobal.color_list.color_oblique_light);
-
-[~,p,~,stats] = ttest(mean(fitOpredO_ll,2),mean(fitCpredO_ll_final,2));
-title(sprintf(' $t(%d) = %.2f^{%s}$', stats.df,stats.tstat,fig.p2star(p)),...
- 'Interpreter','latex','Color',bpGlobal.color_list.color_oblique,'fontsize',14);
-line([-1.1,-0.4],[-1.1,-0.4],'linewidth',3,'color','black','linestyle','--')
-xlabel('LL (within-task)'); ylabel('LL (cross-task)')
-set(gca,'FontSize',18)
-
-sgtitle(sprintf('Using best parameters for %s',subjectCode),'fontsize',20,'fontweight','bold')

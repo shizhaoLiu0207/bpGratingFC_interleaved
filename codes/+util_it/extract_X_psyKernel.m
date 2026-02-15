@@ -31,7 +31,11 @@ switch energy_use
         
         X_all_trials_unnorm =  {data_use(:).energy_proj};
         %%%% downsampling orientation
-        phi_x = data_use(1).P.G.phi_x / pi * 180;
+        try
+            phi_x = data_use(1).P.G.phi_x / pi * 180;
+        catch
+            phi_x  = data_use(1).P.phi_x;
+        end
         orientationsDEG   = [0:15:165];
         idx = zeros(numel(orientationsDEG, 1));
         for i = 1:numel(orientationsDEG)
@@ -43,7 +47,9 @@ switch energy_use
         end
 
         X_all_trials = cat(1,X_all_trials_unnorm{:});
-        X_all_trials = X_all_trials(:,:,n_zero_signal+1:end);
+        if ndims(X_all_trials) == 3
+            X_all_trials = X_all_trials(:,:,n_zero_signal+1:end);
+        end
         X_all_trials_norm = (X_all_trials - muZero) / stdZero;
 
         contrast_all_trials = cell2mat({data_use(:).contrast_trials});

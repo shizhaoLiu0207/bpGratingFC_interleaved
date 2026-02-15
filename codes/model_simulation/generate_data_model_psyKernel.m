@@ -89,7 +89,7 @@ for i  = 1:nCond_single
 
         end
         save(fullfile(save_folder, save_name),'data_use');
-        save(fullfile(save_folder, save_name_raw),'dat');
+       % save(fullfile(save_folder, save_name_raw),'dat');
         clear data_use
     end
 end
