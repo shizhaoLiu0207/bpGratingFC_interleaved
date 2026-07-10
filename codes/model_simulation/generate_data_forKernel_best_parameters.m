@@ -184,5 +184,3 @@ if doThis
 end
 
 
-%%%%% four "sessions" for each set of parameter
-%%%%% monkey R

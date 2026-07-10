@@ -1,0 +1,121 @@
+clear all
+clc
+close all
+%%% This script checks stimulus tuning and choice tuning properties of
+%%% neurons in the learning sessions
+%%
+global bpGlobal ftsize
+bpGratingFCGlobal;
+session_list_monkeyR = bpGlobal.rolo.session_list.switching;
+session_list_monkeyG = bpGlobal.gremlin.session_list.interleaved;
+
+
+versionName     = 'all_trials_coef1_hVis2_FR1';
+%% compute all tuning properties - main task session
+
+doThis = 0;
+if doThis
+    session_list_all = [session_list_monkeyR;session_list_monkeyG];
+    
+    nSession = numel(session_list_all);
+
+    results_fprime_choice_all = struct([]);
+    property_list  =  {'fprime';'dprime';'fanoFactor';'firingRate';'tuningIndex'};
+    for n = 1:nSession
+        fprintf('Running session %d/%d \n', n, nSession);
+        sessionStr = session_list_all{n};
+        data_out  = get_neural_data(sessionStr, versionName);
+    
+        results_fprime_choice = neu.get_stimulus_choice_tuning(data_out, sessionStr, property_list);
+        results_fprime_choice_all = [results_fprime_choice_all,results_fprime_choice];
+    
+    
+    end
+    save('../../results/neural/stimulus_dprime_twoanimals_interleaved','results_fprime_choice_all');
+else
+    load('../../results/neural/stimulus_dprime_twoanimals_interleaved');
+end
+%% compute all tuning properties - passive viewing session
+doThis  = 0;
+if doThis
+    session_list_all = [session_list_monkeyR;session_list_monkeyG];
+    
+    nSession = numel(session_list_all);
+
+    results_fprime_choice_passive_all = struct([]);
+    property_list  =  {'dprime';'tuningIndex';'firingRate'};
+    for n = 1:nSession
+        fprintf('Running session %d/%d \n', n, nSession);
+        sessionStr = session_list_all{n};
+        data_out  = get_neural_data_passiveViewing(sessionStr, versionName);
+        if isempty(data_out)
+            continue
+        end
+        results_fprime_choice_passive = neu.get_stimulus_choice_tuning_passiveViewing(data_out, sessionStr, property_list);
+        results_fprime_choice_passive_all = [results_fprime_choice_passive_all,results_fprime_choice_passive];
+    
+    
+    end
+    save('../../results/neural/stimulus_dprime_twoanimals_interleaved_passive','results_fprime_choice_passive_all');
+else
+
+    load('../../results/neural/stimulus_dprime_twoanimals_interleaved_passive');
+end
+%% reorganize everything
+session_list = [session_list_monkeyR;session_list_monkeyG];
+nSession = numel(session_list);
+fisher_norm_results = struct();
+for n = 1:nSession
+
+        %i = 1;
+        sessionStr  = session_list{n};
+        subjectCode = sessionStr(1:2);
+        dateStr     = sessionStr(3:end);
+    
+       
+        [fisher_norm_cardinal, fisher_norm_oblique] = get_dprime_data(results_fprime_choice_all, sessionStr);
+        [fisher_norm_cardinal_passive, fisher_norm_oblique_passive] = get_dprime_data(results_fprime_choice_passive_all, sessionStr);
+       
+        
+        fisher_norm_results(n).subjectCode = subjectCode;
+        fisher_norm_results(n).sessionStr  = sessionStr;
+
+        fisher_norm_results(n).fisher_norm_cardinal     = fisher_norm_cardinal;
+        fisher_norm_results(n).fisher_norm_oblique      = fisher_norm_oblique;
+        fisher_norm_results(n).fisher_norm_cardinal_passive = fisher_norm_cardinal_passive;
+        fisher_norm_results(n).fisher_norm_oblique_passive = fisher_norm_oblique_passive;
+
+end
+%% visualization
+subjectCode = 'Ro';
+
+idx  = strcmp({fisher_norm_results(:).subjectCode},subjectCode);
+
+x_passive = fisher_norm_results
+
+%%
+function [fisher_norm_cardinal_avg, fisher_norm_oblique_avg] = get_dprime_data(data_all, sessionStr)
+
+idx_base =  strcmp({data_all(:).sessionStr},sessionStr) & ...
+                   cell2mat({data_all(:).cohr_level}) > 0 & ...
+                   cell2mat({data_all(:).cohr_level}) <= 20;
+
+idx_cardinal    = idx_base & strcmp({data_all(:).task},'cardinal');
+idx_oblique     = idx_base & strcmp({data_all(:).task},'oblique');
+
+dprime_stimulus_cardinal = {data_all(idx_cardinal).dprime_stimulus};
+cohr_cardinal            = [data_all(idx_cardinal).cohr_level];
+fisher_norm_cardinal     = arrayfun(@(k)dprime_stimulus_cardinal{k} .^ 2 / cohr_cardinal(k), [1:numel(cohr_cardinal)], ...
+        'UniformOutput',false);
+fisher_norm_cardinal_avg = mean(cat(2,fisher_norm_cardinal{:}),2,'omitnan');
+
+dprime_stimulus_oblique = {data_all(idx_oblique).dprime_stimulus};
+cohr_oblique            = [data_all(idx_oblique).cohr_level];
+fisher_norm_oblique     = arrayfun(@(k)dprime_stimulus_oblique{k} .^ 2 / cohr_oblique(k), [1:numel(cohr_oblique)], ...
+        'UniformOutput',false);
+
+fisher_norm_oblique_avg = mean(cat(2,fisher_norm_oblique{:}),2,'omitnan');
+
+ 
+       
+end

@@ -76,21 +76,22 @@ for n = 1:nSession
     diff_redundancy_oblique(n)      = results_all_simulation(n).diff_delta_percent_oblique_median;
 end
 
-diff_cardinal_oblique_fisher = diff_fisher_cardinal - diff_fisher_oblique;
-diff_cardinal_oblique_redundancy = diff_redundancy_cardinal - diff_redundancy_oblique;
+%diff_cardinal_oblique_fisher = diff_fisher_cardinal - diff_fisher_oblique;
+assymmetry_redundancy = diff_redundancy_cardinal - diff_redundancy_oblique;
 
-diff_cardinal_oblique_delta = cardinal_delta - oblique_delta;
-diff_cardinal_oblique_prior = cardinal_prior - oblique_prior;
+assymmetry_delta = cardinal_delta - oblique_delta;
+assymmetry_prior = cardinal_prior - oblique_prior;
 
 %%
 if plot_moreRepeats
     params = [cardinal_delta, cardinal_prior, oblique_delta, oblique_prior];
     [unique_params, ~, group_id] = unique(params, 'rows');
     
-    diff_redundancy_cardinal_reorganize = nan(size(unique_params,1), 5);
-    diff_redundancy_oblique_reorganize = nan(size(unique_params,1), 5);
+    diff_redundancy_cardinal_reorganize     = nan(size(unique_params,1), 5);
+    diff_redundancy_oblique_reorganize      = nan(size(unique_params,1), 5);
 
-   
+    assymmetry_redundancy_reorganize        = nan(size(unique_params,1), 5);
+    
     for i = 1:size(unique_params,1)
         idx = find(group_id == i);
         diff_redundancy_cardinal_reorganize(i, :) = diff_redundancy_cardinal(idx);
@@ -100,11 +101,23 @@ if plot_moreRepeats
         idx = find(group_id == i);
         diff_redundancy_oblique_reorganize(i, :) = diff_redundancy_oblique(idx);
     end
+  
+    for i = 1:size(unique_params,1)
+        idx = find(group_id == i);
+        assymmetry_redundancy_reorganize(i, :) = assymmetry_redundancy(idx);
+    end
+
 
     cardinal_delta_reorganize   = unique_params(:,1);
     cardinal_prior_reorganize   = unique_params(:,2);
     oblique_delta_reorganize    = unique_params(:,3);
     oblique_prior_reorganize    = unique_params(:,4);
+
+    assymmetry_redundancy = diff_redundancy_cardinal_reorganize - diff_redundancy_oblique_reorganize;
+    
+    assymmetry_delta = cardinal_delta_reorganize - oblique_delta_reorganize;
+    assymmetry_prior = cardinal_prior_reorganize - oblique_prior_reorganize;
+
 end
 %% 2. load empirical data
 filter_name = 'all_trials_coef1_hVis2_FR1_interleaved_sizeControl';
@@ -133,6 +146,9 @@ diff_cardinal_oblique_redundancy_empirical = diff_redundancy_cardinal_empirical 
 if plot_moreRepeats
         dist_feature = sqrt((mean(diff_redundancy_cardinal_reorganize, 2) - mean(diff_redundancy_cardinal_empirical)).^ 2 + ...
                 (mean(diff_redundancy_oblique_reorganize, 2) - mean(diff_redundancy_oblique_empirical)).^ 2 );
+        
+        dist_feature_cardinal   = abs(mean(diff_redundancy_cardinal_reorganize, 2) - mean(diff_redundancy_cardinal_empirical));
+        dist_feature_oblique    = abs(mean(diff_redundancy_oblique_reorganize, 2) - mean(diff_redundancy_oblique_empirical));
 
         cardinal_delta_plot = cardinal_delta_reorganize;
         cardinal_prior_plot = cardinal_prior_reorganize;
@@ -141,28 +157,44 @@ if plot_moreRepeats
 else
         dist_feature = sqrt((diff_redundancy_cardinal - mean(diff_redundancy_cardinal_empirical)).^ 2 + ...
                     (diff_redundancy_oblique - mean(diff_redundancy_oblique_empirical)).^ 2 );
+
         cardinal_delta_plot = cardinal_delta;
         cardinal_prior_plot = cardinal_prior;
         oblique_delta_plot = oblique_delta;
         oblique_prior_plot = oblique_prior;
 
 end
-rgb_colors = vals2colormap(dist_feature);
 
 
+
+plot_option = 'oblique'; % 'combined', 'cardinal', 'oblique'
+switch plot_option
+    case 'combined'
+        dist_plot = dist_feature;
+        mapName = 'turbo';
+    case 'cardinal'
+        dist_plot = dist_feature_cardinal;
+        mapName = 'hot';
+    case 'oblique'
+        dist_plot = dist_feature_oblique;
+        mapName = 'cool';
+end
+rgb_colors = fig_it.vals2colormap(dist_plot, mapName);
 figure
+plotOptions.mapName = mapName;
+plotOptions.max_min = 'min';
 set(gcf, 'Units','inches','Position',[0,0,12,5])
 save_folder = '../../figures/figures_final/model_fisher_largescale';
-save_name = fullfile(save_folder ,sprintf('scatter_params_match_neural_monkey_%s.svg',subject_code));
+save_name = fullfile(save_folder ,sprintf('scatter_params_match_neural_monkey_%s_%s.svg',subject_code, plot_option));
 
 ax_1 = subplot(1,4,1);
 set(ax_1,'position',get(ax_1,'position') + [-0.065, 0.1, 0.02, -0.15])
-
 p1 = cardinal_delta_plot;
 p2 = cardinal_prior_plot;
-p1_name = '\color{red}\delta_{cardinal}';
-p2_name = '\color{red}prior_{cardinal}';
-make_scatter_match(p1, p2, p1_name, p2_name, dist_feature, rgb_colors)
+plotOptions.p1_name = '\color{red}\delta_{cardinal}';
+plotOptions.p2_name = '\color{red}prior_{cardinal}';
+
+fig_it.make_scatter_match(p1, p2, dist_plot, rgb_colors, plotOptions);
 xlim([0.03, 0.09]); ylim([0.4,1.1]);
 
 
@@ -170,18 +202,18 @@ ax_2 = subplot(1,4,2);
 set(ax_2,'position',get(ax_2,'position') + [-0.025, 0.1, 0.02, -0.15])
 p1 = oblique_delta_plot;
 p2 = oblique_prior_plot;
-p1_name = '\color{blue}\delta_{oblique}';
-p2_name = '\color{blue}prior_{oblique}';
-make_scatter_match(p1, p2, p1_name, p2_name, dist_feature, rgb_colors)
+plotOptions.p1_name = '\color{blue}\delta_{oblique}';
+plotOptions.p2_name = '\color{blue}prior_{oblique}';
+fig_it.make_scatter_match(p1, p2, dist_plot, rgb_colors, plotOptions);
 xlim([0.03, 0.09]); ylim([0.4,1.1]);
 
 ax_3 = subplot(1,4,3);
 set(ax_3, 'position',get(ax_3, 'position')+[0.025, 0.1, 0.02, -0.15])
 p1 = cardinal_delta_plot;
 p2 = oblique_delta_plot;
-p1_name = '\color{red}\delta_{cardinal}';
-p2_name = '\color{blue}\delta_{oblique}';
-make_scatter_match(p1, p2, p1_name, p2_name, dist_feature, rgb_colors)
+plotOptions.p1_name = '\color{red}\delta_{cardinal}';
+plotOptions.p2_name = '\color{blue}\delta_{oblique}';
+fig_it.make_scatter_match(p1, p2, dist_plot, rgb_colors, plotOptions);
 xlim([0.03, 0.09]); ylim([0.03, 0.09]);
 
 
@@ -189,9 +221,9 @@ ax_4 = subplot(1,4,4);
 set(ax_4, 'position',get(ax_4, 'position')+[0.07, 0.1, 0.02, -0.15])
 p1 = cardinal_prior_plot;
 p2 = oblique_prior_plot;
-p1_name = '\color{red}prior_{cardinal}';
-p2_name = '\color{blue}prior_{oblique}';
-make_scatter_match(p1, p2, p1_name, p2_name, dist_feature, rgb_colors)
+plotOptions.p1_name = '\color{red}prior_{cardinal}';
+plotOptions.p2_name = '\color{blue}prior_{oblique}';
+fig_it.make_scatter_match(p1, p2, dist_plot, rgb_colors, plotOptions);
 xlim([0.4, 1.1]); ylim([0.4,1.1]);
 
 switch subject_code
@@ -201,6 +233,31 @@ switch subject_code
         sgtitle('Monkey G','fontsize',25,'fontweight','bold')
 end
 
+print(save_name,'-dsvg');
+
+%% plot asymmetry between two tasks as a function of assymetry 
+p1 = assymmetry_delta;
+p2 = assymmetry_prior;
+
+y_plot = mean(assymmetry_redundancy_reorganize, 2);
+
+plotOptions.max_min = 'max_abs';
+plotOptions.p1_name = '\color{red}\delta_{cardinal}  \color{black}- \color{blue}\delta_{oblique}';
+plotOptions.p2_name = '\color{red}prior_{cardinal}  \color{black}- \color{blue}prior_{oblique}';
+plotOptions.mapName =   'turbo';  
+rgb_colors = fig_it.vals2colormap(y_plot, plotOptions.mapName);
+plotOptions.doContour = true;
+plotOptions.empirical_value = mean(diff_cardinal_oblique_redundancy_empirical);
+
+
+save_name = fullfile(save_folder ,sprintf('scatter_params_match_neural_assymetry_monkey_%s.svg',subject_code));
+
+figure;
+set(gcf, 'unit','inches','position',[0,0,6,5])
+fig_it.make_scatter_match(p1, p2, y_plot, rgb_colors, plotOptions);
+title('Asymmetry in $I_\textrm{redundancy}$ (\%)','Interpreter','latex')
+
+xlim([-0.05, 0.05]); ylim([-0.6,0.6]);
 print(save_name,'-dsvg');
 %% Also save the match result as a struct for future use
 if plot_moreRepeats
@@ -222,70 +279,10 @@ if plot_moreRepeats
 end
 %%
 
-function make_scatter_match(p1, p2, p1_name, p2_name, dist_feature, rgb_colors)
-
-% cardinal_delta_list = unique(cardinal_delta);
-% cardinal_prior_list = unique(cardinal_prior);
-p1_list = unique(p1);
-p2_list = unique(p2);
-for i = 1:numel(p1_list)
-    for j = 1:numel(p2_list)
-        idx = p1 == p1_list(i) & p2 == p2_list(j);
-        dist_feature_subset = dist_feature(idx);
-        rgb_colors_subset = rgb_colors(idx,:);
-        [~, idx_best] = min(dist_feature_subset);
-        plot(p1_list(i), p2_list(j), '.','Markersize',60,'Color',rgb_colors_subset(idx_best,:)); hold on        
-    end
-end
+%function make_scatter_match(p1, p2, p1_name, p2_name, dist_feature, rgb_colors, mapName)
 
 
-clim([min(dist_feature), max(dist_feature)]);
-colormap turbo
- colorbar('location','northoutside')
-title('MSE of Diff. (%)')
-set(gca, 'fontsize', 16);
 
-xlabel(p1_name); ylabel(p2_name); 
-
-box off
-
-end
-
-function rgb_colors = vals2colormap(vals, mapName, crange)
-% Maps a vector of values to RGB colors from a specified colormap.
-%
-% Inputs:
-% vals     = A vector of numeric values.
-% mapName  = A string for the colormap name (e.g., 'jet', 'parula').
-% crange   = [min_val, max_val] for color mapping (defaults to min/max of vals).
-%
-% Output:
-% rgb_colors = Nx3 matrix of RGB colors [0, 1 range].
-if nargin < 2
-    mapName = 'turbo';
-end
-
-if nargin < 3
-    crange = [min(vals), max(vals)]; % Default to full range of data
-end
-
-% Get the colormap matrix (default length is 256 colors)
-cmap = feval(mapName, 256);
-n_colors = size(cmap, 1);
-
-% Scale the values to the colormap index range [1, n_colors]
-% Handle potential edge cases for min/max values
-scaled_vals = (vals - crange(1)) / (crange(2) - crange(1));
-indices = round(scaled_vals * (n_colors - 1) + 1);
-
-% Clamp indices to ensure they are within valid range [1, n_colors]
-indices(indices < 1) = 1;
-indices(indices > n_colors) = n_colors;
-
-% Get the RGB colors using the calculated indices
-rgb_colors = cmap(indices, :);
-
-end
 %% visualize scatter plot
 
 

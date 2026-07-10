@@ -5,8 +5,6 @@ elseif p < 0.01
     sig_str = '**';
 elseif p < 0.05
     sig_str = '*';
-elseif p < 0.1
-    sig_str = '†';
 else
     sig_str = 'n.s.';
 end

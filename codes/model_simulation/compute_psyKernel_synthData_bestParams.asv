@@ -1,0 +1,287 @@
+clear all
+clc
+close all
+%%%% By Shizhao Liu 03/07/2026
+%%%%% Compute psychometric kernels of synthetic data generated with the
+%%%%% best few sets of parameters.
+%%%%% Also runs cross-prediction
+global bpGlobal
+bpGratingFCGlobal()
+%% Compute psychometric kernel
+dataFolder_home = '/Users/liushizhao/projectData_local/probinf_synthetic/syntheticData_interleaved/data_for_psyKernel';
+doKernel = 0;
+if doKernel
+    save_folder = '../../results/model_behavior/psyKernel_bestParams';
+    nSet = 10; % 10 sets of parameters for each animal
+    
+    animal_list = {'monkeyR';'monkeyG'};
+    energy_use = 'proj';
+    for i = 1:numel(animal_list)
+        for j = 1:nSet
+            
+            dataFolder = fullfile(dataFolder_home,sprintf('best_parameters_%s_set_%d_contrast6', animal_list{i},j));
+    
+            data_list  = dir(fullfile(dataFolder,'*.mat'));
+            
+            psyKernel_model = struct();
+            save_name       = fullfile(save_folder,sprintf('psyKernels_best_parameters_%s_set_%d', animal_list{i},j));
+            for n = 1:numel(data_list)
+                fprintf('Running animal %d, para set %d, session %d \n', i,j,n)
+                % load
+                load(fullfile(dataFolder, data_list(n).name));
+    
+                tokens = regexp(data_list(n).name, 'Single_image_task_([a-zA-Z0-9]+)_delta_([-]?[\d_]+)_prior_([-]?[\d_]+)_session_([\d_]+)', 'tokens');
+                % Convert extracted strings back to numbers
+                extracted_params        = tokens{1}; % Extract matched tokens
+               
+                task_str                = extracted_params{1};
+                delta_str               = strrep(extracted_params{2}, '_', '.');
+                prior_str               = strrep(extracted_params{3}, '_', '.');
+                session_num_str         = extracted_params{4};
+    
+                % compute
+                [map_params,orientationsDEG] = util_it.compute_psyKernel_model(data_use, energy_use);
+                % save
+                psyKernel_model(n).subjectCode      = animal_list{i};
+                psyKernel_model(n).task             = task_str;
+                psyKernel_model(n).delta            = str2double(delta_str);
+                psyKernel_model(n).prior            = str2double(prior_str);    
+                psyKernel_model(n).repeat           = str2double(session_num_str);
+                psyKernel_model(n).w_ori            = map_params.w_ori;
+                psyKernel_model(n).w_time           = map_params.w_time;
+                psyKernel_model(n).orientationsDEG  = orientationsDEG;
+            
+                psyKernel_model(n).energy_use       = energy_use;
+            end
+    
+        save(save_name, 'psyKernel_model');
+           
+            
+    
+        end
+    end
+end
+%% compute psykernel of synthetic data generated with symmetric parameters
+dataFolder_home = '/Volumes/T7/dataTransfer/BayesianModel_interleaved_simulation/data_for_psyKernel';
+doKernel = 0;
+if doKernel
+    save_folder = '../../results/model_behavior/psyKernel_baselineParams';
+    mkdir(save_folder)
+    nSet = 30; % 30 sets symmetric parameters parameters 
+    
+   
+    energy_use = 'proj';
+   
+    for j = 1:nSet
+        
+        dataFolder = fullfile(dataFolder_home,sprintf('baseline_parameters_set_%d_contrast6',j));
+
+        data_list  = dir(fullfile(dataFolder,'*.mat'));
+        
+        psyKernel_model = struct();
+        save_name       = fullfile(save_folder,sprintf('psyKernels_baseline_parameters_set_%d',j));
+        for n = 1:numel(data_list)
+            fprintf('Running, para set %d, session %d \n', j,n)
+            % load
+            load(fullfile(dataFolder, data_list(n).name));
+
+            tokens = regexp(data_list(n).name, 'Single_image_task_([a-zA-Z0-9]+)_delta_([-]?[\d_]+)_prior_([-]?[\d_]+)_session_([\d_]+)', 'tokens');
+            % Convert extracted strings back to numbers
+            extracted_params        = tokens{1}; % Extract matched tokens
+           
+            task_str                = extracted_params{1};
+            delta_str               = strrep(extracted_params{2}, '_', '.');
+            prior_str               = strrep(extracted_params{3}, '_', '.');
+            session_num_str         = extracted_params{4};
+
+            % compute
+            [map_params,orientationsDEG] = util_it.compute_psyKernel_model(data_use, energy_use);
+            % save
+       
+            psyKernel_model(n).task             = task_str;
+            psyKernel_model(n).delta            = str2double(delta_str);
+            psyKernel_model(n).prior            = str2double(prior_str);    
+            psyKernel_model(n).repeat           = str2double(session_num_str);
+            psyKernel_model(n).w_ori            = map_params.w_ori;
+            psyKernel_model(n).w_time           = map_params.w_time;
+            psyKernel_model(n).orientationsDEG  = orientationsDEG;
+        
+            psyKernel_model(n).energy_use       = energy_use;
+        end
+
+    save(save_name, 'psyKernel_model');
+       
+        
+
+    end
+   
+end
+
+%% Runs cross prediction
+doPred = 0;
+if doPred
+    monkeyR_set_list = [7,8];
+    monkeyG_set_list = [4,8];
+  
+    nFold = 20;
+    nCombination_Max = 25;
+    dataFolder_home = '/Users/liushizhao/projectData_local/probinf_synthetic/syntheticData_interleaved/data_for_psyKernel';
+    animal_list = {'monkeyR';'monkeyG'};
+    
+    for i = 1:numel(animal_list)
+        subjectCode = animal_list{i};
+        switch subjectCode
+            case 'monkeyR'
+                set_list = monkeyR_set_list;
+            case 'monkeyG'
+                set_list = monkeyG_set_list;
+        end
+        nSet = numel(set_list);
+        for j = 1:nSet
+            i_set = set_list(j);
+            data_folder = fullfile(dataFolder_home,sprintf('best_parameters_%s_set_%d_contrast6', subjectCode,i_set));
+            save_folder_pred = fullfile('../../results/model_behavior/predCross', sprintf('bestparams_%s_set_%d',subjectCode,i_set));
+            if ~isfolder(save_folder_pred)
+                mkdir(save_folder_pred)
+            end
+            data_list  = dir(fullfile(data_folder,'*.mat'));
+
+            for n = 1:numel(data_list)
+          
+                tokens = regexp(data_list(n).name, '([a-zA-Z0-9]+)_image_task_([a-zA-Z0-9]+)_delta_([-]?[\d_]+)_prior_([\d_]+)_session_([\d_]+)', 'tokens');
+                % Convert extracted strings back to numbers
+                extracted_params        = tokens{1}; % Extract matched tokens
+                task_mode_str           = extracted_params{1};
+                imagetask_str           = extracted_params{2};
+                delta_str               = strrep(extracted_params{3}, '_', '.');
+                prior_str               = strrep(extracted_params{4}, '_', '.');
+                session_num_str         = extracted_params{5};
+            
+            
+            
+                data_info(n).filename           = data_list(n).name;
+                data_info(n).mode               = task_mode_str;
+                data_info(n).image_task         = imagetask_str;
+                data_info(n).delta              = str2double(delta_str);
+                data_info(n).prior              = str2double(prior_str);
+                data_info(n).sessionNum         = str2double(session_num_str);
+            end
+
+            idx_cardinal = find(strcmp({data_info(:).image_task},'cardinal'));
+            idx_oblique  = find(strcmp({data_info(:).image_task},'oblique'));
+          
+    
+            [A, B] = ndgrid(idx_cardinal, idx_oblique);
+            allComb = [A(:) B(:)];
+    
+            nCombination = min([size(allComb,1), nCombination_Max]);
+            for k = 1:nCombination
+                save_name           = fullfile(save_folder_pred,sprintf('predCross_bestparams_monkey_%s_combination_%d.mat',...
+                    subjectCode, k));
+                if isfile(save_name)
+                    continue
+                end
+                fprintf('Running monkey %d, set %d, combination %d/%d \n',i,j,k, nCombination) ;
+                file_name_cardinal  = fullfile(data_folder, data_info(allComb(k,1)).filename);
+                file_name_oblique   = fullfile(data_folder, data_info(allComb(k,2)).filename);
+    
+                dat_cardinal        = load(file_name_cardinal);
+                dat_oblique         = load(file_name_oblique);
+                predResults         = run_cross_predict_model(dat_cardinal,dat_oblique, nFold);
+    
+                predCross_results   = struct();
+
+                predCross_results.mode_cardinal_session          = data_info(allComb(k,1)).mode;
+                predCross_results.mode_oblique_session           = data_info(allComb(k,2)).mode;
+                predCross_results.delta_cardinal_session         = data_info(allComb(k,1)).delta;
+                predCross_results.delta_oblique_session          = data_info(allComb(k,2)).delta;
+                predCross_results.prior_cardinal_session         = data_info(allComb(k,1)).prior;
+                predCross_results.prior_oblique_session          = data_info(allComb(k,2)).prior;
+                predCross_results.sessionNum_cardinal_session    = data_info(allComb(k,1)).sessionNum;
+                predCross_results.sessionNum_oblique_session     = data_info(allComb(k,2)).sessionNum;
+
+                predCross_results.predResults                    = predResults;
+                save(save_name, 'predCross_results')
+    
+            end
+        end
+    end
+end
+% %% visualization of the cross-prediction results
+% doThis = 0;
+% if doThis
+% subjectCode = 'monkeyG';
+% i_set = 8;
+% plot_predCross_results(subjectCode, i_set);
+% end
+
+
+
+function plot_predCross_results(subjectCode, i_set)
+    global bpGlobal
+    home_folder = '../../results/model_behavior/predCross';
+    data_folder = fullfile(home_folder, sprintf('bestparams_%s_set_%d',subjectCode, i_set));
+    dlist   = dir(fullfile(data_folder,'*.mat'));
+    nSession = numel(dlist);
+    
+    [fitCpredC_ll,fitOpredO_ll,...
+     fitCpredO_ll,fitOpredC_ll,...
+     fitCpredO_ll_flip,fitOpredC_ll_flip,...
+     fitCpredO_ll_final,fitOpredC_ll_final] = deal(zeros(nSession,20));
+    for n = 1:nSession
+        load(fullfile(dlist(n).folder, dlist(n).name));
+    
+       
+        fitCpredC_ll(n,:) = predCross_results.predResults.ll.fitCpredC';
+        fitOpredO_ll(n,:) = predCross_results.predResults.ll.fitOpredO';
+    
+    
+        fitCpredO_ll(n,:) = predCross_results.predResults.ll.fitCpredO';
+        fitOpredC_ll(n,:) = predCross_results.predResults.ll.fitOpredC';
+    
+    
+        fitCpredO_ll_flip(n,:) = predCross_results.predResults.ll.fitCpredO_flip';
+        fitOpredC_ll_flip(n,:) = predCross_results.predResults.ll.fitOpredC_flip';
+    
+       
+        % decide whether to flip the sign for this whole session
+        if mean(fitCpredO_ll_flip(n,:)) > mean(fitCpredO_ll(n,:))
+            fitCpredO_ll_final(n,:) = fitCpredO_ll_flip(n,:);
+        else
+            fitCpredO_ll_final(n,:)  = fitCpredO_ll(n,:);
+        end
+    
+        if mean(fitOpredC_ll_flip(n,:)) > mean(fitOpredC_ll(n,:))
+            fitOpredC_ll_final(n,:) = fitOpredC_ll_flip(n,:);
+        else
+            fitOpredC_ll_final(n,:)  = fitOpredC_ll(n,:);
+        end
+    end
+
+    figure
+    subplot(1,2,1)
+    fig.plot_scatter_errorbar(fitCpredC_ll,fitOpredC_ll_final,...
+                bpGlobal.color_list.color_cardinal,bpGlobal.color_list.color_cardinal_light);
+    
+    [~,p,~,stats] = ttest(mean(fitCpredC_ll,2),mean(fitOpredC_ll_final,2));
+    title(sprintf(' $t(%d) = %.2f^{%s}$', stats.df,stats.tstat,fig.p2star(p)),...
+     'Interpreter','latex','Color',bpGlobal.color_list.color_cardinal,'fontsize',14);
+    line([-1.1,-0.4],[-1.1,-0.4],'linewidth',3,'color','black','linestyle','--')
+    xlabel('LL (within-task)'); ylabel('LL (cross-task)')
+    set(gca,'FontSize',18)
+    
+    subplot(1,2,2)
+    fig.plot_scatter_errorbar(fitOpredO_ll,fitCpredO_ll_final,...
+                bpGlobal.color_list.color_oblique,bpGlobal.color_list.color_oblique_light);
+    
+    [~,p,~,stats] = ttest(mean(fitOpredO_ll,2),mean(fitCpredO_ll_final,2));
+    title(sprintf(' $t(%d) = %.2f^{%s}$', stats.df,stats.tstat,fig.p2star(p)),...
+     'Interpreter','latex','Color',bpGlobal.color_list.color_oblique,'fontsize',14);
+    line([-1.1,-0.4],[-1.1,-0.4],'linewidth',3,'color','black','linestyle','--')
+    xlabel('LL (within-task)'); ylabel('LL (cross-task)')
+    set(gca,'FontSize',18)
+
+    sgtitle(sprintf('Parameters set %d for %s',i_set, subjectCode),'fontsize',20,'fontweight','bold')
+
+end
+

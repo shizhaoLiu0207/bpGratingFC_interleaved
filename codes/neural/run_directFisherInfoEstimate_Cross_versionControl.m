@@ -45,9 +45,9 @@ session_list_all    = [session_list_ro_all; session_list_gr_all];
 
 interleaved_session_all = [session_list_ro.switching; setdiff(session_list_gr.interleaved,bad_session_list_gr )];
 %%%%%%%%%%%%%%%%%%%%%%%%%% specify data path %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if isfolder('/Users/liushizhao/projectData_local/probinf_data/extractedData')
+if isfolder('/Users/liushizhao/projectData_local/probinf_data_interleaved/extractedData')
     % on macbook
-    extractedData_folder = '/Users/liushizhao/projectData_local/probinf_data/extractedData';
+    extractedData_folder = '/Users/liushizhao/projectData_local/probinf_data_interleaved/extractedData';
 elseif isfolder('/home/shizhao/Documents/projectData/probinf_data/extractedData')
     extractedData_folder = '/home/shizhao/Documents/projectData/probinf_data/extractedData';
 else
